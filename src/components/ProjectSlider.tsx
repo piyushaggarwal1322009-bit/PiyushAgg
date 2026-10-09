@@ -58,7 +58,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
   if (!activeProject) return null;
 
   return (
-    <div className={`project-slider accent-${activeProject.accentTheme}`}>
+    <div className="project-slider">
       <div className="slider-toolbar">
         <p className="slider-position" aria-live="polite">
           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
@@ -100,7 +100,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
       >
         <AnimatePresence mode="wait" initial={false}>
           <ProjectSlide
-            key={activeProject.id}
+            key={activeProject.previewKey ?? activeProject.name}
             project={activeProject}
             index={activeIndex}
           />
@@ -110,7 +110,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
       <div className="slider-progress" aria-label="Choose a project">
         {projects.map((project, index) => (
           <button
-            key={project.id}
+            key={project.previewKey ?? project.name}
             type="button"
             className={index === activeIndex ? "is-active" : ""}
             aria-label={`Show project ${index + 1}: ${project.name}`}

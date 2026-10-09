@@ -14,11 +14,12 @@ type ProjectSlideProps = {
 export function ProjectSlide({ project, index }: ProjectSlideProps) {
   const reduceMotion = useReducedMotion();
   const [selectedTechnology, setSelectedTechnology] = useState<string | null>(null);
+  const projectId = project.previewKey ?? project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
   return (
     <motion.article
-      className={`project-slide accent-${project.accentTheme}`}
-      aria-labelledby={`project-title-${project.id}`}
+      className="project-slide"
+      aria-labelledby={`project-title-${projectId}`}
       initial={{ opacity: 0, x: 22 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -22 }}
@@ -27,27 +28,28 @@ export function ProjectSlide({ project, index }: ProjectSlideProps) {
       <div className="project-slide-info">
         <div className="project-slide-kicker">
           <span className="slide-accent-dot" />
-          <span>{project.category}</span>
+          <span>{project.eyebrow}</span>
+          <span>{project.status}</span>
         </div>
-        <h3 id={`project-title-${project.id}`}>{project.name}<i>.</i></h3>
+        <h3 id={`project-title-${projectId}`}>{project.name}<i>.</i></h3>
         <p className="project-slide-description">{project.description}</p>
 
-        {project.features.length > 0 && (
+        {project.highlights.length > 0 && (
           <div className="slide-features">
             <span className="slide-detail-label">PROJECT DETAILS</span>
             <ul>
-              {project.features.map((feature) => (
+              {project.highlights.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
           </div>
         )}
 
-        {project.technologies.length > 0 && (
+        {project.stack.length > 0 && (
           <div className="slide-technology-group">
             <span className="slide-detail-label">TECHNOLOGIES</span>
             <div className="slide-technologies" aria-label={`${project.name} technologies`}>
-              {project.technologies.map((technology) => (
+              {project.stack.map((technology) => (
                 <button
                   key={technology}
                   type="button"
@@ -70,32 +72,32 @@ export function ProjectSlide({ project, index }: ProjectSlideProps) {
         )}
 
         <div className="project-slide-links">
-          {project.liveUrl && (
+          {project.live && (
             <a
               className="slide-primary-link"
-              href={project.liveUrl}
+              href={project.live}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {project.id === "grillr" ? "Open Live App" : "Live Demo"}
+              {project.previewKey === "grillr" ? "Open Live App" : "Live Demo"}
               <ArrowUpRight size={16} />
             </a>
           )}
-          {project.githubUrl && (
+          {project.github && (
             <a
               className="slide-secondary-link"
-              href={project.githubUrl}
+              href={project.github}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github size={15} /> View Source <ArrowUpRight size={13} />
             </a>
           )}
-          {project.id === "grillr" && !project.liveUrl && (
-            <span className="slide-url-note">Live and source URLs not supplied</span>
+          {!project.live && (
+            <span className="slide-url-note">Live demo unavailable</span>
           )}
         </div>
-        <span className="slide-count-note">PROJECT 0{index + 1} / 03</span>
+        <span className="slide-count-note">PROJECT {String(index + 1).padStart(2, "0")}</span>
       </div>
 
       <ProjectPreview project={project} />
