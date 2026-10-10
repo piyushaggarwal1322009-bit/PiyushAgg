@@ -26,7 +26,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 88px; overflow-x: clip; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; overflow-x: clip; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
 body {
   margin: 0;
   min-height: 100vh;
@@ -85,42 +86,16 @@ button { font: inherit; }
   align-self: center;
   display: flex;
   min-width: 0;
-  min-height: 0;
   flex-direction: column;
-  padding: 14px;
+  min-height: clamp(24rem, 46vh, 32rem);
+  padding: clamp(1.35rem, 2.2vw, 2rem);
   overflow: hidden;
   border: 1px solid rgba(30, 32, 33, 0.12);
   border-radius: 18px;
   background: #f1eee8;
   color: #1c1e1d;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
-}
-.profile-portrait {
-  position: relative;
-  display: grid;
-  flex: 0 1 43%;
-  min-height: 138px;
-  max-height: 360px;
-  aspect-ratio: 1.18;
-  place-items: center;
-  overflow: hidden;
-  background: #dfdcd5;
-  color: var(--accent-orange);
-}
-.profile-portrait::before {
-  position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(28, 30, 29, 0.12);
-  content: "";
-}
-.profile-portrait > span {
-  position: absolute;
-  bottom: 22px;
-  left: 24px;
-  color: rgba(28, 30, 29, 0.62);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  animation: profile-card-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .profile-details {
   display: flex;
@@ -128,7 +103,7 @@ button { font: inherit; }
   min-height: 0;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 0.65rem 0.25rem;
+  padding: 0;
 }
 .profile-kicker {
   display: flex;
@@ -138,35 +113,55 @@ button { font: inherit; }
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.13em;
+  animation: profile-copy-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
 }
 .profile-kicker span {
   width: 0.48rem;
   height: 0.48rem;
   border-radius: 50%;
-  background: var(--accent-orange);
+  background: #22c55e;
 }
 .profile-details h2 {
-  margin: 0.7rem 0 0;
-  color: #ff8747;
-  font-size: clamp(1.8rem, 2.8vw, 2.65rem);
-  line-height: 1;
-  letter-spacing: 0;
-  animation: profile-name-enter 580ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  margin: 0.85rem 0 0;
+  color: #000000;
+  font-family: var(--font-display), "Segoe UI", sans-serif;
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  animation: profile-name-enter 640ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
 }
 @keyframes profile-name-enter {
-  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes profile-card-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.profile-degree,
+.profile-intro,
+.profile-socials {
+  animation: profile-copy-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.profile-degree { animation-delay: 190ms; }
+.profile-intro { animation-delay: 250ms; }
+.profile-socials { animation-delay: 310ms; }
+@keyframes profile-copy-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .profile-degree {
-  margin: 0.65rem 0 0;
+  margin: 1rem 0 0;
   color: #555651;
   font-size: 0.8rem;
   line-height: 1.45;
 }
 .profile-degree span { color: #a14e2d; font-weight: 700; }
 .profile-intro {
-  max-width: 28rem;
-  margin: 0.75rem 0 0;
+  max-width: 30rem;
+  margin: 1rem 0 0;
   color: #434541;
   font-size: 0.83rem;
   line-height: 1.6;
@@ -175,8 +170,8 @@ button { font: inherit; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.2rem;
-  margin-top: 1rem;
-  padding-top: 0.85rem;
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
   border-top: 1px solid rgba(28, 30, 29, 0.16);
 }
 .profile-socials a {
@@ -196,15 +191,19 @@ button { font: inherit; }
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: auto;
-  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scrollbar-width: none;
 }
-.intro-panel::-webkit-scrollbar-button { display: none; }
+.intro-panel::-webkit-scrollbar { display: none; }
 .intro-section {
   display: flex;
   min-height: 100%;
   flex-direction: column;
   justify-content: center;
   padding: 1.2rem clamp(1.25rem, 3.6vw, 3.4rem) 2rem 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 .intro-stack { border-top: 1px solid var(--line); }
 .intro-title {
@@ -389,7 +388,7 @@ h2 span { color: var(--muted); }
 }
 @media (min-width: 981px) {
   .intro-education .education-heading { gap: clamp(1rem, 2vw, 2rem); }
-  .intro-education .education-heading h2 { font-size: clamp(2.35rem, 3.5vw, 3.4rem); }
+  .intro-education .education-heading h2 { font-size: clamp(2.8rem, 4.8vw, 4rem); line-height: 0.94; letter-spacing: -0.055em; }
   .intro-education .education-heading p { flex: 1 1 12rem; max-width: 18rem; font-size: 0.82rem; }
   .intro-education .education-story {
     grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
@@ -758,6 +757,7 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
   .nav-links { display: none; }
   .intro-layout { width: calc(100% - 48px); grid-template-columns: minmax(245px, 0.72fr) minmax(0, 1.28fr); gap: clamp(1.25rem, 3vw, 2rem); }
   .intro-title { font-size: clamp(3.15rem, 6.8vw, 5.4rem); }
+  .profile-details h2 { font-size: clamp(1.95rem, 3.5vw, 2.8rem); }
   .hero-grid, .split-section, .education-story, .now-card, .showcase-project, .water-mock { grid-template-columns: 1fr; }
   .stack-grid, .philosophy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-heading-row,
@@ -770,11 +770,11 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
   .section { width: min(var(--content-width), calc(100% - 30px)); padding: 5.4rem 0; }
   .nav { padding: 0 1.1rem; }
   .intro-layout { width: min(560px, calc(100% - 32px)); height: auto; grid-template-columns: 1fr; gap: 1.25rem; padding: 88px 0 0; }
-  .profile-card { position: relative; top: auto; width: 100%; }
-  .profile-portrait { flex: none; min-height: 180px; max-height: 300px; aspect-ratio: 1.75; }
-  .profile-details { padding: 1.1rem 0.65rem 0.35rem; }
-  .intro-panel { height: auto; overflow: visible; scrollbar-gutter: auto; }
-  .intro-section { min-height: 0; padding: 3.8rem 0; }
+  .profile-card { position: relative; top: auto; width: 100%; min-height: 0; padding: 1.5rem; }
+  .profile-details h2 { font-size: clamp(1.85rem, 8vw, 2.5rem); }
+  .profile-socials { margin-top: 1.15rem; }
+  .intro-panel { height: auto; overflow: visible; scroll-behavior: auto; scroll-snap-type: none; }
+  .intro-section { min-height: 0; padding: 3.8rem 0; scroll-snap-align: none; }
   .intro-about { padding-top: 2.8rem; }
   .intro-title { font-size: clamp(3.1rem, 12.5vw, 4.8rem); }
   .intro-lede { margin-top: 1.35rem; }
@@ -800,15 +800,17 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 }
 @media (max-height: 640px) and (min-width: 641px) {
   .intro-layout { padding-top: 78px; padding-bottom: 14px; }
-  .profile-card { padding: 10px; }
-  .profile-portrait { min-height: 118px; }
-  .profile-details { padding-top: 0.65rem; }
-  .profile-intro { margin-top: 0.5rem; }
-  .profile-socials { margin-top: 0.65rem; padding-top: 0.6rem; }
+  .profile-card { min-height: 22rem; padding: 1.25rem; }
+  .profile-intro { margin-top: 0.7rem; }
+  .profile-socials { margin-top: 0.9rem; padding-top: 0.75rem; }
   .intro-section { padding-top: 0.7rem; padding-bottom: 1.4rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-  .profile-details h2 { animation: none; }
+  .intro-panel { scroll-snap-type: none; }
+  .intro-section { scroll-snap-align: none; }
+  .motion-reveal { opacity: 1 !important; transform: none !important; }
+  .profile-card,
+  .profile-details > * { animation: none !important; }
 }

@@ -7,7 +7,6 @@ import {
   MapPin,
   Sparkles,
   Terminal,
-  UserRound,
 } from "lucide-react";
 import { profile, techStack } from "../data/profile";
 import { MagneticLink, Reveal } from "../components/Motion";
@@ -35,10 +34,6 @@ export default function Home() {
 
       <section id="top" className="intro-layout" aria-label="Introduction">
         <aside className="profile-card" aria-label="Piyush Aggarwal profile">
-          <div className="profile-portrait" aria-label="Portrait placeholder">
-            <UserRound size={76} strokeWidth={1.1} aria-hidden="true" />
-            <span>PORTRAIT</span>
-          </div>
           <div className="profile-details">
             <div className="profile-kicker"><span /> STUDENT DEVELOPER</div>
             <h2>{profile.name}</h2>
@@ -54,7 +49,6 @@ export default function Home() {
         <ScrollableIntro>
           <section id="education" className="intro-section education-section intro-education">
             <Reveal>
-              <div className="section-label">EDUCATION & LEARNING</div>
               <div className="education-heading">
                 <h2>
                   <span className="education-title-strong">Building my</span>
@@ -114,16 +108,20 @@ export default function Home() {
           </section>
 
           <section id="stack" className="intro-section intro-stack" aria-labelledby="stack-heading">
-            <h2 id="stack-heading" className="intro-title"><span>TECHNICAL</span><span>ARSENAL</span></h2>
-            <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
+            <Reveal>
+              <h2 id="stack-heading" className="intro-title"><span>TECHNICAL</span><span>ARSENAL</span></h2>
+              <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
+            </Reveal>
             <div className="arsenal-list">
-              {Object.entries(techStack).map(([category, items]) => (
-                <div className="arsenal-group" key={category}>
-                  <h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3>
-                  <div className="arsenal-items">
-                    {items.map((item) => <span key={item}>{item}</span>)}
+              {Object.entries(techStack).map(([category, items], index) => (
+                <Reveal key={category} delay={index * 0.045}>
+                  <div className="arsenal-group">
+                    <h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3>
+                    <div className="arsenal-items">
+                      {items.map((item) => <span key={item}>{item}</span>)}
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </section>
