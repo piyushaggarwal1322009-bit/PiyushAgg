@@ -668,10 +668,10 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
   isolation: isolate;
   margin-top: 1.4rem;
   padding: clamp(1rem, 2vw, 1.35rem);
-  border: 1px solid color-mix(in srgb, var(--project-accent) 52%, var(--line));
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(18, 22, 32, 0.94), rgba(13, 16, 21, 0.99));
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-accent) 16%, transparent), 0 24px 72px color-mix(in srgb, var(--project-accent) 24%, transparent), 0 0 88px color-mix(in srgb, var(--project-accent) 12%, transparent), inset 0 0 38px color-mix(in srgb, var(--project-accent) 6%, transparent);
+  border: 1px solid #273243;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #10151d, #0d1118);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.32), 0 0 38px color-mix(in srgb, var(--project-accent) 5%, transparent);
   transition: border-color 420ms ease, box-shadow 420ms ease;
 }
 .showcase-shell::before {
@@ -679,20 +679,20 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
   z-index: 0;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--project-accent) 26%, transparent), transparent 44%), radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--project-accent) 20%, transparent), transparent 42%), radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--project-accent) 9%, transparent), transparent 35%);
+  background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--project-accent) 8%, transparent), transparent 38%), radial-gradient(ellipse at 100% 100%, color-mix(in srgb, var(--project-accent) 5%, transparent), transparent 36%);
   content: "";
-  opacity: 0.8;
+  opacity: 0.55;
   pointer-events: none;
   transition: opacity 420ms ease;
 }
 .showcase-shell > * { position: relative; z-index: 1; }
 .showcase-shell:hover,
-.showcase-shell:focus-within { border-color: color-mix(in srgb, var(--project-accent) 72%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-accent) 22%, transparent), 0 28px 78px color-mix(in srgb, var(--project-accent) 28%, transparent), 0 0 96px color-mix(in srgb, var(--project-accent) 16%, transparent), inset 0 0 40px color-mix(in srgb, var(--project-accent) 8%, transparent); }
-.showcase-shell:focus-visible { outline-color: var(--project-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--project-accent) 35%, transparent), 0 18px 48px color-mix(in srgb, var(--project-accent) 18%, transparent); }
+.showcase-shell:focus-within { border-color: color-mix(in srgb, var(--project-accent) 34%, #273243); box-shadow: 0 18px 46px rgba(0, 0, 0, 0.32), 0 0 38px color-mix(in srgb, var(--project-accent) 7%, transparent); }
+.showcase-shell:focus-visible { outline-color: var(--project-accent); outline-offset: 3px; }
 .showcase-project-meta, .showcase-controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .showcase-hint, .project-unavailable { color: var(--muted); font-size: 0.62rem; letter-spacing: 0.1rem; text-transform: uppercase; }
 .project-status { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--muted); font-size: 0.66rem; font-weight: 600; transition: color 420ms ease; }
-.project-status::before { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--project-accent); box-shadow: 0 0 10px color-mix(in srgb, var(--project-accent) 55%, transparent); content: ""; transition: background-color 420ms ease, box-shadow 420ms ease; }
+.project-status::before { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--project-accent); box-shadow: 0 0 5px color-mix(in srgb, var(--project-accent) 20%, transparent); content: ""; transition: background-color 420ms ease, box-shadow 420ms ease; }
 .showcase-stage { min-height: clamp(25.5rem, 35vw, 28rem); margin-top: 0.5rem; }
 .showcase-project { display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); gap: clamp(1rem, 3vw, 2.2rem); align-items: center; width: 100%; min-height: inherit; padding: 0.5rem 0 0.25rem; }
 .showcase-copy { min-width: 0; }
@@ -706,17 +706,15 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .showcase-tags span { padding: 0.28rem 0.45rem; font-size: 0.66rem; }
 .showcase-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1rem; }
 .showcase-actions .button { padding: 0.8rem 1rem; border-radius: 0.75rem; font-size: 0.72rem; transition: color 420ms ease, background-color 420ms ease, border-color 420ms ease, box-shadow 420ms ease; }
-.showcase-actions .button.primary { background: var(--project-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--project-accent) 22%, transparent); }
+.showcase-actions .button.primary { background: var(--project-accent); box-shadow: 0 4px 12px color-mix(in srgb, var(--project-accent) 9%, transparent); }
 .showcase-actions .button.primary:hover,
-.showcase-actions .button.primary:focus-visible { background: color-mix(in srgb, var(--project-accent) 84%, white); box-shadow: 0 0 0 2px color-mix(in srgb, var(--project-accent) 28%, transparent), 0 10px 28px color-mix(in srgb, var(--project-accent) 36%, transparent); }
+.showcase-actions .button.primary:focus-visible { background: color-mix(in srgb, var(--project-accent) 84%, white); box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-accent) 16%, transparent), 0 6px 16px color-mix(in srgb, var(--project-accent) 14%, transparent); }
 .showcase-actions .button.ghost:hover,
-.showcase-actions .button.ghost:focus-visible { border-color: color-mix(in srgb, var(--project-accent) 58%, transparent); color: var(--project-accent); box-shadow: 0 0 18px color-mix(in srgb, var(--project-accent) 18%, transparent); }
-.showcase-preview { position: relative; display: grid; width: 100%; min-width: 0; min-height: 16rem; aspect-ratio: 1.7; place-items: center; border: 1px solid color-mix(in srgb, var(--project-accent) 52%, var(--line)); border-radius: 1rem; background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--project-accent) 9%, transparent), transparent 58%), rgba(16, 20, 28, 1); box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-accent) 20%, transparent), 0 18px 42px color-mix(in srgb, var(--project-accent) 22%, transparent), 0 0 54px color-mix(in srgb, var(--project-accent) 13%, transparent), inset 0 0 30px color-mix(in srgb, var(--project-accent) 10%, transparent); overflow: hidden; transition: border-color 420ms ease, box-shadow 420ms ease, background-color 420ms ease; }
-.showcase-preview::before { position: absolute; z-index: 2; inset: 0; border: 1px solid color-mix(in srgb, var(--project-accent) 30%, transparent); border-radius: inherit; box-shadow: inset 0 0 28px color-mix(in srgb, var(--project-accent) 12%, transparent); content: ""; pointer-events: none; transition: border-color 420ms ease, box-shadow 420ms ease; }
-.showcase-preview::after { position: absolute; z-index: 0; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 10% 0%, color-mix(in srgb, var(--project-accent) 16%, transparent), transparent 46%), radial-gradient(ellipse at 90% 100%, color-mix(in srgb, var(--project-accent) 12%, transparent), transparent 44%); content: ""; opacity: 0.8; pointer-events: none; }
-.showcase-preview:hover { border-color: color-mix(in srgb, var(--project-accent) 72%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--project-accent) 24%, transparent), 0 20px 48px color-mix(in srgb, var(--project-accent) 27%, transparent), 0 0 62px color-mix(in srgb, var(--project-accent) 18%, transparent), inset 0 0 34px color-mix(in srgb, var(--project-accent) 12%, transparent); }
+.showcase-actions .button.ghost:focus-visible { border-color: color-mix(in srgb, var(--project-accent) 36%, #273243); color: var(--project-accent); box-shadow: 0 0 10px color-mix(in srgb, var(--project-accent) 8%, transparent); }
+.showcase-preview { position: relative; display: grid; width: 100%; min-width: 0; min-height: 16rem; aspect-ratio: 1.7; place-items: center; border: 1px solid #273243; border-radius: 1rem; background: #111720; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24), 0 0 28px color-mix(in srgb, var(--project-accent) 5%, transparent); overflow: hidden; transition: border-color 420ms ease, box-shadow 420ms ease, background-color 420ms ease; }
+.showcase-preview:hover { border-color: color-mix(in srgb, var(--project-accent) 24%, #273243); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26), 0 0 30px color-mix(in srgb, var(--project-accent) 7%, transparent); }
 .preview-content { position: relative; z-index: 1; display: grid; width: 100%; min-width: 0; max-width: 100%; min-height: 16rem; padding: 0.85rem; place-items: center; overflow: hidden; background-image: linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px); background-size: 36px 36px; }
-.mock-app { width: 100%; border: 1px solid color-mix(in srgb, var(--project-accent) 28%, var(--line)); border-radius: 1rem; background: rgba(17, 20, 27, 0.78); padding: 0.9rem; box-shadow: inset 0 0 24px color-mix(in srgb, var(--project-accent) 5%, transparent); }
+.mock-app { width: 100%; border: 1px solid #283242; border-radius: 0.8rem; background: #141a23; padding: 0.9rem; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18); }
 .mock-app-head { display: flex; align-items: center; gap: 0.7rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
 .mock-app-icon { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 0.7rem; background: color-mix(in srgb, var(--project-accent) 14%, transparent); color: var(--project-accent); font-weight: 700; }
 .mock-app-head > div { display: grid; gap: 0.2rem; }
@@ -729,14 +727,14 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .mock-question small, .mock-analysis small { color: var(--muted); font-size: 0.55rem; letter-spacing: 0.12rem; text-transform: uppercase; }
 .mock-question h4 { margin: 0.65rem 0; font-size: clamp(0.9rem, 1.25vw, 1.15rem); line-height: 1.4; letter-spacing: -0.035em; }
 .waveform { display: flex; align-items: flex-end; gap: 0.2rem; min-height: 2rem; margin: 0.65rem 0 0.4rem; }
-.waveform i { display: block; width: 0.2rem; border-radius: 999px; background: var(--project-accent); box-shadow: 0 0 8px color-mix(in srgb, var(--project-accent) 34%, transparent); }
+.waveform i { display: block; width: 0.2rem; border-radius: 999px; background: var(--project-accent); }
 @keyframes waveform { from { transform: scaleY(0.3); opacity: 0.65; } to { transform: scaleY(1); opacity: 1; } }
 .showcase-shell[data-preview-visible="true"] .waveform i { animation: waveform 1.8s ease-in-out infinite alternate; }
 .mock-analysis { display: grid; align-content: start; gap: 0.55rem; }
 .mock-analysis strong { display: block; margin: 0.1rem 0 0.15rem; font-size: 1.05rem; }
 .mock-feedback-meter { display: grid; gap: 0.25rem; color: var(--muted); font-size: 0.58rem; }
 .mock-feedback-meter > i { display: block; height: 0.32rem; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
-.mock-feedback-meter > i > b { display: block; width: 72%; height: 100%; border-radius: inherit; background: var(--project-accent); box-shadow: 0 0 10px color-mix(in srgb, var(--project-accent) 32%, transparent); transform: scaleX(1); transform-origin: left; }
+.mock-feedback-meter > i > b { display: block; width: 72%; height: 100%; border-radius: inherit; background: var(--project-accent); transform: scaleX(1); transform-origin: left; }
 .mock-feedback-meter:nth-of-type(2) > i > b { width: 84%; }
 .mock-feedback-meter:nth-of-type(3) > i > b { width: 64%; }
 .showcase-shell[data-preview-visible="true"] .mock-feedback-meter > i > b { animation: feedback-meter-in 620ms cubic-bezier(0.22, 1, 0.36, 1) both; }
@@ -801,7 +799,7 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .showcase-controls { margin-top: 0.8rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .showcase-progress { display: flex; align-items: center; gap: 0.42rem; }
 .showcase-progress button { width: 1.2rem; height: 0.28rem; border: 0; border-radius: 999px; background: rgba(255, 255, 255, 0.14); cursor: pointer; transition: width 0.2s ease, background-color 0.2s ease; }
-.showcase-progress button.active { width: 2.2rem; background: var(--project-accent); box-shadow: 0 0 12px color-mix(in srgb, var(--project-accent) 48%, transparent); }
+.showcase-progress button.active { width: 2.2rem; background: var(--project-accent); box-shadow: 0 0 6px color-mix(in srgb, var(--project-accent) 18%, transparent); }
 .showcase-progress button:focus-visible { outline: 2px solid var(--project-accent); outline-offset: 3px; }
 .showcase-arrows { display: flex; align-items: center; gap: 0.55rem; }
 .showcase-arrows button { width: 2.2rem; height: 2.2rem; border: 1px solid var(--line); border-radius: 50%; background: rgba(255, 255, 255, 0.02); color: var(--text); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
