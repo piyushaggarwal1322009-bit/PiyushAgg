@@ -629,16 +629,13 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .github-statistics, .github-panel { min-width: 0; }
 .github-statistics h3 { margin: 0 0 1.15rem; color: var(--muted); font-size: 0.76rem; font-weight: 600; }
 .github-panel { padding: 0; border: 0; border-radius: 0; background: transparent; }
-.github-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.github-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .github-panel-head > div { display: flex; align-items: center; gap: 0.8rem; }
 .github-panel-brand svg { flex: 0 0 auto; color: var(--text); }
 .github-panel-head strong { display: block; color: var(--text); font-size: 1.18rem; font-weight: 650; }
-.github-panel-brand span { color: var(--muted); font-size: 0.76rem; }
 .github-panel-head .github-total { display: grid; justify-items: end; gap: 0.05rem; text-align: right; }
 .github-total .github-stat-value { font-size: 2.5rem; }
 .github-total > span { color: var(--muted); font-size: 0.76rem; }
-.calendar-meta { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 1.65rem 0 0.9rem; color: var(--muted); font-size: 0.78rem; }
-.calendar-meta small { color: #777; font-size: 0.68rem; }
 .calendar-scroll { --calendar-label-width: 2.25rem; --calendar-label-gap: 0.65rem; --calendar-column-gap: 0.35rem; --calendar-week-min-size: 0px; width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: rgba(177, 185, 201, 0.25) transparent; }
 .calendar-months { display: grid; gap: var(--calendar-column-gap); width: calc(100% - var(--calendar-label-width) - var(--calendar-label-gap)); margin: 0 0 0.65rem calc(var(--calendar-label-width) + var(--calendar-label-gap)); color: var(--muted); font-size: 0.78rem; font-weight: 600; }
 .calendar-months span { white-space: nowrap; }
@@ -885,7 +882,6 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
   .github-panel-head .github-total { max-width: 56%; }
   .github-total .github-stat-value { font-size: 2.1rem; }
   .github-total > span { font-size: 0.68rem; }
-  .calendar-meta { margin-top: 1.2rem; }
   .activity-foot { align-items: center; }
   .showcase-hint { flex: 1 0 100%; }
   .showcase-progress { order: 3; width: 100%; }

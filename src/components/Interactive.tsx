@@ -156,7 +156,6 @@ export function GitHubActivity() {
   const recentContributions = data?.contributionDataAvailable && contributionWindow
     ? data.days.reduce((sum, day) => day.date >= contributionWindow.startDate && day.date <= contributionWindow.endDate ? sum + day.count : sum, 0)
     : null;
-  const synced = data?.fetchedAt ? new Date(data.fetchedAt).toLocaleString() : "";
 
   return <div className="github-dashboard">
     <aside className="github-statistics" aria-label="Developer statistics">
@@ -192,17 +191,13 @@ export function GitHubActivity() {
 
     <section className="github-panel" aria-labelledby="github-activity-heading">
       <div className="github-panel-head">
-        <div className="github-panel-brand"><Github size={22} /><div><strong id="github-activity-heading">GitHub activity</strong><span>Public contribution history</span></div></div>
+        <div className="github-panel-brand"><Github size={22} /><div><strong id="github-activity-heading">GitHub activity</strong></div></div>
         <div className="github-total">
           <AnimatedNumber value={recentContributions} delay={360} />
           <span>contributions in the last {CONTRIBUTION_MONTHS} months</span>
         </div>
       </div>
       {loading && !data ? <div className="calendar-loading" aria-label="Loading GitHub activity"><span/><span/><span/><span/><span/><span/><span/></div> : data?.contributionDataAvailable && contributionWindow ? <>
-        <div className="calendar-meta">
-          <span>{new Date(`${contributionWindow.startDate}T00:00:00Z`).toLocaleDateString("en", { month: "short", day: "numeric", timeZone: "UTC" })} – {new Date(`${contributionWindow.endDate}T00:00:00Z`).toLocaleDateString("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</span>
-          <small>{data.stale || error ? `Saved data · updated ${synced}` : `Updated ${synced}`}</small>
-        </div>
         <div className="calendar-scroll">
           <div className="calendar-months" style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(var(--calendar-week-min-size), 1fr))` }}>
             {months.map((month) => <span key={`${month.label}-${month.weekIndex}`} style={{ gridColumn: `${month.weekIndex + 1} / span ${month.span}` }}>{month.label}</span>)}
