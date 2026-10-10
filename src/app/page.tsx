@@ -145,7 +145,11 @@ export default function Home() {
         <Reveal>
           <div className="section-label">04 / EDUCATION & LEARNING</div>
           <div className="education-heading">
-            <h2>Building my<br /><span>foundation.</span></h2>
+            <h2>
+              <span className="education-title-strong">Building my</span>
+              <br />
+              <span className="education-title-soft">foundation.</span>
+            </h2>
             <p>A path through formal study and the practical skills I keep developing by building.</p>
           </div>
         </Reveal>
@@ -153,24 +157,32 @@ export default function Home() {
           <Reveal>
             <article className="education-primary">
               <div className="education-primary-top">
-                <span className="education-icon"><GraduationCap size={21} strokeWidth={1.7} /></span>
+                <span className="education-icon" aria-hidden="true">
+                  <GraduationCap size={21} strokeWidth={1.7} />
+                </span>
                 <span className="education-kicker">UNDERGRADUATE STUDY</span>
               </div>
-              <h3>{profile.degree}</h3>
+
+              <h3 className="education-degree">
+                B.Tech in Computer Science Engineering <span className="education-specialty">(AI / ML)</span>
+              </h3>
               <p className="education-institution">{profile.university}</p>
-              <p className="education-description">Studying computer science while developing practical engineering skills through project work.</p>
+              <p className="education-description">
+                Studying computer science while developing practical engineering skills through project work.
+              </p>
+
               <div className="education-primary-foot">
-                <span className="education-progress"><i />{profile.educationStatus}</span>
-                <span><MapPin size={14} /> Sonepat, India</span>
+                <span className="education-progress"><i aria-hidden="true" />{profile.educationStatus}</span>
+                <span className="education-location"><MapPin size={14} /> Sonepat, India</span>
               </div>
             </article>
           </Reveal>
+
           <div className="education-previous">
             <div className="education-previous-heading">
-              <span>Earlier education</span>
               <span>PREVIOUS STUDY</span>
             </div>
-            <div className="education-school-list">
+            <div className="education-school-list" aria-label="Previous education">
               {profile.previousSchools.map((school, index) => (
                 <Reveal key={school.name} delay={index * 0.08}>
                   <article className="education-school">
