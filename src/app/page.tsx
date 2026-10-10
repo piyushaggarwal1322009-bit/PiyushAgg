@@ -22,9 +22,9 @@ export default function Home() {
         <a href="#top" className="brand">PA<span>.</span></a>
         <div className="nav-links">
           <a href="#top">About</a>
+          <a href="#education">Education</a>
           <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
           <a href="#philosophy">Philosophy</a>
           <a href="#contact">Contact</a>
         </div>
@@ -52,6 +52,67 @@ export default function Home() {
         </aside>
 
         <ScrollableIntro>
+          <section id="education" className="intro-section education-section intro-education">
+            <Reveal>
+              <div className="section-label">EDUCATION & LEARNING</div>
+              <div className="education-heading">
+                <h2>
+                  <span className="education-title-strong">Building my</span>
+                  <br />
+                  <span className="education-title-soft">foundation.</span>
+                </h2>
+                <p>A path through formal study and the practical skills I keep developing by building.</p>
+              </div>
+            </Reveal>
+            <div className="education-story">
+              <Reveal>
+                <article className="education-primary">
+                  <div className="education-primary-top">
+                    <span className="education-icon" aria-hidden="true">
+                      <GraduationCap size={21} strokeWidth={1.7} />
+                    </span>
+                    <span className="education-kicker">UNDERGRADUATE STUDY</span>
+                  </div>
+
+                  <h3 className="education-degree">
+                    B.Tech in Computer Science Engineering <span className="education-specialty">(AI / ML)</span>
+                  </h3>
+                  <p className="education-institution">{profile.university}</p>
+                  <p className="education-description">
+                    Studying computer science while developing practical engineering skills through project work.
+                  </p>
+
+                  <div className="education-primary-foot">
+                    <span className="education-progress"><i aria-hidden="true" />{profile.educationStatus}</span>
+                    <span className="education-location"><MapPin size={14} /> Sonepat, India</span>
+                  </div>
+                </article>
+              </Reveal>
+
+              <div className="education-previous">
+                <div className="education-previous-heading">
+                  <span>PREVIOUS STUDY</span>
+                </div>
+                <div className="education-school-list" aria-label="Previous education">
+                  {profile.previousSchools.map((school, index) => (
+                    <Reveal key={school.name} delay={index * 0.08}>
+                      <article className="education-school">
+                        <span className={`education-school-marker ${index === 0 ? "is-mint" : ""}`} aria-hidden="true" />
+                        <div className="education-school-copy">
+                          <div className="education-school-meta">
+                            <span>{school.level}</span>
+                            <span>{school.status}</span>
+                          </div>
+                          <h3>{school.name}</h3>
+                        </div>
+                      </article>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section id="stack" className="intro-section intro-stack" aria-labelledby="stack-heading">
             <h2 id="stack-heading" className="intro-title"><span>TECHNICAL</span><span>ARSENAL</span></h2>
             <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
@@ -71,7 +132,7 @@ export default function Home() {
 
       <section id="projects" className="section projects-section">
         <Reveal>
-          <div className="section-label">03 / SELECTED WORK</div>
+          <div className="section-label">SELECTED WORK</div>
           <div className="section-heading-row">
             <h2>Ideas that became<br /><span>projects.</span></h2>
             <p>I care about the problem, the product and the engineering behind the interface.</p>
@@ -83,7 +144,7 @@ export default function Home() {
 
       <section className="section activity-section">
         <Reveal>
-          <div className="section-label">03.5 / OPEN SOURCE TRAIL</div>
+          <div className="section-label">OPEN SOURCE TRAIL</div>
           <div className="section-heading-row">
             <h2>Code in motion.<br /><span>Progress over perfection.</span></h2>
             <p>A live GitHub contribution view gives visitors another way to explore the work behind the portfolio.</p>
@@ -92,70 +153,9 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section id="education" className="section education-section">
-        <Reveal>
-          <div className="section-label">04 / EDUCATION & LEARNING</div>
-          <div className="education-heading">
-            <h2>
-              <span className="education-title-strong">Building my</span>
-              <br />
-              <span className="education-title-soft">foundation.</span>
-            </h2>
-            <p>A path through formal study and the practical skills I keep developing by building.</p>
-          </div>
-        </Reveal>
-        <div className="education-story">
-          <Reveal>
-            <article className="education-primary">
-              <div className="education-primary-top">
-                <span className="education-icon" aria-hidden="true">
-                  <GraduationCap size={21} strokeWidth={1.7} />
-                </span>
-                <span className="education-kicker">UNDERGRADUATE STUDY</span>
-              </div>
-
-              <h3 className="education-degree">
-                B.Tech in Computer Science Engineering <span className="education-specialty">(AI / ML)</span>
-              </h3>
-              <p className="education-institution">{profile.university}</p>
-              <p className="education-description">
-                Studying computer science while developing practical engineering skills through project work.
-              </p>
-
-              <div className="education-primary-foot">
-                <span className="education-progress"><i aria-hidden="true" />{profile.educationStatus}</span>
-                <span className="education-location"><MapPin size={14} /> Sonepat, India</span>
-              </div>
-            </article>
-          </Reveal>
-
-          <div className="education-previous">
-            <div className="education-previous-heading">
-              <span>PREVIOUS STUDY</span>
-            </div>
-            <div className="education-school-list" aria-label="Previous education">
-              {profile.previousSchools.map((school, index) => (
-                <Reveal key={school.name} delay={index * 0.08}>
-                  <article className="education-school">
-                    <span className={`education-school-marker ${index === 0 ? "is-mint" : ""}`} aria-hidden="true" />
-                    <div className="education-school-copy">
-                      <div className="education-school-meta">
-                        <span>{school.level}</span>
-                        <span>{school.status}</span>
-                      </div>
-                      <h3>{school.name}</h3>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="philosophy" className="section philosophy-section">
         <Reveal>
-          <div className="section-label">05 / PHILOSOPHY</div>
+          <div className="section-label">PHILOSOPHY</div>
           <div className="philosophy-intro">
             <Sparkles size={22} />
             <h2>How I think<br /><span>about building.</span></h2>
@@ -192,7 +192,7 @@ export default function Home() {
 
       <section id="contact" className="section contact-section">
         <Reveal>
-          <div className="section-label">06 / CONTACT</div>
+          <div className="section-label">CONTACT</div>
           <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
           <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
           <div className="contact-links">

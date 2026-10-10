@@ -72,7 +72,7 @@ button { font: inherit; }
 .section { width: min(var(--content-width), calc(100% - 64px)); margin: 0 auto; padding: 118px 0; }
 .intro-layout {
   display: grid;
-  grid-template-columns: minmax(285px, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(285px, 0.72fr) minmax(0, 1.28fr);
   gap: clamp(1.75rem, 4.4vw, 4.5rem);
   width: min(1320px, calc(100% - 64px));
   height: 100svh;
@@ -196,12 +196,9 @@ button { font: inherit; }
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: auto;
-  scrollbar-color: rgba(215, 121, 80, 0.58) transparent;
   scrollbar-gutter: stable;
-  scrollbar-width: thin;
 }
-.intro-panel::-webkit-scrollbar { width: 7px; }
-.intro-panel::-webkit-scrollbar-thumb { border-radius: 8px; background: rgba(215, 121, 80, 0.58); }
+.intro-panel::-webkit-scrollbar-button { display: none; }
 .intro-section {
   display: flex;
   min-height: 100%;
@@ -267,7 +264,6 @@ button { font: inherit; }
   font-size: 0.72rem;
 }
 .intro-facts svg { flex: 0 0 auto; color: var(--accent-orange); }
-.intro-about .education-story { margin-top: clamp(1.75rem, 3vh, 2.5rem); }
 .arsenal-intro {
   max-width: 34rem;
   margin: 1.25rem 0 1.4rem;
@@ -390,6 +386,15 @@ h2 span { color: var(--muted); }
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.8;
+}
+@media (min-width: 981px) {
+  .intro-education .education-heading { gap: clamp(1rem, 2vw, 2rem); }
+  .intro-education .education-heading h2 { font-size: clamp(2.35rem, 3.5vw, 3.4rem); }
+  .intro-education .education-heading p { flex: 1 1 12rem; max-width: 18rem; font-size: 0.82rem; }
+  .intro-education .education-story {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+    gap: clamp(1rem, 1.8vw, 1.5rem);
+  }
 }
 .education-story {
   display: grid;
@@ -751,7 +756,7 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .showcase-arrows button:hover, .showcase-arrows button:focus-visible { transform: translateY(-2px); border-color: var(--electric-blue); color: var(--electric-blue); }
 @media (max-width: 980px) {
   .nav-links { display: none; }
-  .intro-layout { width: calc(100% - 48px); grid-template-columns: minmax(245px, 0.82fr) minmax(0, 1.18fr); gap: clamp(1.25rem, 3vw, 2rem); }
+  .intro-layout { width: calc(100% - 48px); grid-template-columns: minmax(245px, 0.72fr) minmax(0, 1.28fr); gap: clamp(1.25rem, 3vw, 2rem); }
   .intro-title { font-size: clamp(3.15rem, 6.8vw, 5.4rem); }
   .hero-grid, .split-section, .education-story, .now-card, .showcase-project, .water-mock { grid-template-columns: 1fr; }
   .stack-grid, .philosophy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
