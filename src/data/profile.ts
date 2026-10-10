@@ -3,7 +3,14 @@ export const profile = {
   shortName: "Piyush",
   location: "Delhi, India",
   university: "SRM University, Sonepat",
-  role: "Student • Developer • Builder",
+  degree: "B.Tech in Computer Science Engineering",
+  educationStatus: "In progress",
+  role: "Full-stack Developer",
+  availability: {
+    enabled: false,
+    label: "Open to internships",
+    year: "2026",
+  },
   email: "piyushaggarwal1322009@gmail.com",
   github: "https://github.com/piyushaggarwal1322009-bit",
   linkedin: "",
@@ -29,8 +36,8 @@ export const profile = {
     }
   ],
   previousSchools: [
-    { name: "Darshan Academy", period: "SCHOOL", note: "Completed Class 12." },
-    { name: "Dayanand Public School", period: "SCHOOL", note: "Completed Class 10." }
+    { level: "Class 12", name: "Darshan Academy", status: "Completed" },
+    { level: "Class 10", name: "Dayanand Public School", status: "Completed" }
   ]
 };
 

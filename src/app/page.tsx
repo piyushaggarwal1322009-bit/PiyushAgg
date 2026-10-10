@@ -23,6 +23,7 @@ export default function Home() {
           <a href="#about">About</a>
           <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
           <a href="#philosophy">Philosophy</a>
           <a href="#contact">Contact</a>
         </div>
@@ -37,6 +38,16 @@ export default function Home() {
             <FadeIn>
               <div className="eyebrow"><span className="status-dot" /> Available to build & learn</div>
               <HeroNameSketch />
+              <div className="hero-identity" aria-label="Professional identity line">
+                <span className="hero-role">{profile.role}</span>
+                <span className="hero-separator">·</span>
+                <span className={`hero-status ${profile.availability.enabled ? "is-live" : ""}`}>
+                  <span className="status-dot" aria-hidden="true" />
+                  {profile.availability.enabled ? profile.availability.label : "Available for select work"}
+                </span>
+                <span className="hero-separator">·</span>
+                <span className="hero-year">{profile.availability.year}</span>
+              </div>
               <p className="hero-copy">{profile.tagline}</p>
               <div className="hero-actions">
                 <a href="#projects" className="button primary">Explore my work <ArrowUpRight size={17} /></a>
@@ -132,28 +143,50 @@ export default function Home() {
 
       <section id="education" className="section education-section">
         <Reveal>
-          <div className="section-label">04 / EDUCATION</div>
-          <h2>The journey<br /><span>so far.</span></h2>
+          <div className="section-label">04 / EDUCATION & LEARNING</div>
+          <div className="education-heading">
+            <h2>Building my<br /><span>foundation.</span></h2>
+            <p>A path through formal study and the practical skills I keep developing by building.</p>
+          </div>
         </Reveal>
-        <div className="timeline">
-          <div className="timeline-item current">
-            <div className="timeline-marker" />
-            <div>
-              <span className="timeline-period">CURRENT</span>
-              <h3>{profile.university}</h3>
-              <p>University journey focused on developing a strong foundation in technology while building projects outside the classroom.</p>
+        <div className="education-story">
+          <Reveal>
+            <article className="education-primary">
+              <div className="education-primary-top">
+                <span className="education-icon"><GraduationCap size={21} strokeWidth={1.7} /></span>
+                <span className="education-kicker">UNDERGRADUATE STUDY</span>
+              </div>
+              <h3>{profile.degree}</h3>
+              <p className="education-institution">{profile.university}</p>
+              <p className="education-description">Studying computer science while developing practical engineering skills through project work.</p>
+              <div className="education-primary-foot">
+                <span className="education-progress"><i />{profile.educationStatus}</span>
+                <span><MapPin size={14} /> Sonepat, India</span>
+              </div>
+            </article>
+          </Reveal>
+          <div className="education-previous">
+            <div className="education-previous-heading">
+              <span>Earlier education</span>
+              <span>PREVIOUS STUDY</span>
+            </div>
+            <div className="education-school-list">
+              {profile.previousSchools.map((school, index) => (
+                <Reveal key={school.name} delay={index * 0.08}>
+                  <article className="education-school">
+                    <span className={`education-school-marker ${index === 0 ? "is-mint" : ""}`} aria-hidden="true" />
+                    <div className="education-school-copy">
+                      <div className="education-school-meta">
+                        <span>{school.level}</span>
+                        <span>{school.status}</span>
+                      </div>
+                      <h3>{school.name}</h3>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
             </div>
           </div>
-          {profile.previousSchools.map((school) => (
-            <div className="timeline-item" key={school.name}>
-              <div className="timeline-marker" />
-              <div>
-                <span className="timeline-period">{school.period}</span>
-                <h3>{school.name}</h3>
-                <p>{school.note}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
