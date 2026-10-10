@@ -7,12 +7,13 @@ import {
   MapPin,
   Sparkles,
   Terminal,
+  UserRound,
 } from "lucide-react";
 import { profile, techStack } from "../data/profile";
-import { FadeIn, MagneticLink, Reveal } from "../components/Motion";
+import { MagneticLink, Reveal } from "../components/Motion";
 import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
-import { HeroNameSketch } from "../components/HeroNameSketch";
+import { ScrollableIntro } from "../components/ScrollableIntro";
 
 export default function Home() {
   return (
@@ -32,90 +33,51 @@ export default function Home() {
         </MagneticLink>
       </nav>
 
-      <section id="top" className="hero section">
-        <div className="hero-grid">
-          <div>
-            <FadeIn>
-              <div className="eyebrow"><span className="status-dot" /> Available to build & learn</div>
-              <HeroNameSketch />
-              <div className="hero-identity" aria-label="Professional identity line">
-                <span className="hero-role">{profile.role}</span>
-                <span className="hero-separator">·</span>
-                <span className={`hero-status ${profile.availability.enabled ? "is-live" : ""}`}>
-                  <span className="status-dot" aria-hidden="true" />
-                  {profile.availability.enabled ? profile.availability.label : "Available for select work"}
-                </span>
-                <span className="hero-separator">·</span>
-                <span className="hero-year">{profile.availability.year}</span>
-              </div>
-              <p className="hero-copy">{profile.tagline}</p>
-              <div className="hero-actions">
-                <a href="#projects" className="button primary">Explore my work <ArrowUpRight size={17} /></a>
-                <a href="#contact" className="button ghost">Let&apos;s connect</a>
-              </div>
-            </FadeIn>
+      <section id="top" className="intro-layout" aria-label="Introduction">
+        <aside className="profile-card" aria-label="Piyush Aggarwal profile">
+          <div className="profile-portrait" aria-label="Portrait placeholder">
+            <UserRound size={76} strokeWidth={1.1} aria-hidden="true" />
+            <span>PORTRAIT</span>
           </div>
-
-          <FadeIn delay={0.15}>
-            <div className="hero-card">
-              <div className="terminal-top"><span /><span /><span /></div>
-              <div className="terminal-content">
-                <p><span className="muted">$</span> whoami</p>
-                <p className="terminal-value">Piyush Aggarwal</p>
-                <p><span className="muted">$</span> focus</p>
-                <p className="terminal-value">Software × AI × Products</p>
-                <p><span className="muted">$</span> location</p>
-                <p className="terminal-value">Delhi, India</p>
-                <p><span className="muted">$</span> education</p>
-                <p className="terminal-value">SRM University, Sonepat</p>
-                <p><span className="cursor">_</span></p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-        <div className="scroll-note">SCROLL TO EXPLORE <span>↓</span></div>
-      </section>
-
-      <section id="about" className="section split-section">
-        <Reveal>
-          <div className="section-label">01 / ABOUT</div>
-          <h2>Not just learning tech.<br /><span>Building with it.</span></h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="about-copy">
-            <p>{profile.intro}</p>
-            <p>I enjoy moving across the stack — from interfaces and APIs to databases and AI integrations — while keeping the end product at the center.</p>
-            <div className="facts">
-              <div><MapPin size={18} /><span>Delhi, India</span></div>
-              <div><GraduationCap size={18} /><span>{profile.university}</span></div>
-              <div><Code2 size={18} /><span>Full-stack + AI</span></div>
+          <div className="profile-details">
+            <div className="profile-kicker"><span /> STUDENT DEVELOPER</div>
+            <h2>{profile.name}</h2>
+            <p className="profile-degree">{profile.degree} <span>(AI / ML)</span></p>
+            <p className="profile-intro">{profile.tagline}</p>
+            <div className="profile-socials" aria-label="Social links">
+              <a href={profile.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={14} /></a>
+              <a href={`mailto:${profile.email}`}><Mail size={17} /> Email <ArrowUpRight size={14} /></a>
             </div>
           </div>
-        </Reveal>
-      </section>
+        </aside>
 
-      <section id="stack" className="section stack-section">
-        <Reveal>
-          <div className="section-label">02 / TECHNICAL ARSENAL</div>
-          <div className="section-heading-row">
-            <h2>A broad stack.<br /><span>One goal: ship.</span></h2>
-            <p>I explore technologies across the software lifecycle, with particular interest in full-stack development and AI-powered products.</p>
-          </div>
-        </Reveal>
+        <ScrollableIntro>
+          <section id="about" className="intro-section intro-about" aria-labelledby="about-heading">
+            <h1 id="about-heading" className="intro-title"><span>01 /</span><span>ABOUT ME</span></h1>
+            <p className="intro-lede">{profile.intro}</p>
+            <p className="intro-support">I enjoy moving across the stack, from interfaces and APIs to databases and AI integrations, while keeping the end product at the center.</p>
+            <div className="intro-facts">
+              <span><MapPin size={16} />{profile.location}</span>
+              <span><GraduationCap size={17} />{profile.university}</span>
+              <span><Code2 size={16} />{profile.role} · AI / ML</span>
+            </div>
+          </section>
 
-        <div className="stack-grid">
-          {Object.entries(techStack).map(([category, items], i) => (
-            <Reveal key={category} delay={i * 0.05}>
-              <div className="stack-card">
-                <div className="stack-number">0{i + 1}</div>
-                <h3>{category.replace("ai", "AI / ML").replace("other", "Ecosystem")}</h3>
-                <div className="tags">
-                  {items.map((item) => <span key={item}>{item}</span>)}
+          <section id="stack" className="intro-section intro-stack" aria-labelledby="stack-heading">
+            <h2 id="stack-heading" className="intro-title"><span>02 / TECHNICAL</span><span>ARSENAL</span></h2>
+            <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
+            <div className="arsenal-list">
+              {Object.entries(techStack).map(([category, items]) => (
+                <div className="arsenal-group" key={category}>
+                  <h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3>
+                  <div className="arsenal-items">
+                    {items.map((item) => <span key={item}>{item}</span>)}
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+              ))}
+            </div>
+          </section>
+        </ScrollableIntro>
       </section>
 
       <section id="projects" className="section projects-section">
