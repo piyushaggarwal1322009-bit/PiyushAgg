@@ -16,7 +16,6 @@ const projectAccents: Record<string, string> = {
 export function ProjectShowcase() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [previousProjectAccent, setPreviousProjectAccent] = useState("#60A5FA");
   const wheelLock = useRef(false);
   const wheelTimer = useRef<number | null>(null);
   const touchStart = useRef<number | null>(null);
@@ -27,10 +26,9 @@ export function ProjectShowcase() {
   const projectAccent = projectAccents[project.previewKey ?? ""] ?? "#60A5FA";
 
   const move = useCallback((delta: number) => {
-    setPreviousProjectAccent(projectAccent);
     setDirection(delta);
     setIndex((current) => (current + delta + projects.length) % projects.length);
-  }, [projectAccent]);
+  }, []);
 
   useEffect(() => () => {
     if (wheelTimer.current !== null) window.clearTimeout(wheelTimer.current);
@@ -64,8 +62,8 @@ export function ProjectShowcase() {
               <div className="showcase-project-meta"><span className="project-status">{project.status}</span></div>
               <motion.h3
                 key={`${project.name}-title`}
-                initial={{ opacity: 0.84, y: 12, color: previousProjectAccent }}
-                animate={{ opacity: 1, y: 0, color: projectAccent }}
+                initial={{ opacity: 0.84, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reducedMotion ? 0 : 0.48, delay: reducedMotion ? 0 : 0.04, ease: [0.22, 1, 0.36, 1] }}
               >{project.name}</motion.h3>
               <p className="showcase-eyebrow">{project.eyebrow}</p>
@@ -102,7 +100,7 @@ export function ProjectShowcase() {
           </motion.article>
         </AnimatePresence>
       </div>
-      <div className="showcase-controls"><span className="showcase-hint">SCROLL OR SWIPE TO EXPLORE</span><div className="showcase-progress">{projects.map((item, i) => <button key={item.name} aria-label={`Show ${item.name}`} aria-current={i === index ? "step" : undefined} className={i === index ? "active" : ""} onClick={() => { setPreviousProjectAccent(projectAccent); setDirection(i > index ? 1 : -1); setIndex(i); }} />)}</div><div className="showcase-arrows"><button aria-label="Previous project" onClick={() => move(-1)}><ArrowLeft size={17}/></button><button aria-label="Next project" onClick={() => move(1)}><ArrowRight size={17}/></button></div></div>
+      <div className="showcase-controls"><span className="showcase-hint">SCROLL OR SWIPE TO EXPLORE</span><div className="showcase-progress">{projects.map((item, i) => <button key={item.name} aria-label={`Show ${item.name}`} aria-current={i === index ? "step" : undefined} className={i === index ? "active" : ""} onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }} />)}</div><div className="showcase-arrows"><button aria-label="Previous project" onClick={() => move(-1)}><ArrowLeft size={17}/></button><button aria-label="Next project" onClick={() => move(1)}><ArrowRight size={17}/></button></div></div>
     </section>
   );
 }
