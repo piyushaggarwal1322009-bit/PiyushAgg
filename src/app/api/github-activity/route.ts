@@ -81,6 +81,7 @@ export async function GET() {
         publicRepos: profile.public_repos,
         stars: repos.reduce((sum, repo) => sum + repo.stargazers_count, 0),
         topLanguage,
+        languages: [...languageCounts.keys()].sort((a, b) => a.localeCompare(b)),
       },
       days: contributions?.days ?? lastKnownGood?.days ?? [],
       totalContributions: contributions?.totalContributions ?? lastKnownGood?.totalContributions ?? null,

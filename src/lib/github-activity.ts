@@ -11,6 +11,7 @@ export type GitHubActivityPayload = {
     publicRepos: number;
     stars: number;
     topLanguage: string | null;
+    languages: string[];
   };
   days: ContributionDay[];
   totalContributions: number | null;
@@ -20,6 +21,19 @@ export type GitHubActivityPayload = {
 };
 
 export type CalendarCell = ContributionDay | null;
+
+export type ContributionWindow = {
+  startDate: string;
+  endDate: string;
+};
+
+export function getContributionLevel(count: number): ContributionDay["level"] {
+  if (count === 0) return 0;
+  if (count <= 2) return 1;
+  if (count <= 5) return 2;
+  if (count <= 9) return 3;
+  return 4;
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -41,8 +55,7 @@ export function parseContributionResponse(value: unknown): {
   for (const item of value.contributions) {
     if (!isRecord(item) || !isValidDate(item.date)) continue;
     if (!Number.isInteger(item.count) || typeof item.count !== "number" || item.count < 0) continue;
-    if (!Number.isInteger(item.level) || typeof item.level !== "number" || item.level < 0 || item.level > 4) continue;
-    days.push({ date: item.date, count: item.count, level: item.level as ContributionDay["level"] });
+    days.push({ date: item.date, count: item.count, level: getContributionLevel(item.count) });
   }
 
   if (days.length === 0) return null;
@@ -59,10 +72,11 @@ export function parseContributionResponse(value: unknown): {
 export function buildContributionWeeks(
   days: ContributionDay[],
   today = new Date(),
+  monthCount = 5,
 ): CalendarCell[][] {
-  const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
-  const start = new Date(end);
-  start.setUTCDate(start.getUTCDate() - 364);
+  const { startDate, endDate } = getContributionWindow(today, monthCount);
+  const start = new Date(`${startDate}T00:00:00Z`);
+  const end = new Date(`${endDate}T00:00:00Z`);
 
   const dayMap = new Map(days.map((day) => [day.date, day]));
   const cells: CalendarCell[] = [];
@@ -76,4 +90,13 @@ export function buildContributionWeeks(
   while (cells.length % 7 !== 0) cells.push(null);
 
   return Array.from({ length: cells.length / 7 }, (_, index) => cells.slice(index * 7, index * 7 + 7));
+}
+
+export function getContributionWindow(today = new Date(), monthCount = 5): ContributionWindow {
+  const start = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - monthCount + 1, 1));
+  const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+  return {
+    startDate: start.toISOString().slice(0, 10),
+    endDate: end.toISOString().slice(0, 10),
+  };
 }
