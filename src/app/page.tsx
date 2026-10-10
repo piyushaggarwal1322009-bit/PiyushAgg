@@ -21,7 +21,7 @@ export default function Home() {
       <nav className="nav">
         <a href="#top" className="brand">PA<span>.</span></a>
         <div className="nav-links">
-          <a href="#about">About</a>
+          <a href="#top">About</a>
           <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
           <a href="#education">Education</a>
@@ -52,19 +52,8 @@ export default function Home() {
         </aside>
 
         <ScrollableIntro>
-          <section id="about" className="intro-section intro-about" aria-labelledby="about-heading">
-            <h1 id="about-heading" className="intro-title"><span>01 /</span><span>ABOUT ME</span></h1>
-            <p className="intro-lede">{profile.intro}</p>
-            <p className="intro-support">I enjoy moving across the stack, from interfaces and APIs to databases and AI integrations, while keeping the end product at the center.</p>
-            <div className="intro-facts">
-              <span><MapPin size={16} />{profile.location}</span>
-              <span><GraduationCap size={17} />{profile.university}</span>
-              <span><Code2 size={16} />{profile.role} · AI / ML</span>
-            </div>
-          </section>
-
           <section id="stack" className="intro-section intro-stack" aria-labelledby="stack-heading">
-            <h2 id="stack-heading" className="intro-title"><span>02 / TECHNICAL</span><span>ARSENAL</span></h2>
+            <h2 id="stack-heading" className="intro-title"><span>TECHNICAL</span><span>ARSENAL</span></h2>
             <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
             <div className="arsenal-list">
               {Object.entries(techStack).map(([category, items]) => (
