@@ -11,6 +11,8 @@ import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
 import { ScrollableIntro } from "../components/ScrollableIntro";
 import { RacingTransition } from "../components/RacingTransition";
+import { MobileMenu, ThemeToggle } from "../components/NavbarControls";
+import { ContactArtwork } from "../components/ContactArtwork";
 
 export default function Home() {
   return (
@@ -25,6 +27,8 @@ export default function Home() {
           <a href="#racing">Racing</a>
           <a href="#contact">Contact</a>
         </div>
+        <MobileMenu />
+        <ThemeToggle />
         <MagneticLink href="#contact" className="nav-connect">
           <span>Connect</span><ArrowUpRight size={16} aria-hidden="true" />
         </MagneticLink>
@@ -153,15 +157,22 @@ export default function Home() {
 
       <RacingTransition>
         <section id="contact" className="section contact-section">
-          <Reveal>
-            <div className="section-label">CONTACT</div>
-            <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
-            <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
-            <div className="contact-links">
-              <a href={`mailto:${profile.email}`} className="contact-button"><Mail size={18} /> {profile.email}</a>
-              <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github size={18} /> GitHub</a>
-            </div>
-          </Reveal>
+          <div className="contact-copy-column">
+            <Reveal>
+              <div className="section-label">CONTACT</div>
+              <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
+            </Reveal>
+            <Reveal delay={0.09}>
+              <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
+            </Reveal>
+            <Reveal delay={0.17}>
+              <div className="contact-links">
+                <a href={`mailto:${profile.email}`} className="contact-button"><Mail size={18} /> {profile.email}</a>
+                <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github size={18} /> GitHub</a>
+              </div>
+            </Reveal>
+          </div>
+          <ContactArtwork />
         </section>
       </RacingTransition>
 

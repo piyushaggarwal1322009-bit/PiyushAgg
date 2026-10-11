@@ -18,8 +18,8 @@ export function RacingTransition({ children }: PropsWithChildren) {
     target: storyRef,
     offset: ["start end", "start start"],
   });
-  const entranceOpacity = useTransform(entranceProgress, [0, 0.7, 1], [0, 0.86, 1]);
-  const entranceY = useTransform(entranceProgress, [0, 1], [20, 0]);
+  const entranceOpacity = useTransform(entranceProgress, [0, 0.42, 1], [0.34, 0.78, 1]);
+  const entranceY = useTransform(entranceProgress, [0, 1], [24, 0]);
   const sectionOpacity = useTransform(scrollYProgress, [0, 0.34, 0.68, 0.92], [1, 1, 0.62, 0]);
   const sceneOpacity = useTransform([entranceOpacity, sectionOpacity], ([entrance, section]: number[]) => entrance * section);
   const carX = useTransform(scrollYProgress, [0.28, 0.86], [0, -36]);
