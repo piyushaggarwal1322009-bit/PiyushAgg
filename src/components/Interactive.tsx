@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Github, ArrowUpRight, Code2, Database, BrainCircuit, Globe } from "lucide-react";
 import { buildContributionWeeks, getContributionWindow, type GitHubActivityPayload } from "../lib/github-activity";
 import { projects } from "../data/projects";
@@ -91,6 +92,7 @@ function readCachedActivity(): GitHubActivityPayload | null {
 }
 
 export function GitHubActivity() {
+  const reducedMotion = useReducedMotion();
   const [data, setData] = useState<GitHubActivityPayload | null>(null);
   const [calendarToday, setCalendarToday] = useState<Date | null>(null);
   const [error, setError] = useState(false);
@@ -156,40 +158,64 @@ export function GitHubActivity() {
   const recentContributions = data?.contributionDataAvailable && contributionWindow
     ? data.days.reduce((sum, day) => day.date >= contributionWindow.startDate && day.date <= contributionWindow.endDate ? sum + day.count : sum, 0)
     : null;
+  const updatePanelHighlight = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - bounds.left}px`);
+    event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - bounds.top}px`);
+  };
 
   return <div className="github-dashboard">
-    <aside className="github-statistics" aria-label="Developer statistics">
+    <motion.aside
+      className="github-statistics"
+      aria-label="Developer statistics"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{
+        hidden: { opacity: 0, y: 22, scale: 0.985 },
+        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: reducedMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: reducedMotion ? 0 : 0.1 } },
+      }}
+    >
       <h3>Developer statistics</h3>
       <div className="github-stats-grid">
-        <div className="github-stat">
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
           <AnimatedNumber value={projects.length} suffix="+" delay={0} />
           <span>Projects built</span>
           <small>In this portfolio</small>
-        </div>
-        <div className="github-stat">
+        </motion.div>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
           <AnimatedNumber value={data?.stats.publicRepos ?? null} suffix="+" delay={120} />
           <span>Public repositories</span>
           <small>From GitHub profile</small>
-        </div>
-        <div className="github-stat">
+        </motion.div>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
           <strong className="github-stat-value github-stat-value-text" aria-label={data?.stats.topLanguage ?? "Language unavailable"}>
             {data?.stats.topLanguage ?? "—"}
           </strong>
           <span>Most-reported language</span>
           <small>By public repository count</small>
-        </div>
-        <div className="github-stat">
+        </motion.div>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
           <AnimatedNumber value={data?.stats.languages.length ?? null} suffix="+" delay={240} />
           <span>Languages detected</span>
           <small className="github-language-list">
             {data?.stats.languages.length ? data.stats.languages.slice(0, 4).join(" · ") : data ? "No language data" : ""}
             {data && data.stats.languages.length > 4 ? ` · +${data.stats.languages.length - 4}` : ""}
           </small>
-        </div>
+        </motion.div>
       </div>
-    </aside>
+    </motion.aside>
 
-    <section className="github-panel" aria-labelledby="github-activity-heading">
+    <motion.section
+      className="github-panel"
+      aria-labelledby="github-activity-heading"
+      onPointerMove={updatePanelHighlight}
+      initial={{ opacity: 0, y: 24, scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: reducedMotion ? 0 : 0.72, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="github-panel-head">
         <div className="github-panel-brand"><Github size={22} /><div><strong id="github-activity-heading">GitHub activity</strong></div></div>
         <div className="github-total">
@@ -204,13 +230,13 @@ export function GitHubActivity() {
           </div>
           <div className="calendar-layout">
             <div className="calendar-weekdays" aria-hidden="true"><span>Mon</span><span>Wed</span><span>Fri</span></div>
-            <div className="contribution-weeks" style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(var(--calendar-week-min-size), 1fr))` }} role="grid" aria-label={`Daily GitHub contributions from ${contributionWindow.startDate} through ${contributionWindow.endDate}`}>
-              {weeks.map((week, weekIndex) => <div className="contribution-week" role="row" key={weekIndex}>
+            <motion.div className="contribution-weeks" style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(var(--calendar-week-min-size), 1fr))` }} role="grid" aria-label={`Daily GitHub contributions from ${contributionWindow.startDate} through ${contributionWindow.endDate}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.016 } } }}>
+              {weeks.map((week, weekIndex) => <motion.div className="contribution-week" role="row" key={weekIndex} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: reducedMotion ? 0 : 0.012 } } }}>
                 {week.map((day, dayIndex) => day
-                  ? <button type="button" role="gridcell" key={day.date} className={`level-${day.level}`} title={`${day.count} contributions on ${day.date}`} aria-label={`${day.count} contributions on ${day.date}`} />
+                  ? <motion.button type="button" role="gridcell" key={day.date} className={`level-${day.level}`} title={`${day.count} contributions on ${day.date}`} aria-label={`${day.count} contributions on ${day.date}`} variants={{ hidden: { opacity: 0, scale: 0.72 }, visible: { opacity: 1, scale: 1, transition: { duration: reducedMotion ? 0 : 0.22 } } }} />
                   : <span key={`blank-${weekIndex}-${dayIndex}`} className="calendar-empty" aria-hidden="true" />)}
-              </div>)}
-            </div>
+              </motion.div>)}
+            </motion.div>
           </div>
         </div>
       </> : <div className="calendar-state">
@@ -221,7 +247,7 @@ export function GitHubActivity() {
         {data?.contributionDataAvailable && <span aria-label="Contribution intensity from less to more">Less <i className="level-0"/><i className="level-1"/><i className="level-2"/><i className="level-3"/><i className="level-4"/> More</span>}
         <a href={data?.profileUrl ?? "https://github.com/piyushaggarwal1322009-bit"} target="_blank" rel="noreferrer">View on GitHub <ArrowUpRight size={15} /></a>
       </div>
-    </section>
+    </motion.section>
   </div>;
 }
 

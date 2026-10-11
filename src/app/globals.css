@@ -39,7 +39,7 @@ body {
   font-family: var(--font-sans);
   letter-spacing: -0.02em;
   line-height: 1.5;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 body::before {
   content: "";
@@ -62,14 +62,20 @@ button { font: inherit; }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 72px; padding: 0 max(24px, calc((100vw - var(--content-width)) / 2));
-  display: flex; align-items: center; justify-content: space-between; background: rgba(9, 11, 16, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px);
+  display: flex; align-items: center; justify-content: space-between; background: rgba(9, 11, 16, 0.76); border-bottom: 1px solid var(--line); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.025); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
 }
 .brand { font-size: 1.08rem; font-weight: 800; letter-spacing: -0.08em; }
 .brand span { color: var(--electric-blue); }
-.nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: var(--muted); }
-.nav-links a, .nav-github { transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
-.nav-links a:hover, .nav-links a:focus-visible, .nav-github:hover, .nav-github:focus-visible { color: var(--text); }
-.nav-github { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 0.9rem; border: 1px solid var(--line); border-radius: var(--radius-pill); font-size: 0.76rem; font-weight: 600; color: var(--muted-strong); }
+.nav-links { display: flex; align-items: center; gap: clamp(0.5rem, 1.2vw, 1.2rem); font-size: 0.78rem; color: var(--muted); }
+.nav-links a, .nav-connect { transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; }
+.nav-links a { padding: 0.4rem 0.55rem; border: 1px solid transparent; border-radius: 10px; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+.nav-links a:hover, .nav-links a:focus-visible { border-color: rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.045); }
+.nav-connect { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 0.55rem; padding: 0.55rem 1.05rem; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: var(--radius-pill); background: rgba(255, 255, 255, 0.055); color: var(--text); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), 0 5px 20px rgba(0, 0, 0, 0.16), 0 0 22px rgba(101, 167, 255, 0.045); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); font-size: 0.78rem; font-weight: 650; }
+.nav-connect svg { transition: transform 0.2s ease; }
+.nav-connect:hover, .nav-connect:focus-visible { border-color: rgba(142, 186, 255, 0.42); background: rgba(255, 255, 255, 0.085); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 7px 24px rgba(0, 0, 0, 0.2), 0 0 24px rgba(101, 167, 255, 0.12); }
+.nav-connect:hover svg, .nav-connect:focus-visible svg { transform: translate(2px, -1px); }
+.nav-connect:active { filter: brightness(0.94); }
 .section { width: min(var(--content-width), calc(100% - 64px)); margin: 0 auto; padding: 118px 0; }
 .intro-layout {
   display: grid;
@@ -622,13 +628,43 @@ h2 span { color: var(--muted); }
 .contact-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 .contact-button { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.85rem 1.1rem; border: 1px solid var(--line); border-radius: 0.75rem; color: var(--muted-strong); transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
 .contact-button:hover, .contact-button:focus-visible { color: var(--electric-blue); border-color: rgba(101, 167, 255, 0.5); transform: translateY(-2px); }
+.race-story { position: relative; background: #07090d; }
+.race-sticky { position: sticky; z-index: 0; top: 0; height: 100svh; min-height: 34rem; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 53% 72%, rgba(61, 70, 83, 0.18), transparent 43%), linear-gradient(180deg, #090b10 0%, #080a0e 58%, #050609 100%); }
+.race-atmosphere { position: absolute; z-index: 0; inset: 0; overflow: hidden; opacity: var(--scene-opacity, 0); background: radial-gradient(ellipse at 77% 29%, rgba(130, 31, 38, 0.24), transparent 38%), linear-gradient(180deg, #0a0b0e, #111216 72%, #07080a); }
+.race-car { position: absolute; top: 1%; left: 50%; width: min(100vw, 1440px); aspect-ratio: 3 / 2; translate: -50% 0; transform-origin: center; }
+.race-photo { object-fit: cover; object-position: center 58%; filter: brightness(0.55) saturate(0.72) contrast(1.08); }
+.race-car::after { position: absolute; inset: -1px; background: linear-gradient(90deg, rgba(7, 8, 11, 0.34), transparent 30%, transparent 78%, rgba(7, 8, 11, 0.34)), linear-gradient(180deg, rgba(7, 8, 11, 0.42), transparent 21%, transparent 66%, rgba(7, 8, 11, 0.78)); content: ""; pointer-events: none; }
+.race-contact-layer { position: absolute; z-index: 3; inset: 0; display: flex; align-items: center; opacity: var(--contact-opacity, 1); visibility: var(--contact-visibility, visible); pointer-events: auto; }
+.race-contact-layer > .contact-section { display: flex; width: min(var(--content-width), calc(100% - 64px)); min-height: 100%; justify-content: center; padding: 100px 0; }
+.race-title { position: absolute; z-index: 2; top: 8%; left: max(32px, calc((100vw - var(--content-width)) / 2)); max-width: min(56rem, calc(100% - 64px)); opacity: var(--title-opacity, 0); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4); }
+.race-title > span { color: #e98a82; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; }
+.race-title h2 { margin: 0.65rem 0 0; color: #f2f1ee; font-size: clamp(4.8rem, 8.5vw, 7.5rem); font-weight: 650; line-height: 0.9; }
+.race-credit { position: absolute; z-index: 2; right: max(32px, calc((100vw - var(--content-width)) / 2)); bottom: 2rem; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem 0.85rem; opacity: var(--scene-opacity, 0); visibility: var(--credit-visibility, hidden); color: rgba(239, 240, 242, 0.66); font-size: 0.62rem; }
+.race-credit a { transition: color 180ms ease; }
+.race-credit a:hover, .race-credit a:focus-visible { color: #fff; }
+.race-contact-flow { position: relative; z-index: 1; min-height: 100svh; margin-top: 0; background: linear-gradient(180deg, rgba(9, 11, 16, 0.94), var(--bg) 24%); opacity: var(--contact-opacity, 0); }
+.race-contact-flow > .contact-section { width: min(var(--content-width), calc(100% - 64px)); min-height: 100svh; }
 footer { width: min(var(--content-width), calc(100% - 64px)); margin: 0 auto; padding: 2rem 0 3rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem 1.2rem; color: var(--muted); font-size: 0.74rem; }
 footer a:hover, footer a:focus-visible { color: var(--text); }
 .activity-section { padding-top: 120px; }
+.activity-exit { opacity: var(--exit-opacity, 1); }
 .github-dashboard { display: grid; grid-template-columns: minmax(0, 0.37fr) minmax(0, 0.63fr); align-items: start; gap: clamp(1.5rem, 3.5vw, 3rem); margin-top: 2.6rem; }
 .github-statistics, .github-panel { min-width: 0; }
+.github-statistics { padding: clamp(1.25rem, 2vw, 1.7rem); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 24px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 16px 46px rgba(0, 0, 0, 0.18); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
 .github-statistics h3 { margin: 0 0 1.15rem; color: var(--muted); font-size: 0.76rem; font-weight: 600; }
-.github-panel { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.github-panel { position: relative; isolation: isolate; overflow: hidden; padding: clamp(1.35rem, 2.5vw, 2rem); border: 1px solid rgba(157, 190, 238, 0.16); border-radius: 30px; background: linear-gradient(145deg, rgba(22, 29, 42, 0.8), rgba(12, 16, 24, 0.8)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), 0 22px 58px rgba(0, 0, 0, 0.28), 0 0 48px rgba(81, 139, 235, 0.075); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
+.github-panel::before { position: absolute; z-index: 0; inset: 0; border-radius: inherit; background: radial-gradient(420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%), rgba(94, 153, 255, 0.13), transparent 72%), linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 24%); content: ""; opacity: 0.62; pointer-events: none; transition: opacity 260ms ease; }
+.github-panel > * { position: relative; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .github-statistics { background: rgba(17, 22, 30, 0.96); }
+  .github-panel { background: rgba(17, 22, 30, 0.97); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .github-panel:hover { transform: translateY(-2px); border-color: rgba(157, 190, 238, 0.28); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), 0 26px 64px rgba(0, 0, 0, 0.3), 0 0 54px rgba(81, 139, 235, 0.1); }
+  .github-panel:hover::before { opacity: 0.9; }
+  .github-stat:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.025); }
+}
+.github-stat { border-radius: 10px; transition: transform 220ms ease, background-color 220ms ease; }
 .github-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .github-panel-head > div { display: flex; align-items: center; gap: 0.8rem; }
 .github-panel-brand svg { flex: 0 0 auto; color: var(--text); }
@@ -645,8 +681,8 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 .contribution-weeks { display: grid; gap: var(--calendar-column-gap); width: 100%; min-width: 0; padding: 0.05rem 0.05rem 0.2rem; }
 .contribution-week { display: grid; min-width: 0; grid-template-rows: repeat(7, auto); gap: var(--calendar-column-gap); }
 .contribution-week > span, .contribution-week > button { display: block; width: 100%; height: auto; aspect-ratio: 1; padding: 0; border: 1px solid rgba(255, 255, 255, 0.055); border-radius: 0.24rem; background: #242424; }
-.contribution-week > button { cursor: pointer; transition: filter 140ms ease; }
-.contribution-week > button:hover { filter: brightness(1.25); }
+.contribution-week > button { cursor: pointer; transition: filter 200ms ease, box-shadow 200ms ease; }
+.contribution-week > button:hover { filter: brightness(1.25); box-shadow: 0 0 0 2px rgba(208, 228, 255, 0.32), 0 0 10px rgba(91, 156, 255, 0.25); }
 .contribution-week > button:focus-visible { outline: 2px solid var(--electric-blue); outline-offset: 2px; }
 .level-0 { background: #242424 !important; }
 .level-1 { background: #223f88 !important; }
@@ -822,6 +858,11 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 @media (max-width: 980px) {
   .nav-links { display: none; }
   .github-dashboard { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .race-car { top: 7%; width: 108vw; }
+  .race-title { top: 12%; left: 1.5rem; }
+  .race-title h2 { font-size: clamp(4rem, 8vw, 5.8rem); }
+  .race-credit { right: 1.5rem; bottom: 1.5rem; }
+  .github-statistics, .github-panel { -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
   .intro-layout { width: calc(100% - 48px); grid-template-columns: minmax(245px, 0.72fr) minmax(0, 1.28fr); gap: clamp(1.25rem, 3vw, 2rem); }
   .intro-title { font-size: clamp(3.15rem, 6.8vw, 5.4rem); }
   .profile-details h2 { font-size: clamp(1.95rem, 3.5vw, 2.8rem); }
@@ -837,6 +878,13 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 }
 @media (max-width: 640px) {
   .section { width: min(var(--content-width), calc(100% - 30px)); padding: 5.4rem 0; }
+  .race-sticky { min-height: 0; }
+  .race-contact-flow > .contact-section { width: calc(100% - 30px); min-height: 100svh; padding: 88px 0 72px; }
+  .race-car { top: 24%; width: 124vw; }
+  .race-title { top: 15%; left: 1rem; max-width: calc(100% - 2rem); }
+  .race-title > span { font-size: 0.62rem; }
+  .race-title h2 { font-size: clamp(3.55rem, 17vw, 4.2rem); }
+  .race-credit { right: 1rem; bottom: 0.9rem; max-width: calc(100% - 2rem); justify-content: flex-start; font-size: 0.58rem; }
   .nav { padding: 0 1.1rem; }
   .intro-layout { width: min(560px, calc(100% - 32px)); height: auto; grid-template-columns: 1fr; gap: 1.25rem; padding: 88px 0 0; }
   .profile-card { position: relative; top: auto; width: 100%; min-height: 0; padding: 1.5rem; }
@@ -901,6 +949,10 @@ footer a:hover, footer a:focus-visible { color: var(--text); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .activity-exit { opacity: 1 !important; transform: none !important; }
+  .race-car, .race-atmosphere, .race-contact-flow { transform: none !important; }
+  .race-atmosphere, .race-title, .race-credit, .race-contact-flow { opacity: 1 !important; }
+  .nav, .github-statistics, .github-panel, .github-stat, .contribution-weeks, .contribution-week, .contribution-week > button { opacity: 1 !important; transform: none !important; }
   .intro-panel { scroll-snap-type: none; }
   .intro-section { scroll-snap-align: none; }
   .motion-reveal { opacity: 1 !important; transform: none !important; }

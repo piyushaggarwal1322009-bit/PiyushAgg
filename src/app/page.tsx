@@ -1,36 +1,34 @@
 import {
   ArrowUpRight,
-  Code2,
   Github,
   GraduationCap,
   Mail,
   MapPin,
-  Sparkles,
-  Terminal,
 } from "lucide-react";
 import { profile, techStack } from "../data/profile";
-import { MagneticLink, Reveal } from "../components/Motion";
+import { EntranceNav, MagneticLink, Reveal, ScrollExit } from "../components/Motion";
 import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
 import { ScrollableIntro } from "../components/ScrollableIntro";
+import { RacingTransition } from "../components/RacingTransition";
 
 export default function Home() {
   return (
     <main>
-      <nav className="nav">
+      <EntranceNav className="nav">
         <a href="#top" className="brand">PA<span>.</span></a>
         <div className="nav-links">
           <a href="#top">About</a>
           <a href="#education">Education</a>
           <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
-          <a href="#philosophy">Philosophy</a>
+          <a href="#racing">Racing</a>
           <a href="#contact">Contact</a>
         </div>
-        <MagneticLink href={profile.github} target="_blank" rel="noreferrer" className="nav-github">
-          <Github size={16} /> GitHub
+        <MagneticLink href="#contact" className="nav-connect">
+          <span>Connect</span><ArrowUpRight size={16} aria-hidden="true" />
         </MagneticLink>
-      </nav>
+      </EntranceNav>
 
       <section id="top" className="intro-layout" aria-label="Introduction">
         <aside className="profile-card" aria-label="Piyush Aggarwal profile">
@@ -140,65 +138,32 @@ export default function Home() {
         <ProjectShowcase />
       </section>
 
-      <section className="section activity-section">
-        <Reveal>
-          <div className="section-label">OPEN SOURCE TRAIL</div>
-          <div className="section-heading-row">
-            <h2>Code in motion.<br /><span>Progress over perfection.</span></h2>
-            <p>A live GitHub contribution view gives visitors another way to explore the work behind the portfolio.</p>
-          </div>
-          <GitHubActivity />
-        </Reveal>
-      </section>
-
-      <section id="philosophy" className="section philosophy-section">
-        <Reveal>
-          <div className="section-label">PHILOSOPHY</div>
-          <div className="philosophy-intro">
-            <Sparkles size={22} />
-            <h2>How I think<br /><span>about building.</span></h2>
-          </div>
-        </Reveal>
-        <div className="philosophy-grid">
-          {profile.philosophy.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.07}>
-              <div className="philosophy-card">
-                <span>0{i + 1}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="section now-section">
-        <Reveal>
-          <div className="now-card">
-            <div>
-              <div className="section-label">CURRENTLY</div>
-              <h2>Learning. Building.<br /><span>Iterating.</span></h2>
+      <ScrollExit>
+        <section className="section activity-section">
+          <Reveal>
+            <div className="section-label">OPEN SOURCE TRAIL</div>
+            <div className="section-heading-row">
+              <h2>Code in motion.<br /><span>Progress over perfection.</span></h2>
+              <p>A live GitHub contribution view gives visitors another way to explore the work behind the portfolio.</p>
             </div>
-            <div className="now-list">
-              <div><Terminal size={17} /><span>Exploring full-stack engineering</span></div>
-              <div><Sparkles size={17} /><span>Experimenting with AI-powered products</span></div>
-              <div><Code2 size={17} /><span>Turning hackathon ideas into real projects</span></div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+            <GitHubActivity />
+          </Reveal>
+        </section>
+      </ScrollExit>
 
-      <section id="contact" className="section contact-section">
-        <Reveal>
-          <div className="section-label">CONTACT</div>
-          <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
-          <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
-          <div className="contact-links">
-            <a href={`mailto:${profile.email}`} className="contact-button"><Mail size={18} /> {profile.email}</a>
-            <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github size={18} /> GitHub</a>
-          </div>
-        </Reveal>
-      </section>
+      <RacingTransition>
+        <section id="contact" className="section contact-section">
+          <Reveal>
+            <div className="section-label">CONTACT</div>
+            <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
+            <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
+            <div className="contact-links">
+              <a href={`mailto:${profile.email}`} className="contact-button"><Mail size={18} /> {profile.email}</a>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github size={18} /> GitHub</a>
+            </div>
+          </Reveal>
+        </section>
+      </RacingTransition>
 
       <footer>
         <span>© {new Date().getFullYear()} Piyush Aggarwal</span>
