@@ -83,7 +83,8 @@ export function ContactArtwork() {
       }
 
       particles.length = 0;
-      const particleCount = Math.min(prefersReducedMotion ? 36 : 112, candidates.length);
+      const isSmallScreen = window.matchMedia("(max-width: 640px)").matches;
+      const particleCount = Math.min(prefersReducedMotion ? 36 : isSmallScreen ? 48 : 112, candidates.length);
       for (let index = 0; index < particleCount; index += 1) {
         const point = candidates[index];
         particles.push({
@@ -189,7 +190,7 @@ export function ContactArtwork() {
   }, [reducedMotion]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (reducedMotion || event.pointerType === "touch") return;
+    if (reducedMotion || event.pointerType === "touch" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const bounds = event.currentTarget.getBoundingClientRect();
     pointer.current.x = (event.clientX - bounds.left) / bounds.width;
     pointer.current.y = (event.clientY - bounds.top) / bounds.height;

@@ -93,7 +93,7 @@ export default function Home() {
                   {profile.previousSchools.map((school, index) => (
                     <Reveal key={school.name} delay={index * 0.08}>
                       <article className="education-school">
-                        <span className={`education-school-marker ${index === 0 ? "is-mint" : ""}`} aria-hidden="true" />
+                        <span className={`education-school-marker ${school.status.toLowerCase() === "completed" ? "is-complete" : ""}`} aria-hidden="true" />
                         <div className="education-school-copy">
                           <div className="education-school-meta">
                             <span>{school.level}</span>

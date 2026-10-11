@@ -59,7 +59,7 @@ export function ProjectShowcase() {
             animate={{ opacity: 1, x: 0 }} exit={reducedMotion ? { opacity: 0 } : { opacity: 0.52, x: direction * -22 }}
             transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}>
             <div className="showcase-copy">
-              <div className="showcase-project-meta"><span className="project-status">{project.status}</span></div>
+              <div className="showcase-project-meta"><span className={`project-status ${project.status === "Interactive demo" ? "is-active" : ""}`}>{project.status}</span></div>
               <motion.h3
                 key={`${project.name}-title`}
                 initial={{ opacity: 0.84, y: 12 }}
@@ -87,14 +87,14 @@ export function ProjectShowcase() {
             </div>
             <motion.div
               className={`showcase-preview preview-${project.previewKey ?? "generic"}`}
-              role="img"
-              aria-label={`${project.name} visual preview`}
+              role="group"
+              aria-label={`${project.name} product preview`}
               initial={{ opacity: 0.9, y: 10, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="preview-content" aria-hidden="true">
-                {project.previewKey === "grillr" ? <GrillrPreview /> : project.previewKey === "jal-dhara" ? <WaterPreview /> : project.previewKey === "ezykwelez" ? <CampusPreview /> : <MigrationPreview />}
+              <div className="preview-content">
+                {project.previewKey === "grillr" ? <GrillrPreview /> : project.previewKey === "jal-dhara" ? <WaterPreview isVisible={previewIsVisible} reducedMotion={Boolean(reducedMotion)} /> : project.previewKey === "ezykwelez" ? <CampusPreview /> : <MigrationPreview />}
               </div>
             </motion.div>
           </motion.article>
@@ -137,20 +137,67 @@ function GrillrPreview() {
   );
 }
 
-function WaterPreview() {
+const waterNodes = [
+  { id: "reservoir", label: "Reservoir", x: 48, y: 118 },
+  { id: "north-tank", label: "North tank", x: 138, y: 60 },
+  { id: "junction", label: "Junction", x: 220, y: 118 },
+  { id: "upper-village", label: "Upper village", x: 348, y: 72 },
+  { id: "lower-village", label: "Lower village", x: 348, y: 176 },
+];
+
+const waterRoutes = [
+  { id: "reservoir-feed", nodes: ["reservoir", "north-tank", "junction"], path: "M48 118 C78 91 107 73 138 60 S190 94 220 118" },
+  { id: "upper-channel", nodes: ["junction", "upper-village"], path: "M220 118 C264 83 300 69 348 72" },
+  { id: "lower-channel", nodes: ["junction", "lower-village"], path: "M220 118 C264 148 300 173 348 176" },
+  { id: "direct-channel", nodes: ["reservoir", "junction"], path: "M48 118 C108 137 164 139 220 118" },
+];
+
+function WaterPreview({ isVisible, reducedMotion }: { isVisible: boolean; reducedMotion: boolean }) {
+  const [selectedNode, setSelectedNode] = useState("junction");
+  const selectedLabel = waterNodes.find((node) => node.id === selectedNode)?.label ?? "Junction";
+
   return (
-    <div className="water-mock">
-      <div className="water-network">
-        <svg viewBox="0 0 400 230" role="img" aria-label="Illustrative water network preview">
-          <path className="water-route" d="M20 120 C80 30 120 200 190 105 S290 25 380 95" />
-          <path className="water-route" d="M20 120 C110 130 130 35 220 160 S320 200 380 95" />
-          <path className="water-route" d="M20 120 L100 55 L190 105 L270 60 L380 95" />
-          {[[20, 120], [100, 55], [190, 105], [270, 60], [380, 95], [220, 160], [320, 190]].map(([x, y], index) => (
-            <circle key={index} cx={x} cy={y} r="7" />
-          ))}
-        </svg>
-        <div className="water-legend"><span>● Network nodes</span><span>↗ Flow paths</span></div>
+    <div className="water-mock" data-active={isVisible} data-reduced-motion={reducedMotion}>
+      <div className="water-preview-heading">
+        <div><span>JAL-DHARA / NETWORK MAP</span><strong>Village water links</strong></div>
+        <span className="water-schematic-tag">SAMPLE TOPOLOGY</span>
       </div>
+      <div className="water-network">
+        <svg viewBox="0 0 400 230" role="group" aria-label="Selectable illustrative village water network">
+          {waterRoutes.map((route) => {
+            const connected = route.nodes.includes(selectedNode);
+            return <path key={route.id} className={`water-route ${connected ? "is-active" : ""}`} d={route.path} aria-hidden="true" />;
+          })}
+          {waterNodes.map((node) => {
+            const selected = selectedNode === node.id;
+            return (
+              <g key={node.id} className={`water-node-group ${selected ? "is-selected" : ""}`}>
+                {selected && <circle className="water-node-pulse" cx={node.x} cy={node.y} r="12" aria-hidden="true" />}
+                <circle
+                  className="water-node"
+                  cx={node.x}
+                  cy={node.y}
+                  r="7"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Select ${node.label}`}
+                  aria-pressed={selected}
+                  onClick={() => setSelectedNode(node.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      setSelectedNode(node.id);
+                    }
+                  }}
+                />
+                <text className="water-node-label" x={node.x + 11} y={node.y - 10}>{node.label}</text>
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      <div className="water-preview-footer"><span><i /> {selectedLabel} selected</span><small>Illustrative network · not field or engineering data</small></div>
     </div>
   );
 }

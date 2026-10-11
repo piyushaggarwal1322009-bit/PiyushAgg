@@ -69,7 +69,7 @@ export function ThemeToggle() {
       className="theme-toggle"
       type="button"
       tabIndex={0}
-      aria-label="Light mode"
+      aria-label="Color theme"
       aria-pressed={theme === "light"}
       onClick={toggleTheme}
       whileTap={reducedMotion ? undefined : { scale: 0.94 }}
