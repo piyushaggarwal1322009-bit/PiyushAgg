@@ -10,9 +10,7 @@ import { EntranceNav, MagneticLink, Reveal, ScrollExit } from "../components/Mot
 import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
 import { ScrollableIntro } from "../components/ScrollableIntro";
-import { RacingTransition } from "../components/RacingTransition";
 import { MobileMenu, ThemeToggle } from "../components/NavbarControls";
-import { ContactArtwork } from "../components/ContactArtwork";
 
 export default function Home() {
   return (
@@ -24,7 +22,6 @@ export default function Home() {
           <a href="#education">Education</a>
           <a href="#stack">Stack</a>
           <a href="#projects">Projects</a>
-          <a href="#racing">Racing</a>
           <a href="#contact">Contact</a>
         </div>
         <MobileMenu />
@@ -155,31 +152,47 @@ export default function Home() {
         </section>
       </ScrollExit>
 
-      <RacingTransition>
-        <section id="contact" className="section contact-section">
-          <div className="contact-copy-column">
-            <Reveal>
-              <div className="section-label">CONTACT</div>
-              <h2>Have an idea?<br /><span>Let&apos;s build.</span></h2>
-            </Reveal>
-            <Reveal delay={0.09}>
-              <p className="contact-copy">I&apos;m always interested in interesting problems, ambitious projects and people who like building things.</p>
-            </Reveal>
-            <Reveal delay={0.17}>
-              <div className="contact-links">
-                <a href={`mailto:${profile.email}`} className="contact-button"><Mail size={18} /> {profile.email}</a>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="contact-button"><Github size={18} /> GitHub</a>
-              </div>
-            </Reveal>
+      <section id="contact" className="closing-hero-section" aria-label="Contact and collaboration">
+        <Reveal>
+          <div className="closing-content">
+            <div className="section-label">LET’S WORK TOGETHER</div>
+            <h2 className="closing-headline">
+              Building thoughtful<br />digital experiences.
+            </h2>
+            <p className="closing-lede">
+              Open to interesting problems, ambitious ideas, and collaborative work.
+            </p>
+            <div className="closing-actions">
+              <a href={`mailto:${profile.email}`} className="closing-btn closing-btn-primary">
+                <Mail size={16} aria-hidden="true" />
+                <span>Email Piyush</span>
+              </a>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="closing-btn closing-btn-secondary"
+              >
+                <Github size={16} aria-hidden="true" />
+                <span>GitHub</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="closing-status">
+              <span className="closing-status-dot" aria-hidden="true" />
+              <span>Based in Delhi, India · Student Developer</span>
+            </div>
           </div>
-          <ContactArtwork />
-        </section>
-      </RacingTransition>
+        </Reveal>
+      </section>
 
-      <footer>
-        <span>© {new Date().getFullYear()} Piyush Aggarwal</span>
-        <span>Built with curiosity & code.</span>
-        <a href="#top">Back to top ↑</a>
+      <footer className="minimal-footer">
+        <div className="minimal-footer-inner">
+          <span>© {new Date().getFullYear()} Piyush Aggarwal</span>
+          <span className="minimal-footer-divider" aria-hidden="true">·</span>
+          <span>Built with curiosity &amp; code.</span>
+          <a href="#top" className="minimal-footer-top">Back to top ↑</a>
+        </div>
       </footer>
     </main>
   );

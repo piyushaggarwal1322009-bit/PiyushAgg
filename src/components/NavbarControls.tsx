@@ -10,7 +10,6 @@ const navigation = [
   ["Education", "#education"],
   ["Stack", "#stack"],
   ["Projects", "#projects"],
-  ["Racing", "#racing"],
   ["Contact", "#contact"],
 ] as const;
 
