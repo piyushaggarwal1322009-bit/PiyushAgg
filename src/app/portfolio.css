@@ -30,3 +30,32 @@
 .portfolio-hero-image-reveal { transition:opacity .35s ease; -webkit-mask-image:var(--trail-mask); mask-image:var(--trail-mask); -webkit-mask-composite:source-over; mask-composite:add; }
 .portfolio-hero.is-pointer-active .portfolio-hero-image-reveal { opacity:.92; }
 .portfolio-hero-image-reveal img { filter:sepia(.2) saturate(1.5) contrast(1.05) brightness(1.2); }
+
+/* A compact, editorial hero: visual focus without an oversized empty canvas. */
+.portfolio-hero { min-height:min(78svh,52rem); }
+.portfolio-hero-content { min-height:min(78svh,52rem); justify-content:flex-end; padding-top:8rem; padding-bottom:3.25rem; }
+.portfolio-hero h1 { max-width:12ch; margin:1.15rem 0 3rem; }
+.portfolio-hero-watermark { bottom:2.7rem; color:rgba(255,255,255,.36); font-size:clamp(4.5rem,11vw,10.5rem); line-height:.8; }
+.portfolio-hero-bottom { align-items:flex-start; padding-top:1.35rem; border-top:1px solid rgba(17,17,17,.14); }
+.portfolio-hero-bottom>p { font-size:.92rem; }
+@media (max-width:760px) { .portfolio-hero,.portfolio-hero-content { min-height:82svh; }.portfolio-hero-content { padding-top:7rem; padding-bottom:2rem; }.portfolio-hero h1 { margin-bottom:2.25rem; }.portfolio-hero-watermark { bottom:4.8rem; } }
+
+/* Compact project cards: lead with the project, its purpose, stack, and action. */
+.portfolio-page .editorial-showcase { gap:1.5rem; }
+.portfolio-page .editorial-project { gap:1.5rem; padding:clamp(1.25rem,2.2vw,2rem); }
+.portfolio-page .editorial-copy { gap:0; }
+.portfolio-page .editorial-title { margin:.38rem 0 .14rem; font-size:clamp(2.4rem,4.8vw,4.6rem); }
+.portfolio-page .editorial-description { max-width:29rem; margin-top:.6rem; color:rgba(255,255,255,.84); font-size:.9rem; line-height:1.55; }
+.portfolio-page .editorial-eyebrow,.portfolio-page .editorial-template-badge { color:#f4b48d; }
+.portfolio-page .editorial-project.template-collaboration-workspace .editorial-eyebrow,.portfolio-page .editorial-project.template-collaboration-workspace .editorial-template-badge { color:#7ee8d4; }
+.portfolio-page .project-status { color:rgba(255,255,255,.78); }
+.portfolio-page .editorial-tags { gap:.3rem; margin-top:.75rem; }
+.portfolio-page .editorial-tags span { color:rgba(255,255,255,.92); border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.08); }
+.portfolio-page .editorial-actions { margin-top:.85rem; }
+.portfolio-page .editorial-actions .button { padding:.68rem .9rem; }
+.portfolio-page .editorial-preview-wrap { max-height:21rem; overflow:hidden; border-radius:1rem; }
+.portfolio-page .mock-app { padding:.8rem; box-shadow:none; }
+.portfolio-page .mock-app-foot { display:none; }
+.portfolio-page .mock-app-head strong,.portfolio-page .studio-question-card h4,.portfolio-page .synkro-doc-title { color:#fff; }
+.portfolio-page .mock-app-head small,.portfolio-page .studio-card-kicker,.portfolio-page .studio-timer-row,.portfolio-page .synkro-doc-body,.portfolio-page .synkro-invite-code { color:rgba(255,255,255,.7); }
+@media (max-width:760px) { .portfolio-page .editorial-preview-wrap { max-height:17rem; } }

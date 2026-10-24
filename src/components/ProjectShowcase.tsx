@@ -46,31 +46,8 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
         <p className="editorial-eyebrow">{project.eyebrow}</p>
         <p className="editorial-description">{project.description}</p>
 
-        {(project.problem || project.value) && (
-          <div className="editorial-callouts">
-            {project.problem && (
-              <div className="editorial-callout">
-                <span className="editorial-callout-label">CHALLENGE</span>
-                <p>{project.problem}</p>
-              </div>
-            )}
-            {project.value && (
-              <div className="editorial-callout">
-                <span className="editorial-callout-label">ENGINEERING VALUE</span>
-                <p>{project.value}</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        <ul className="editorial-highlights" aria-label={`${project.name} highlights`}>
-          {project.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
-
         <div className="editorial-tags" aria-label="Technology stack">
-          {project.stack.map((tag) => (
+          {project.stack.slice(0, 4).map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
