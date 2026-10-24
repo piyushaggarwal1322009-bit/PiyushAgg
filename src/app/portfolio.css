@@ -28,3 +28,5 @@
 /* Larger, slower cursor brush and a calmer headline scale. */
 .portfolio-hero h1 { font-size:clamp(2.9rem,6.5vw,6.8rem); line-height:.9; }
 .portfolio-hero-image-reveal { transition:opacity .35s ease; -webkit-mask-image:var(--trail-mask); mask-image:var(--trail-mask); -webkit-mask-composite:source-over; mask-composite:add; }
+.portfolio-hero.is-pointer-active .portfolio-hero-image-reveal { opacity:.92; }
+.portfolio-hero-image-reveal img { filter:sepia(.2) saturate(1.5) contrast(1.05) brightness(1.2); }

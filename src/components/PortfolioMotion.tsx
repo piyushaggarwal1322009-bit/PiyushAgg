@@ -15,7 +15,7 @@ export function PortfolioMotion() {
       if (!points.length) { hero.classList.remove("is-pointer-active"); frame = 0; return; }
       const mask = points.map((point) => {
         const age = (time - point.time) / trailDuration;
-        return `radial-gradient(circle ${(22 - age * 8).toFixed(1)}rem at ${point.x}% ${point.y}%, #000 0%, rgba(0,0,0,${(1 - age).toFixed(2)}) ${Math.max(12, 33 - age * 12).toFixed(1)}%, transparent ${Math.max(48, 74 - age * 14).toFixed(1)}%)`;
+        return `radial-gradient(circle ${(16.5 - age * 6).toFixed(1)}rem at ${point.x}% ${point.y}%, #000 0%, rgba(0,0,0,${(1 - age).toFixed(2)}) ${Math.max(12, 33 - age * 12).toFixed(1)}%, transparent ${Math.max(48, 74 - age * 14).toFixed(1)}%)`;
       }).join(",");
       hero.style.setProperty("--trail-mask", mask);
       hero.classList.add("is-pointer-active");
