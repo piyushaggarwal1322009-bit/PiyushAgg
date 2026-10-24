@@ -24,3 +24,7 @@
 @keyframes portfolio-pop { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 @keyframes portfolio-watermark { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce) { .portfolio-title-line,.portfolio-pop,.portfolio-hero-watermark { animation:none; } .portfolio-hero-image-reveal { display:none; } }
+
+/* Larger, slower cursor brush and a calmer headline scale. */
+.portfolio-hero h1 { font-size:clamp(2.9rem,6.5vw,6.8rem); line-height:.9; }
+.portfolio-hero-image-reveal { transition:opacity .35s ease; -webkit-mask-image:var(--trail-mask); mask-image:var(--trail-mask); -webkit-mask-composite:source-over; mask-composite:add; }
