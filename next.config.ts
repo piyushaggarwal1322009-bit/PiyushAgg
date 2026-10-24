@@ -8,14 +8,6 @@ const nextConfig: NextConfig = {
   experimental: {
     agentUpgrade: false,
   },
-  async rewrites() {
-    return [
-      {
-        source: "/",
-        destination: "/index.html",
-      },
-    ];
-  },
 };
 
 export default nextConfig;
