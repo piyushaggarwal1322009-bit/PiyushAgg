@@ -6,6 +6,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { profile, techStack } from "../data/profile";
+import Image from "next/image";
 import { EntranceNav, MagneticLink, Reveal, ScrollExit } from "../components/Motion";
 import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
@@ -184,6 +185,20 @@ export default function Home() {
             </div>
           </div>
         </Reveal>
+
+        <div className="hero-backdrop" aria-hidden="true">
+          <div className="hero-backdrop-frame">
+            <Image
+              src="/images/hero-workspace.jpg"
+              alt="Developer working at a desk in a modern workspace"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1440px) 92vw, 1340px"
+              quality={88}
+              className="hero-backdrop-img"
+            />
+            <div className="hero-backdrop-gradient" />
+          </div>
+        </div>
       </section>
 
       <footer className="minimal-footer">
