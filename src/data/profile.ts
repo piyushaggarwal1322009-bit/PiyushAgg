@@ -43,13 +43,13 @@ export const profile = {
 
 export const techStack = {
   languages: [
-    "Python", "JavaScript", "TypeScript", "Java", "C", "C++", "HTML", "CSS", "SQL"
+    "HTML", "SQL", "Python"
   ],
   frontend: [
-    "React", "Next.js", "Tailwind CSS", "Responsive UI", "Framer Motion"
+    "Next.js", "Vite", "Rime"
   ],
   backend: [
-    "Node.js", "Express.js", "FastAPI", "REST APIs", "WebSockets"
+    "Node.js", "Express.js", "FastAPI", "REST APIs"
   ],
   ai: [
     "Generative AI", "LLM APIs", "Prompt Engineering", "AI-powered Applications", "AI Product Integration"

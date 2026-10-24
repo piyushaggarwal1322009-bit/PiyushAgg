@@ -18,17 +18,22 @@ export function ProjectShowcase() {
 }
 
 function ProjectEditorialArticle({ project, index }: { project: Project; index: number }) {
+  const reducedMotion = useReducedMotion();
   const isInterviewStudio = project.template === "interview-studio";
   const projectAccent = isInterviewStudio ? "#60A5FA" : "#2DD4BF";
 
   return (
-    <article
+    <motion.article
       id={`project-${project.name.toLowerCase()}`}
       className={`editorial-project template-${project.template ?? "standard"} ${
         index % 2 === 1 ? "layout-reversed" : "layout-standard"
       }`}
       style={{ "--project-accent": projectAccent } as CSSProperties}
       aria-labelledby={`heading-${project.name.toLowerCase()}`}
+      initial={reducedMotion ? false : { opacity: 0, y: 34, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: reducedMotion ? 0 : 0.6, delay: reducedMotion ? 0 : index * 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="editorial-copy">
         <div className="editorial-meta-row">
@@ -73,7 +78,7 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
       <div className="editorial-preview-wrap">
         {isInterviewStudio ? <GrillrStudioPreview /> : <SynkroWorkspacePreview />}
       </div>
-    </article>
+    </motion.article>
   );
 }
 

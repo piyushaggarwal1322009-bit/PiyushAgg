@@ -73,13 +73,52 @@
 
 /* Project-specific colour systems make each template immediately distinct. */
 .portfolio-page .template-interview-studio { --project-accent:#60a5fa; }
-.portfolio-page .template-interview-studio .editorial-eyebrow,.portfolio-page .template-interview-studio .editorial-template-badge { color:#93c5fd; }
-.portfolio-page .template-interview-studio .editorial-description,.portfolio-page .template-interview-studio .project-status { color:#dbeafe; }
-.portfolio-page .template-interview-studio .editorial-tags span { border-color:rgba(147,197,253,.45); background:rgba(96,165,250,.13); color:#dbeafe; }
+.portfolio-page .editorial-project.template-interview-studio { background:linear-gradient(145deg,#eaf2ff,#dbeafe); color:#152238; }
+.portfolio-page .template-interview-studio .editorial-title { color:#172554; }
+.portfolio-page .template-interview-studio .editorial-eyebrow,.portfolio-page .template-interview-studio .editorial-template-badge { color:#1d4ed8; }
+.portfolio-page .template-interview-studio .editorial-description,.portfolio-page .template-interview-studio .project-status { color:#334155; }
+.portfolio-page .template-interview-studio .editorial-tags span { border-color:rgba(30,64,175,.3); background:rgba(255,255,255,.55); color:#1e3a8a; }
 .portfolio-page .template-interview-studio .editorial-actions .button.primary { background:#93c5fd; color:#10203a; }
 .portfolio-page .template-collaboration-workspace { --project-accent:#2dd4bf; }
+.portfolio-page .editorial-project.template-collaboration-workspace { background:linear-gradient(145deg,#101c20,#071316); }
+.portfolio-page .template-collaboration-workspace .editorial-title { color:#fff; }
 .portfolio-page .template-collaboration-workspace .editorial-eyebrow,.portfolio-page .template-collaboration-workspace .editorial-template-badge { color:#99f6e4; }
 .portfolio-page .template-collaboration-workspace .editorial-description,.portfolio-page .template-collaboration-workspace .project-status { color:#ccfbf1; }
 .portfolio-page .template-collaboration-workspace .editorial-tags span { border-color:rgba(153,246,228,.42); background:rgba(45,212,191,.12); color:#ccfbf1; }
 .portfolio-page .template-collaboration-workspace .editorial-actions .button.primary { background:#99f6e4; color:#0b2927; }
 @media (max-width:760px) { .portfolio-page .editorial-showcase { zoom:1; } }
+
+/* Centered, minimal hero inspired by the supplied contact-page reference. */
+.portfolio-hero { display:grid; place-items:center; isolation:isolate; background-color:#f6f9ff; background-image:radial-gradient(circle at 12% 22%,rgba(61,158,236,.65) 0 1px,transparent 1.8px),radial-gradient(circle at 85% 17%,rgba(77,181,217,.55) 0 1.2px,transparent 2px),radial-gradient(circle at 36% 78%,rgba(90,165,242,.5) 0 1px,transparent 2px),radial-gradient(circle at 73% 72%,rgba(234,172,59,.5) 0 1px,transparent 1.8px),radial-gradient(circle,rgba(255,255,255,.15) 0 1px,transparent 1.8px),linear-gradient(135deg,#fafcff 0%,#edf4ff 55%,#e5efff 100%); background-size:173px 151px,211px 193px,241px 227px,307px 271px,25px 29px,100% 100%; }
+.portfolio-hero-image,.portfolio-hero-image-reveal,.portfolio-hero-overlay,.portfolio-hero-watermark { display:none; }
+.portfolio-hero-content { align-items:center; min-height:100svh; padding-top:7rem; padding-bottom:5rem; text-align:center; }
+.portfolio-eyebrow { margin-bottom:2.8rem; color:#6d7480; font-size:.74rem; letter-spacing:.18em; }
+.portfolio-eyebrow i { background:#3c9ee9; }
+.portfolio-hero h1 { max-width:13.5ch; margin:0; color:#17181c; font-size:clamp(3.2rem,7.15vw,8rem); line-height:.92; letter-spacing:-.08em; }
+.portfolio-hero h1 em { color:#17181c; }
+.portfolio-hero-bottom { width:min(100%,44rem); flex-direction:column; align-items:center; gap:1.8rem; margin-top:2.1rem; padding:0; border:0; }
+.portfolio-hero-bottom>p { max-width:40rem; color:#747a84; font-size:clamp(.95rem,1.35vw,1.15rem); line-height:1.65; }
+.portfolio-hero-actions { justify-content:center; }
+.portfolio-pill { padding:.92rem 1.35rem; box-shadow:0 7px 18px rgba(38,78,123,.08); }
+.portfolio-pill-light { border-color:rgba(51,68,88,.2); background:rgba(255,255,255,.46); color:#1d252e; }
+@media (max-width:760px) { .portfolio-hero-content { justify-content:center; padding-top:6rem; padding-bottom:3rem; }.portfolio-eyebrow { margin-bottom:2rem; }.portfolio-hero h1 { font-size:clamp(3rem,13vw,5.4rem); }.portfolio-hero-bottom { margin-top:1.5rem; } }
+
+/* Product-panel project templates: focused copy on the left, application proof on the right. */
+.portfolio-page .editorial-showcase { zoom:1; gap:2rem; }
+.portfolio-page .editorial-project,.portfolio-page .editorial-project.layout-reversed { grid-template-columns:minmax(16rem,.8fr) minmax(0,1.2fr); min-height:34rem; gap:clamp(2rem,4vw,4rem); padding:clamp(1.7rem,4vw,4.4rem); border-radius:2rem; background:radial-gradient(circle at 83% 10%,rgba(120,84,255,.18),transparent 30%),#0c0d12; }
+.portfolio-page .editorial-project.layout-reversed .editorial-copy,.portfolio-page .editorial-project.layout-reversed .editorial-preview-wrap { order:initial; }
+.portfolio-page .editorial-project.template-collaboration-workspace { background:radial-gradient(circle at 83% 10%,rgba(45,212,191,.15),transparent 30%),#091415; }
+.portfolio-page .editorial-copy { align-self:center; }
+.portfolio-page .editorial-meta-row { justify-content:flex-start; }
+.portfolio-page .editorial-template-badge { color:rgba(255,255,255,.47); }
+.portfolio-page .editorial-title,.portfolio-page .template-interview-studio .editorial-title,.portfolio-page .template-collaboration-workspace .editorial-title { color:#fff; font-size:clamp(3.2rem,5.2vw,5.8rem); }
+.portfolio-page .editorial-eyebrow,.portfolio-page .template-interview-studio .editorial-eyebrow { margin-top:1.25rem; color:#bda7ff; font-size:.82rem; }
+.portfolio-page .template-collaboration-workspace .editorial-eyebrow { color:#81ead9; }
+.portfolio-page .editorial-description,.portfolio-page .template-interview-studio .editorial-description,.portfolio-page .template-collaboration-workspace .editorial-description { max-width:25rem; margin-top:1.8rem; color:rgba(255,255,255,.62); font-size:1rem; line-height:1.7; }
+.portfolio-page .editorial-tags { margin-top:2rem; }
+.portfolio-page .editorial-tags span,.portfolio-page .template-interview-studio .editorial-tags span { border-color:rgba(255,255,255,.1); background:rgba(255,255,255,.1); color:rgba(255,255,255,.72); border-radius:999px; padding:.48rem .82rem; }
+.portfolio-page .template-collaboration-workspace .editorial-tags span { border-color:rgba(129,234,217,.2); background:rgba(45,212,191,.1); color:#c8fff5; }
+.portfolio-page .editorial-actions { margin-top:2.4rem; }.portfolio-page .editorial-actions .button { border-radius:999px; padding:.8rem 1.15rem; }.portfolio-page .editorial-actions .button.primary,.portfolio-page .template-interview-studio .editorial-actions .button.primary { background:#fff; color:#121319; }.portfolio-page .template-collaboration-workspace .editorial-actions .button.primary { background:#d1fff6; color:#0c302d; }.portfolio-page .editorial-actions .button.ghost { border-color:rgba(255,255,255,.18); color:#fff; }
+.portfolio-page .editorial-preview-wrap { align-self:center; max-height:none; overflow:visible; }.portfolio-page .mock-app { border:1px solid rgba(255,255,255,.12); border-radius:1.8rem; background:rgba(15,16,23,.88); padding:1.5rem; box-shadow:0 24px 50px rgba(0,0,0,.22); }
+.portfolio-page .template-collaboration-workspace .mock-app { background:rgba(7,25,25,.9); }
+@media (max-width:760px) { .portfolio-page .editorial-project,.portfolio-page .editorial-project.layout-reversed { grid-template-columns:1fr; min-height:0; gap:1.5rem; padding:1.5rem; border-radius:1.4rem; }.portfolio-page .editorial-title,.portfolio-page .template-interview-studio .editorial-title,.portfolio-page .template-collaboration-workspace .editorial-title { font-size:clamp(3rem,15vw,4.7rem); }.portfolio-page .editorial-description { margin-top:1rem; }.portfolio-page .editorial-tags,.portfolio-page .editorial-actions { margin-top:1.2rem; }.portfolio-page .mock-app { padding:1rem; border-radius:1.1rem; } }
