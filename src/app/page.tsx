@@ -1,214 +1,23 @@
-import {
-  ArrowUpRight,
-  Github,
-  GraduationCap,
-  Mail,
-  MapPin,
-} from "lucide-react";
-import { profile, techStack } from "../data/profile";
+import { ArrowDown, ArrowUpRight, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-import { EntranceNav, MagneticLink, Reveal, ScrollExit } from "../components/Motion";
 import { GitHubActivity } from "../components/Interactive";
 import { ProjectShowcase } from "../components/ProjectShowcase";
-import { ScrollableIntro } from "../components/ScrollableIntro";
-import { MobileMenu, ThemeToggle } from "../components/NavbarControls";
+import { profile, techStack } from "../data/profile";
+import "./portfolio.css";
+
+const capabilities = [["01", "Build", "Full-stack products with considered interfaces and dependable foundations."], ["02", "Explore", "AI-enabled experiences shaped around useful, real-world problems."], ["03", "Learn", "Practical engineering judgment through focused, iterative project work."]];
 
 export default function Home() {
-  return (
-    <main>
-      <EntranceNav className="nav">
-        <a href="#top" className="brand">PA<span>.</span></a>
-        <div className="nav-links">
-          <a href="#top">About</a>
-          <a href="#education">Education</a>
-          <a href="#stack">Stack</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <MobileMenu />
-        <ThemeToggle />
-        <MagneticLink href="#contact" className="nav-connect">
-          <span>Connect</span><ArrowUpRight size={16} aria-hidden="true" />
-        </MagneticLink>
-      </EntranceNav>
-
-      <section id="top" className="intro-layout" aria-label="Introduction">
-        <aside className="profile-card" aria-label="Piyush Aggarwal profile">
-          <div className="profile-details">
-            <div className="profile-kicker"><span /> STUDENT DEVELOPER</div>
-            <h2>{profile.name}</h2>
-            <p className="profile-degree">{profile.degree} <span>(AI / ML)</span></p>
-            <p className="profile-intro">{profile.tagline}</p>
-            <div className="profile-socials" aria-label="Social links">
-              <a href={profile.github} target="_blank" rel="noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={14} /></a>
-              <a href={`mailto:${profile.email}`}><Mail size={17} /> Email <ArrowUpRight size={14} /></a>
-            </div>
-          </div>
-        </aside>
-
-        <ScrollableIntro>
-          <section id="education" className="intro-section education-section intro-education">
-            <Reveal>
-              <div className="education-heading">
-                <h2>
-                  <span className="education-title-strong">Building my</span>
-                  <br />
-                  <span className="education-title-soft">foundation.</span>
-                </h2>
-                <p>A path through formal study and the practical skills I keep developing by building.</p>
-              </div>
-            </Reveal>
-            <div className="education-story">
-              <Reveal>
-                <article className="education-primary">
-                  <div className="education-primary-top">
-                    <span className="education-icon" aria-hidden="true">
-                      <GraduationCap size={21} strokeWidth={1.7} />
-                    </span>
-                    <span className="education-kicker">UNDERGRADUATE STUDY</span>
-                  </div>
-
-                  <h3 className="education-degree">
-                    B.Tech in Computer Science Engineering <span className="education-specialty">(AI / ML)</span>
-                  </h3>
-                  <p className="education-institution">{profile.university}</p>
-                  <p className="education-description">
-                    Studying computer science while developing practical engineering skills through project work.
-                  </p>
-
-                  <div className="education-primary-foot">
-                    <span className="education-progress"><i aria-hidden="true" />{profile.educationStatus}</span>
-                    <span className="education-location"><MapPin size={14} /> Sonepat, India</span>
-                  </div>
-                </article>
-              </Reveal>
-
-              <div className="education-previous">
-                <div className="education-previous-heading">
-                  <span>PREVIOUS STUDY</span>
-                </div>
-                <div className="education-school-list" aria-label="Previous education">
-                  {profile.previousSchools.map((school, index) => (
-                    <Reveal key={school.name} delay={index * 0.08}>
-                      <article className="education-school">
-                        <span className={`education-school-marker ${school.status.toLowerCase() === "completed" ? "is-complete" : ""}`} aria-hidden="true" />
-                        <div className="education-school-copy">
-                          <div className="education-school-meta">
-                            <span>{school.level}</span>
-                            <span>{school.status}</span>
-                          </div>
-                          <h3>{school.name}</h3>
-                        </div>
-                      </article>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="stack" className="intro-section intro-stack" aria-labelledby="stack-heading">
-            <Reveal>
-              <h2 id="stack-heading" className="intro-title"><span>TECHNICAL</span><span>ARSENAL</span></h2>
-              <p className="arsenal-intro">Tools and technologies I use to explore ideas and build useful products.</p>
-            </Reveal>
-            <div className="arsenal-list">
-              {Object.entries(techStack).map(([category, items], index) => (
-                <Reveal key={category} delay={index * 0.045}>
-                  <div className="arsenal-group">
-                    <h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3>
-                    <div className="arsenal-items">
-                      {items.map((item) => <span key={item}>{item}</span>)}
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-        </ScrollableIntro>
-      </section>
-
-      <section id="projects" className="section projects-section">
-        <Reveal>
-          <div className="section-label">SELECTED WORK</div>
-          <div className="section-heading-row">
-            <h2>Ideas that became<br /><span>projects.</span></h2>
-            <p>I care about the problem, the product and the engineering behind the interface.</p>
-          </div>
-        </Reveal>
-
-        <ProjectShowcase />
-      </section>
-
-      <ScrollExit>
-        <section className="section activity-section">
-          <Reveal>
-            <div className="section-label">OPEN SOURCE TRAIL</div>
-            <div className="section-heading-row">
-              <h2>Code in motion.<br /><span>Progress over perfection.</span></h2>
-              <p>A live GitHub contribution view gives visitors another way to explore the work behind the portfolio.</p>
-            </div>
-            <GitHubActivity />
-          </Reveal>
-        </section>
-      </ScrollExit>
-
-      <section id="contact" className="closing-hero-section" aria-label="Contact and collaboration">
-        <Reveal>
-          <div className="closing-content">
-            <div className="section-label">LET’S WORK TOGETHER</div>
-            <h2 className="closing-headline">
-              Building thoughtful<br />digital experiences.
-            </h2>
-            <p className="closing-lede">
-              Open to interesting problems, ambitious ideas, and collaborative work.
-            </p>
-            <div className="closing-actions">
-              <a href={`mailto:${profile.email}`} className="closing-btn closing-btn-primary">
-                <Mail size={16} aria-hidden="true" />
-                <span>Email Piyush</span>
-              </a>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="closing-btn closing-btn-secondary"
-              >
-                <Github size={16} aria-hidden="true" />
-                <span>GitHub</span>
-                <ArrowUpRight size={14} aria-hidden="true" />
-              </a>
-            </div>
-            <div className="closing-status">
-              <span className="closing-status-dot" aria-hidden="true" />
-              <span>Based in Delhi, India · Student Developer</span>
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="hero-backdrop" aria-hidden="true">
-          <div className="hero-backdrop-frame">
-            <Image
-              src="/images/hero-workspace.jpg"
-              alt="Developer working at a desk in a modern workspace"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1440px) 92vw, 1340px"
-              quality={88}
-              className="hero-backdrop-img"
-            />
-            <div className="hero-backdrop-gradient" />
-          </div>
-        </div>
-      </section>
-
-      <footer className="minimal-footer">
-        <div className="minimal-footer-inner">
-          <span>© {new Date().getFullYear()} Piyush Aggarwal</span>
-          <span className="minimal-footer-divider" aria-hidden="true">·</span>
-          <span>Built with curiosity &amp; code.</span>
-          <a href="#top" className="minimal-footer-top">Back to top ↑</a>
-        </div>
-      </footer>
-    </main>
-  );
+  return <main className="portfolio-page">
+    <a className="portfolio-skip" href="#main">Skip to content</a>
+    <header className="portfolio-header"><a href="#top" className="portfolio-brand" aria-label="Piyush Aggarwal home">PA<span>✦</span></a><nav aria-label="Primary navigation"><a href="#about">About</a><a href="#work">Work</a><a href="#stack">Stack</a><a href="#contact">Contact</a></nav><a className="portfolio-header-cta" href={`mailto:${profile.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a></header>
+    <section id="top" className="portfolio-hero" aria-labelledby="hero-heading"><div className="portfolio-hero-image" aria-hidden="true"><Image src="/images/hero-workspace.jpg" alt="" fill priority sizes="100vw" /></div><div className="portfolio-hero-overlay" /><span className="portfolio-hero-watermark" aria-hidden="true">PIYUSH</span><div className="portfolio-shell portfolio-hero-content"><p className="portfolio-eyebrow"><i /> Student developer · Delhi, India</p><h1 id="hero-heading">Curious ideas,<br />built with <em>intention.</em></h1><div className="portfolio-hero-bottom"><p>{profile.tagline}</p><div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href="#work">View work <ArrowDown size={16} /></a><a className="portfolio-pill portfolio-pill-light" href={`mailto:${profile.email}`}>Start a conversation</a></div></div></div></section>
+    <section id="main" className="portfolio-shell portfolio-intro" aria-labelledby="about"><div className="portfolio-section-label">01 / ABOUT</div><div><h2 id="about">I turn learning into <em>working software.</em></h2><p className="portfolio-intro-copy">{profile.intro} Currently studying {profile.degree} at {profile.university}, I like connecting product thinking, interface craft, and engineering details.</p></div></section>
+    <section className="portfolio-band" aria-label="Working principles"><div className="portfolio-shell portfolio-band-grid">{capabilities.map(([number, title, text]) => <article key={number}><span>{number}</span><h2>{title}<i>↗</i></h2><p>{text}</p></article>)}</div></section>
+    <section id="work" className="portfolio-work"><div className="portfolio-shell"><div className="portfolio-section-heading"><div><p className="portfolio-section-label">02 / SELECTED WORK</p><h2>Projects with a<br /><em>reason to exist.</em></h2></div><p>Two product explorations, each with a different problem, system, and visual language.</p></div><ProjectShowcase /></div></section>
+    <section id="stack" className="portfolio-stack"><div className="portfolio-shell"><div className="portfolio-section-heading"><div><p className="portfolio-section-label">03 / TOOLKIT</p><h2>Technical range,<br /><em>purposefully used.</em></h2></div><p>Tools I use to explore ideas, build interfaces, and make systems feel useful.</p></div><div className="portfolio-stack-list">{Object.entries(techStack).map(([category, items], index) => <article key={category}><span>0{index + 1}</span><h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3><p>{items.join(" · ")}</p></article>)}</div></div></section>
+    <section className="portfolio-activity"><div className="portfolio-shell"><div className="portfolio-section-heading"><div><p className="portfolio-section-label portfolio-section-label-light">04 / OPEN SOURCE</p><h2>Progress, <em>in public.</em></h2></div><p>A small view into the ongoing work behind the portfolio.</p></div><GitHubActivity /></div></section>
+    <section id="contact" className="portfolio-contact"><div className="portfolio-shell"><p className="portfolio-section-label">05 / CONTACT</p><h2>Have an idea?<br /><em>Let&apos;s build it.</em></h2><p>I&apos;m open to ambitious projects, collaborative work, and problems worth thinking through.</p><div className="portfolio-contact-actions"><a className="portfolio-pill portfolio-pill-dark" href={`mailto:${profile.email}`}><Mail size={16} /> Email Piyush</a><a className="portfolio-pill portfolio-pill-outline" href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub <ArrowUpRight size={15} /></a></div><span className="portfolio-location"><MapPin size={15} /> {profile.location}</span></div></section>
+    <footer className="portfolio-footer"><div className="portfolio-shell"><span>© {new Date().getFullYear()} Piyush Aggarwal</span><span>Built with curiosity &amp; code.</span><a href="#top">Back to top ↑</a></div></footer>
+  </main>;
 }
