@@ -59,3 +59,27 @@
 .portfolio-page .mock-app-head strong,.portfolio-page .studio-question-card h4,.portfolio-page .synkro-doc-title { color:#fff; }
 .portfolio-page .mock-app-head small,.portfolio-page .studio-card-kicker,.portfolio-page .studio-timer-row,.portfolio-page .synkro-doc-body,.portfolio-page .synkro-invite-code { color:rgba(255,255,255,.7); }
 @media (max-width:760px) { .portfolio-page .editorial-preview-wrap { max-height:17rem; } }
+
+/* Restore the full-screen first impression while keeping its content composed. */
+.portfolio-hero,.portfolio-hero-content { min-height:100svh; }
+.portfolio-hero-content { justify-content:center; padding-top:9rem; padding-bottom:4rem; }
+.portfolio-hero h1 { margin:1.15rem 0 auto; }
+.portfolio-hero-watermark { bottom:5.3rem; }
+.portfolio-hero-bottom { padding-top:0; border-top:0; align-items:end; }
+
+/* Scale complete templates together—no vertical cropping or selectively hidden content. */
+.portfolio-page .editorial-showcase { zoom:.9; }
+.portfolio-page .editorial-preview-wrap { max-height:none; overflow:visible; }
+
+/* Project-specific colour systems make each template immediately distinct. */
+.portfolio-page .template-interview-studio { --project-accent:#60a5fa; }
+.portfolio-page .template-interview-studio .editorial-eyebrow,.portfolio-page .template-interview-studio .editorial-template-badge { color:#93c5fd; }
+.portfolio-page .template-interview-studio .editorial-description,.portfolio-page .template-interview-studio .project-status { color:#dbeafe; }
+.portfolio-page .template-interview-studio .editorial-tags span { border-color:rgba(147,197,253,.45); background:rgba(96,165,250,.13); color:#dbeafe; }
+.portfolio-page .template-interview-studio .editorial-actions .button.primary { background:#93c5fd; color:#10203a; }
+.portfolio-page .template-collaboration-workspace { --project-accent:#2dd4bf; }
+.portfolio-page .template-collaboration-workspace .editorial-eyebrow,.portfolio-page .template-collaboration-workspace .editorial-template-badge { color:#99f6e4; }
+.portfolio-page .template-collaboration-workspace .editorial-description,.portfolio-page .template-collaboration-workspace .project-status { color:#ccfbf1; }
+.portfolio-page .template-collaboration-workspace .editorial-tags span { border-color:rgba(153,246,228,.42); background:rgba(45,212,191,.12); color:#ccfbf1; }
+.portfolio-page .template-collaboration-workspace .editorial-actions .button.primary { background:#99f6e4; color:#0b2927; }
+@media (max-width:760px) { .portfolio-page .editorial-showcase { zoom:1; } }
