@@ -1,236 +1,343 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { CSSProperties } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, BookOpen, Check, FileText, Github, Mic, Presentation, Sheet, Sparkles } from "lucide-react";
 import { projects } from "../data/projects";
-
-const projectAccents: Record<string, string> = {
-  grillr: "#60A5FA",
-  "jal-dhara": "#A78BFA",
-  ezykwelez: "#5EEAD4",
-  "migration-y": "#FB7185",
-};
+import type { Project } from "../data/projects";
 
 export function ProjectShowcase() {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const wheelLock = useRef(false);
-  const wheelTimer = useRef<number | null>(null);
-  const touchStart = useRef<number | null>(null);
-  const showcaseRef = useRef<HTMLElement | null>(null);
-  const reducedMotion = useReducedMotion();
-  const previewIsVisible = useInView(showcaseRef, { once: false, amount: 0.1 });
-  const project = projects[index];
-  const projectAccent = projectAccents[project.previewKey ?? ""] ?? "#60A5FA";
-
-  const move = useCallback((delta: number) => {
-    setDirection(delta);
-    setIndex((current) => (current + delta + projects.length) % projects.length);
-  }, []);
-
-  useEffect(() => () => {
-    if (wheelTimer.current !== null) window.clearTimeout(wheelTimer.current);
-  }, []);
-
-  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.target instanceof HTMLElement && (event.target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(event.target.tagName))) return;
-    if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
-    if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
-  };
-
-  const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
-    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    if (Math.abs(delta) < 45 || wheelLock.current) return;
-    if (event.cancelable) event.preventDefault();
-    wheelLock.current = true;
-    move(delta > 0 ? 1 : -1);
-    if (wheelTimer.current !== null) window.clearTimeout(wheelTimer.current);
-    wheelTimer.current = window.setTimeout(() => { wheelLock.current = false; }, 520);
-  };
-
   return (
-    <section ref={showcaseRef} className="showcase-shell" data-preview-visible={previewIsVisible} style={{ "--project-accent": projectAccent } as CSSProperties} aria-label="Selected projects" aria-roledescription="carousel" tabIndex={0} onKeyDown={onKeyDown}>
-      <div className="showcase-stage" onWheel={onWheel} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => { if (touchStart.current === null) return; const distance = (event.changedTouches[0]?.clientX ?? touchStart.current) - touchStart.current; if (Math.abs(distance) > 55) move(distance < 0 ? 1 : -1); touchStart.current = null; }}>
-        <AnimatePresence mode="wait" initial={false} custom={direction}>
-          <motion.article key={project.name} className="showcase-project" custom={direction}
-            initial={{ opacity: 0.88, x: direction * 26 }}
-            animate={{ opacity: 1, x: 0 }} exit={reducedMotion ? { opacity: 0 } : { opacity: 0.52, x: direction * -22 }}
-            transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="showcase-copy">
-              <div className="showcase-project-meta"><span className={`project-status ${project.status === "Interactive demo" ? "is-active" : ""}`}>{project.status}</span></div>
-              <motion.h3
-                key={`${project.name}-title`}
-                initial={{ opacity: 0.84, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reducedMotion ? 0 : 0.48, delay: reducedMotion ? 0 : 0.04, ease: [0.22, 1, 0.36, 1] }}
-              >{project.name}</motion.h3>
-              <p className="showcase-eyebrow">{project.eyebrow}</p>
-              <motion.p
-                className="showcase-description"
-                initial={{ opacity: 0.88, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reducedMotion ? 0 : 0.42, delay: reducedMotion ? 0 : 0.12, ease: [0.22, 1, 0.36, 1] }}
-              >{project.description}</motion.p>
-              <motion.ul
-                className="showcase-highlights"
-                initial={{ opacity: 0.88, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reducedMotion ? 0 : 0.42, delay: reducedMotion ? 0 : 0.19, ease: [0.22, 1, 0.36, 1] }}
-              >{project.highlights.slice(0, 3).map((highlight) => <li key={highlight}>{highlight}</li>)}</motion.ul>
-              <div className="showcase-tags">{project.stack.slice(0, 4).map((tag) => <span key={tag}>{tag}</span>)}</div>
-              <div className="showcase-actions">
-                {project.live ? <a className="button primary" href={project.live} target="_blank" rel="noreferrer">Live Demo <ArrowUpRight size={17} /></a> : <span className="project-unavailable">Demo unavailable</span>}
-                {project.github ? <a className="button ghost" href={project.github} target="_blank" rel="noreferrer"><Github size={17} /> Source</a> : <span className="project-unavailable">Source unavailable</span>}
-              </div>
-            </div>
-            <motion.div
-              className={`showcase-preview preview-${project.previewKey ?? "generic"}`}
-              role="group"
-              aria-label={`${project.name} product preview`}
-              initial={{ opacity: 0.9, y: 10, scale: 0.985 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="preview-content">
-                {project.previewKey === "grillr" ? <GrillrPreview /> : project.previewKey === "jal-dhara" ? <WaterPreview isVisible={previewIsVisible} reducedMotion={Boolean(reducedMotion)} /> : project.previewKey === "ezykwelez" ? <CampusPreview /> : <MigrationPreview />}
-              </div>
-            </motion.div>
-          </motion.article>
-        </AnimatePresence>
-      </div>
-      <div className="showcase-controls"><span className="showcase-hint">SCROLL OR SWIPE TO EXPLORE</span><div className="showcase-progress">{projects.map((item, i) => <button key={item.name} aria-label={`Show ${item.name}`} aria-current={i === index ? "step" : undefined} className={i === index ? "active" : ""} onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }} />)}</div><div className="showcase-arrows"><button aria-label="Previous project" onClick={() => move(-1)}><ArrowLeft size={17}/></button><button aria-label="Next project" onClick={() => move(1)}><ArrowRight size={17}/></button></div></div>
-    </section>
+    <div className="editorial-showcase" aria-label="Selected projects">
+      {projects.map((project, index) => (
+        <ProjectEditorialArticle key={project.name} project={project} index={index} />
+      ))}
+    </div>
   );
 }
 
-function GrillrPreview() {
+function ProjectEditorialArticle({ project, index }: { project: Project; index: number }) {
+  const isInterviewStudio = project.template === "interview-studio";
+  const projectAccent = isInterviewStudio ? "#60A5FA" : "#2DD4BF";
+
   return (
-    <div className="mock-app grillr-mock">
+    <article
+      id={`project-${project.name.toLowerCase()}`}
+      className={`editorial-project template-${project.template ?? "standard"} ${
+        index % 2 === 1 ? "layout-reversed" : "layout-standard"
+      }`}
+      style={{ "--project-accent": projectAccent } as CSSProperties}
+      aria-labelledby={`heading-${project.name.toLowerCase()}`}
+    >
+      <div className="editorial-copy">
+        <div className="editorial-meta-row">
+          <span className="editorial-template-badge">
+            {isInterviewStudio ? "INTERVIEW STUDIO" : "COLLABORATION WORKSPACE"}
+          </span>
+          <span className={`project-status ${project.status === "Collaborative workspace" ? "is-active" : ""}`}>
+            {project.status}
+          </span>
+        </div>
+
+        <h3 id={`heading-${project.name.toLowerCase()}`} className="editorial-title">
+          {project.name}
+        </h3>
+        <p className="editorial-eyebrow">{project.eyebrow}</p>
+        <p className="editorial-description">{project.description}</p>
+
+        {(project.problem || project.value) && (
+          <div className="editorial-callouts">
+            {project.problem && (
+              <div className="editorial-callout">
+                <span className="editorial-callout-label">CHALLENGE</span>
+                <p>{project.problem}</p>
+              </div>
+            )}
+            {project.value && (
+              <div className="editorial-callout">
+                <span className="editorial-callout-label">ENGINEERING VALUE</span>
+                <p>{project.value}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <ul className="editorial-highlights" aria-label={`${project.name} highlights`}>
+          {project.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+
+        <div className="editorial-tags" aria-label="Technology stack">
+          {project.stack.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+
+        <div className="editorial-actions">
+          {project.live ? (
+            <a className="button primary" href={project.live} target="_blank" rel="noreferrer">
+              Live Demo <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          ) : (
+            <span className="project-unavailable">Demo unavailable</span>
+          )}
+          {project.github ? (
+            <a className="button ghost" href={project.github} target="_blank" rel="noreferrer">
+              <Github size={17} aria-hidden="true" /> Source
+            </a>
+          ) : (
+            <span className="project-unavailable">Source unavailable</span>
+          )}
+        </div>
+      </div>
+
+      <div className="editorial-preview-wrap">
+        {isInterviewStudio ? <GrillrStudioPreview /> : <SynkroWorkspacePreview />}
+      </div>
+    </article>
+  );
+}
+
+function GrillrStudioPreview() {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <div className="mock-app grillr-studio-mock" role="region" aria-label="Grillr interview studio preview">
       <div className="mock-app-head">
         <span className="mock-app-icon">G</span>
-        <div><strong>Grillr</strong><small>Interview practice</small></div>
-        <span className="mock-live">SAMPLE</span>
+        <div>
+          <strong>Grillr Studio</strong>
+          <small>AI Interviewer · Practice Session #104</small>
+        </div>
+        <div className="studio-recording-pill" aria-label="Microphone live in session">
+          <Mic size={12} aria-hidden="true" />
+          <span>LISTENING</span>
+        </div>
       </div>
-      <div className="grillr-preview-grid">
-        <div className="mock-question">
-          <small>BEHAVIORAL · QUESTION</small>
-          <h4>Tell me about a time you solved a difficult problem.</h4>
-          <div className="waveform" aria-label="Illustrative audio waveform">
-            {Array.from({ length: 30 }, (_, index) => (
-              <i key={index} style={{ height: `${10 + ((index * 17) % 28)}px`, animationDelay: `${index * 25}ms` }} />
-            ))}
+
+      <div className="studio-main">
+        <div className="studio-question-card">
+          <div className="studio-card-kicker">
+            <span>BEHAVIORAL · SYSTEM LEADERSHIP</span>
+            <small>Phase 2 of 4</small>
           </div>
-          <small>Sample response</small>
-        </div>
-        <div className="mock-analysis">
-          <small>ILLUSTRATIVE FEEDBACK</small>
-          <strong>Answer review</strong>
-          <div className="mock-feedback-meter"><span>Structure</span><i><b /></i></div>
-          <div className="mock-feedback-meter"><span>Comms</span><i><b /></i></div>
-          <div className="mock-feedback-meter"><span>Specifics</span><i><b /></i></div>
-        </div>
-      </div>
-      <div className="mock-app-foot">Illustrative preview <span>No live interview results</span></div>
-    </div>
-  );
-}
+          <h4>Tell me about a time you resolved a major engineering bottleneck under a tight deadline.</h4>
 
-const waterNodes = [
-  { id: "reservoir", label: "Reservoir", x: 48, y: 118 },
-  { id: "north-tank", label: "North tank", x: 138, y: 60 },
-  { id: "junction", label: "Junction", x: 220, y: 118 },
-  { id: "upper-village", label: "Upper village", x: 348, y: 72 },
-  { id: "lower-village", label: "Lower village", x: 348, y: 176 },
-];
-
-const waterRoutes = [
-  { id: "reservoir-feed", nodes: ["reservoir", "north-tank", "junction"], path: "M48 118 C78 91 107 73 138 60 S190 94 220 118" },
-  { id: "upper-channel", nodes: ["junction", "upper-village"], path: "M220 118 C264 83 300 69 348 72" },
-  { id: "lower-channel", nodes: ["junction", "lower-village"], path: "M220 118 C264 148 300 173 348 176" },
-  { id: "direct-channel", nodes: ["reservoir", "junction"], path: "M48 118 C108 137 164 139 220 118" },
-];
-
-function WaterPreview({ isVisible, reducedMotion }: { isVisible: boolean; reducedMotion: boolean }) {
-  const [selectedNode, setSelectedNode] = useState("junction");
-  const selectedLabel = waterNodes.find((node) => node.id === selectedNode)?.label ?? "Junction";
-
-  return (
-    <div className="water-mock" data-active={isVisible} data-reduced-motion={reducedMotion}>
-      <div className="water-preview-heading">
-        <div><span>JAL-DHARA / NETWORK MAP</span><strong>Village water links</strong></div>
-        <span className="water-schematic-tag">SAMPLE TOPOLOGY</span>
-      </div>
-      <div className="water-network">
-        <svg viewBox="0 0 400 230" role="group" aria-label="Selectable illustrative village water network">
-          {waterRoutes.map((route) => {
-            const connected = route.nodes.includes(selectedNode);
-            return <path key={route.id} className={`water-route ${connected ? "is-active" : ""}`} d={route.path} aria-hidden="true" />;
-          })}
-          {waterNodes.map((node) => {
-            const selected = selectedNode === node.id;
-            return (
-              <g key={node.id} className={`water-node-group ${selected ? "is-selected" : ""}`}>
-                {selected && <circle className="water-node-pulse" cx={node.x} cy={node.y} r="12" aria-hidden="true" />}
-                <circle
-                  className="water-node"
-                  cx={node.x}
-                  cy={node.y}
-                  r="7"
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Select ${node.label}`}
-                  aria-pressed={selected}
-                  onClick={() => setSelectedNode(node.id)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      setSelectedNode(node.id);
-                    }
+          <div className="studio-waveform-box">
+            <div className="studio-waveform-bars" aria-label="Simulated voice waveform">
+              {Array.from({ length: 34 }, (_, index) => (
+                <i
+                  key={index}
+                  style={{
+                    height: `${12 + ((index * 19) % 32)}px`,
+                    animationDelay: `${index * 28}ms`,
                   }}
                 />
-                <text className="water-node-label" x={node.x + 11} y={node.y - 10}>{node.label}</text>
-              </g>
-            );
-          })}
-        </svg>
+              ))}
+            </div>
+            <div className="studio-timer-row">
+              <span>01:42 / 03:00</span>
+              <small>Transcribing audio via Web Audio API & WebSockets…</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="studio-feedback-panel">
+          <div className="studio-feedback-head">
+            <Sparkles size={13} aria-hidden="true" />
+            <strong>Structured Coaching Metrics</strong>
+          </div>
+
+          <div className="studio-meters">
+            <div className="studio-meter">
+              <div className="studio-meter-meta">
+                <span>Communication & Tone</span>
+                <b>88%</b>
+              </div>
+              <div className="studio-meter-bar">
+                <motion.b
+                  initial={reducedMotion ? false : { width: 0 }}
+                  whileInView={{ width: "88%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+
+            <div className="studio-meter">
+              <div className="studio-meter-meta">
+                <span>STAR Framework Adherence</span>
+                <b>84%</b>
+              </div>
+              <div className="studio-meter-bar">
+                <motion.b
+                  initial={reducedMotion ? false : { width: 0 }}
+                  whileInView={{ width: "84%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+
+            <div className="studio-meter">
+              <div className="studio-meter-meta">
+                <span>Specific Engineering Impact</span>
+                <b>92%</b>
+              </div>
+              <div className="studio-meter-bar">
+                <motion.b
+                  initial={reducedMotion ? false : { width: 0 }}
+                  whileInView={{ width: "92%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="studio-coach-tip">
+            <small>AI COACHING ADVICE</small>
+            <p>&ldquo;Clear metrics cited on throughput improvement. Highlight the trade-offs in your initial architecture choice before concluding.&rdquo;</p>
+          </div>
+        </div>
       </div>
-      <div className="water-preview-footer"><span><i /> {selectedLabel} selected</span><small>Illustrative network · not field or engineering data</small></div>
+
+      <div className="mock-app-foot">
+        Illustrative Interview Studio <span>FastAPI & Supabase coaching engine</span>
+      </div>
     </div>
   );
 }
 
-function CampusPreview() {
-  return (
-    <div className="campus-mock">
-      <div className="campus-heading">
-        <div><small>EZYKWELEZ / OPERATIONS</small><strong>Incident response</strong></div>
-        <span>Workflow</span>
-      </div>
-      <div className="campus-flow"><span>Report</span><i /><span>Map impact</span><i /><span>Recovery</span></div>
-      <div className="campus-map">
-        <div className="campus-map-lines" />
-        <span className="campus-node node-a">Power</span>
-        <span className="campus-node node-b">Network</span>
-        <span className="campus-node node-c">Library</span>
-        <span className="campus-node node-d">Labs</span>
-      </div>
-    </div>
-  );
-}
+function SynkroWorkspacePreview() {
+  const [activeTab, setActiveTab] = useState<"docs" | "notes" | "slides" | "sheets">("docs");
 
-function MigrationPreview() {
   return (
-    <div className="migration-mock">
-      <div className="migration-heading">
-        <span>LOCAL PROTOTYPE</span><strong>Migration rehearsal</strong><small>PostgreSQL · sample dataset</small>
+    <div className="mock-app synkro-workspace-mock" role="region" aria-label="Synkro collaboration workspace preview">
+      <div className="mock-app-head">
+        <span className="mock-app-icon">S</span>
+        <div>
+          <strong>Synkro Workspace</strong>
+          <small>Room: sprint-core · ID: #842-WKSP</small>
+        </div>
+        <div className="synkro-presence-pill" aria-label="3 team members online">
+          <span className="synkro-status-dot" aria-hidden="true" />
+          <span>3 ONLINE</span>
+        </div>
       </div>
-      <div className="migration-steps">
-        <div><span>01</span><strong>Generate dataset</strong><small>50,000 sample orders</small></div>
-        <div><span>02</span><strong>Apply migration</strong><small>Sample SQL change</small></div>
-        <div><span>03</span><strong>Compare query</strong><small>Before / after latency</small></div>
+
+      <div className="synkro-room-bar">
+        <div className="synkro-avatars" aria-label="Active collaborators in room">
+          <span className="synkro-avatar avatar-me" title="Piyush (You)">PA</span>
+          <span className="synkro-avatar avatar-collab-1" title="Sarthak (Editor)">SM</span>
+          <span className="synkro-avatar avatar-collab-2" title="Collaborator">AK</span>
+          <span className="synkro-invite-code">Invite: SYNK-842</span>
+        </div>
+        <div className="synkro-tabs" role="tablist" aria-label="Workspace document types">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "docs"}
+            className={`synkro-tab ${activeTab === "docs" ? "is-active" : ""}`}
+            onClick={() => setActiveTab("docs")}
+          >
+            <FileText size={12} aria-hidden="true" /> Docs
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "notes"}
+            className={`synkro-tab ${activeTab === "notes" ? "is-active" : ""}`}
+            onClick={() => setActiveTab("notes")}
+          >
+            <BookOpen size={12} aria-hidden="true" /> Notes
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "slides"}
+            className={`synkro-tab ${activeTab === "slides" ? "is-active" : ""}`}
+            onClick={() => setActiveTab("slides")}
+          >
+            <Presentation size={12} aria-hidden="true" /> Slides
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "sheets"}
+            className={`synkro-tab ${activeTab === "sheets" ? "is-active" : ""}`}
+            onClick={() => setActiveTab("sheets")}
+          >
+            <Sheet size={12} aria-hidden="true" /> Sheets
+          </button>
+        </div>
+      </div>
+
+      <div className="synkro-editor-window">
+        {activeTab === "docs" && (
+          <div className="synkro-doc-pane">
+            <div className="synkro-doc-meta">
+              <span className="synkro-doc-title">Project_Architecture_RFC.md</span>
+              <span className="synkro-sync-badge">
+                <Check size={11} aria-hidden="true" /> Synced to Atlas
+              </span>
+            </div>
+            <div className="synkro-doc-body">
+              <p>
+                <span className="synkro-cursor-tag">Sarthak typing</span>
+                The room state synchronizes via Socket.IO using server-ordered last-write-wins updates and revision history.
+              </p>
+              <div className="synkro-conflict-notice" role="status">
+                <span className="synkro-conflict-pill">Collision check</span>
+                <small>Concurrent same-field edit detected on Section 2.3 — review before overwriting</small>
+              </div>
+            </div>
+          </div>
+        )}
+        {activeTab === "notes" && (
+          <div className="synkro-notes-pane">
+            <div className="synkro-note-card">
+              <strong>Meeting takeaways</strong>
+              <p>Shared workspace rooms with invite codes and real-time presence indicators.</p>
+            </div>
+            <div className="synkro-note-card">
+              <strong>Revision safety</strong>
+              <p>Room owners can restore earlier versions from MongoDB Atlas revision log.</p>
+            </div>
+          </div>
+        )}
+        {activeTab === "slides" && (
+          <div className="synkro-slides-pane">
+            <div className="synkro-slide-thumb is-active">
+              <span>01</span>
+              <strong>Real-Time Sync</strong>
+              <small>Socket.IO architecture</small>
+            </div>
+            <div className="synkro-slide-thumb">
+              <span>02</span>
+              <strong>Document Model</strong>
+              <small>Field-level updates</small>
+            </div>
+          </div>
+        )}
+        {activeTab === "sheets" && (
+          <div className="synkro-sheets-pane">
+            <div className="synkro-sheet-grid">
+              <div className="synkro-cell synkro-cell-hdr">A1 (Topic)</div>
+              <div className="synkro-cell synkro-cell-hdr">B1 (Metric)</div>
+              <div className="synkro-cell">Active rooms</div>
+              <div className="synkro-cell">14</div>
+              <div className="synkro-cell">Total sessions</div>
+              <div className="synkro-cell synkro-cell-calc">=SUM(B2:B5)</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mock-app-foot">
+        Illustrative preview <span>Socket.IO synced · MongoDB Atlas</span>
       </div>
     </div>
   );

@@ -63,6 +63,4 @@ No GitHub token is required or configured. A scheduled daily refresh is not conf
 ## Verified project links
 
 - Grillr source: https://github.com/Sarthak-madan334/Grillr. No public live frontend URL was found in its repository configuration.
-- JAL-DHARA live demo: https://jal-dhara.vercel.app/; source: https://github.com/piyushaggarwal1322009-bit/JAL-DHARA.
-- EZ Kwelex source (repository name: EzyKwelez): https://github.com/piyushaggarwal1322009-bit/EzKwelez; live application: https://ezkwelez.vercel.app/.
-- Migration Y source: https://github.com/Sarthak-madan334/MigrationY. Its documented Phase 0 is a local CLI rehearsal; no verified live deployment URL was found.
+- Synkro source: https://github.com/Sarthak-madan334/collab-workspace; live workspace: https://collab-workspace-three.vercel.app.

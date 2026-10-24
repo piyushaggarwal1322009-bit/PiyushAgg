@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  experimental: {
+    agentUpgrade: false,
+  },
 };
 
 export default nextConfig;
