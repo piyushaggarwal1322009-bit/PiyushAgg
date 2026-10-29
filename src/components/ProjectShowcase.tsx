@@ -41,7 +41,7 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
             {isInterviewStudio ? "INTERVIEW STUDIO" : "COLLABORATION WORKSPACE"}
           </span>
           <span className={`project-status ${project.status === "Collaborative workspace" ? "is-active" : ""}`}>
-            {project.status}
+            {project.status === "Collaborative workspace" ? "Built for teams" : project.status}
           </span>
         </div>
 
@@ -231,32 +231,52 @@ function GrillrStudioPreview() {
 
 function SynkroWorkspacePreview() {
   const [activeTab, setActiveTab] = useState<"docs" | "notes" | "slides" | "sheets">("docs");
+  const reducedMotion = useReducedMotion();
 
   return (
-    <div className="mock-app synkro-workspace-mock" role="region" aria-label="Synkro collaboration workspace preview">
-      <div className="mock-app-head">
-        <span className="mock-app-icon">S</span>
+    <motion.div
+      className="mock-app synkro-workspace-mock"
+      role="region"
+      aria-label="Illustrative Synkro collaboration workspace preview"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: reducedMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <motion.header
+        className="mock-app-head synkro-preview-header"
+        initial={{ opacity: 0, y: 5 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: reducedMotion ? 0 : 0.3, delay: reducedMotion ? 0 : 0.08 }}
+      >
+        <span className="mock-app-icon synkro-brand-mark" aria-label="Synkro logo">
+          <span className="synkro-mark-line synkro-mark-line-one" aria-hidden="true" />
+          <span className="synkro-mark-line synkro-mark-line-two" aria-hidden="true" />
+        </span>
         <div>
-          <strong>Synkro Workspace</strong>
-          <small>Room: sprint-core · ID: #842-WKSP</small>
+          <strong>Synkro</strong>
+          <small>Room: sprint-core · #842-WKSP</small>
         </div>
-        <div className="synkro-presence-pill" aria-label="3 team members online">
-          <span className="synkro-status-dot" aria-hidden="true" />
-          <span>3 ONLINE</span>
+        <div className="synkro-presence-pill" aria-label="Three sample collaborators shown in this preview">
+          <span className="synkro-preview-status-dot" aria-hidden="true" />
+          <span>Preview</span>
         </div>
-      </div>
+      </motion.header>
 
       <div className="synkro-room-bar">
-        <div className="synkro-avatars" aria-label="Active collaborators in room">
-          <span className="synkro-avatar avatar-me" title="Piyush (You)">PA</span>
-          <span className="synkro-avatar avatar-collab-1" title="Sarthak (Editor)">SM</span>
-          <span className="synkro-avatar avatar-collab-2" title="Collaborator">AK</span>
-          <span className="synkro-invite-code">Invite: SYNK-842</span>
+        <div className="synkro-avatars" aria-label="Sample collaborators">
+          <span className="synkro-avatar avatar-me" title="Sample owner">PA</span>
+          <span className="synkro-avatar avatar-collab-1" title="Sample editor">SM</span>
+          <span className="synkro-avatar avatar-collab-2" title="Sample teammate">AK</span>
+          <span className="synkro-invite-code">Sample invite: SYNK-842</span>
         </div>
         <div className="synkro-tabs" role="tablist" aria-label="Workspace document types">
           <button
             type="button"
             role="tab"
+            id="synkro-tab-docs"
+            aria-controls="synkro-tab-panel"
             aria-selected={activeTab === "docs"}
             className={`synkro-tab ${activeTab === "docs" ? "is-active" : ""}`}
             onClick={() => setActiveTab("docs")}
@@ -266,6 +286,8 @@ function SynkroWorkspacePreview() {
           <button
             type="button"
             role="tab"
+            id="synkro-tab-notes"
+            aria-controls="synkro-tab-panel"
             aria-selected={activeTab === "notes"}
             className={`synkro-tab ${activeTab === "notes" ? "is-active" : ""}`}
             onClick={() => setActiveTab("notes")}
@@ -275,6 +297,8 @@ function SynkroWorkspacePreview() {
           <button
             type="button"
             role="tab"
+            id="synkro-tab-slides"
+            aria-controls="synkro-tab-panel"
             aria-selected={activeTab === "slides"}
             className={`synkro-tab ${activeTab === "slides" ? "is-active" : ""}`}
             onClick={() => setActiveTab("slides")}
@@ -284,6 +308,8 @@ function SynkroWorkspacePreview() {
           <button
             type="button"
             role="tab"
+            id="synkro-tab-sheets"
+            aria-controls="synkro-tab-panel"
             aria-selected={activeTab === "sheets"}
             className={`synkro-tab ${activeTab === "sheets" ? "is-active" : ""}`}
             onClick={() => setActiveTab("sheets")}
@@ -293,23 +319,33 @@ function SynkroWorkspacePreview() {
         </div>
       </div>
 
-      <div className="synkro-editor-window">
+      <motion.div
+        key={activeTab}
+        id="synkro-tab-panel"
+        role="tabpanel"
+        aria-labelledby={`synkro-tab-${activeTab}`}
+        className="synkro-editor-window"
+        initial={{ opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: reducedMotion ? 0 : 0.18 }}
+      >
         {activeTab === "docs" && (
           <div className="synkro-doc-pane">
             <div className="synkro-doc-meta">
-              <span className="synkro-doc-title">Project_Architecture_RFC.md</span>
-              <span className="synkro-sync-badge">
-                <Check size={11} aria-hidden="true" /> Synced to Atlas
+              <span className="synkro-doc-title">Project_Architecture.md</span>
+              <span className="synkro-sync-badge" aria-label="Illustrative sync preview">
+                <Check size={11} aria-hidden="true" /> Preview synced
               </span>
             </div>
             <div className="synkro-doc-body">
               <p>
-                <span className="synkro-cursor-tag">Sarthak typing</span>
-                The room state synchronizes via Socket.IO using server-ordered last-write-wins updates and revision history.
+                <span className="synkro-collaborator-label">Editing</span>
+                <span className="synkro-caret" aria-hidden="true" />
+                Define service boundaries, collaboration events, and room-level permissions for the next release.
               </p>
-              <div className="synkro-conflict-notice" role="status">
-                <span className="synkro-conflict-pill">Collision check</span>
-                <small>Concurrent same-field edit detected on Section 2.3 — review before overwriting</small>
+              <div className="synkro-doc-footer-row">
+                <span className="synkro-typing-dots" aria-hidden="true"><i /><i /><i /></span>
+                <small>Shared edit in progress</small>
               </div>
             </div>
           </div>
@@ -317,12 +353,12 @@ function SynkroWorkspacePreview() {
         {activeTab === "notes" && (
           <div className="synkro-notes-pane">
             <div className="synkro-note-card">
-              <strong>Meeting takeaways</strong>
-              <p>Shared workspace rooms with invite codes and real-time presence indicators.</p>
+              <strong>Release notes</strong>
+              <p><span className="synkro-check" aria-hidden="true" /> Team handoff ready for launch review.</p>
             </div>
             <div className="synkro-note-card">
-              <strong>Revision safety</strong>
-              <p>Room owners can restore earlier versions from MongoDB Atlas revision log.</p>
+              <strong>Project checklist</strong>
+              <p><span className="synkro-check" aria-hidden="true" /> Room permissions and review cadence aligned.</p>
             </div>
           </div>
         )}
@@ -330,33 +366,33 @@ function SynkroWorkspacePreview() {
           <div className="synkro-slides-pane">
             <div className="synkro-slide-thumb is-active">
               <span>01</span>
-              <strong>Real-Time Sync</strong>
-              <small>Socket.IO architecture</small>
+              <strong>Release plan</strong>
+              <small>Scope and dependencies</small>
             </div>
             <div className="synkro-slide-thumb">
               <span>02</span>
-              <strong>Document Model</strong>
-              <small>Field-level updates</small>
+              <strong>Team rituals</strong>
+              <small>Review and handoff</small>
             </div>
           </div>
         )}
         {activeTab === "sheets" && (
           <div className="synkro-sheets-pane">
             <div className="synkro-sheet-grid">
-              <div className="synkro-cell synkro-cell-hdr">A1 (Topic)</div>
-              <div className="synkro-cell synkro-cell-hdr">B1 (Metric)</div>
-              <div className="synkro-cell">Active rooms</div>
-              <div className="synkro-cell">14</div>
-              <div className="synkro-cell">Total sessions</div>
-              <div className="synkro-cell synkro-cell-calc">=SUM(B2:B5)</div>
+              <div className="synkro-cell synkro-cell-hdr">Task</div>
+              <div className="synkro-cell synkro-cell-hdr">Owner</div>
+              <div className="synkro-cell">Roadmap sync</div>
+              <div className="synkro-cell">Piyush</div>
+              <div className="synkro-cell">Launch checklist</div>
+              <div className="synkro-cell synkro-cell-status">Ready</div>
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
 
       <div className="mock-app-foot">
-        Illustrative preview <span>Socket.IO synced · MongoDB Atlas</span>
+        Illustrative workspace preview <span>Docs · Notes · Slides · Sheets</span>
       </div>
-    </div>
+    </motion.div>
   );
 }

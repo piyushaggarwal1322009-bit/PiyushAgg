@@ -1336,6 +1336,35 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   font-size: 0.95rem;
 }
 
+.synkro-brand-mark {
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1.5px solid rgba(184, 244, 229, 0.9);
+  border-radius: 0.8rem;
+  background: rgba(9, 25, 22, 0.8);
+  overflow: hidden;
+}
+
+.synkro-mark-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.4rem;
+  height: 0.18rem;
+  border-radius: 999px;
+  background: rgba(184, 244, 229, 0.95);
+  transform-origin: center;
+}
+
+.synkro-mark-line-one {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.synkro-mark-line-two {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 .mock-app-head > div {
   display: grid;
   gap: 0.15rem;
@@ -1544,23 +1573,43 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 
 /* 2. Synkro Collaboration Workspace Template Styling */
 .synkro-workspace-mock {
-  border: 1px solid color-mix(in srgb, var(--project-accent) 26%, #1c2b29);
-  background: #091214;
+  border: 1px solid rgba(32, 59, 52, 0.9);
+  background: #091916;
+  border-radius: 1.2rem;
+  box-shadow: 0 18px 32px rgba(2, 10, 12, 0.2);
+}
+
+.synkro-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-bottom: 0.8rem;
 }
 
 .synkro-presence-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.38rem;
   margin-left: auto;
-  padding: 0.28rem 0.55rem;
-  border: 1px solid color-mix(in srgb, var(--project-accent) 35%, transparent);
+  padding: 0.22rem 0.52rem;
+  border: 1px solid rgba(90, 216, 193, 0.22);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--project-accent) 8%, transparent);
+  background: rgba(90, 216, 193, 0.08);
   color: var(--project-accent);
-  font-size: 0.54rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.synkro-preview-status-dot,
+.synkro-status-dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--project-accent);
+  box-shadow: 0 0 8px rgba(90, 216, 193, 0.7);
+  animation: synkro-pulse 2s ease-in-out infinite;
 }
 
 .synkro-status-dot {
@@ -1583,8 +1632,8 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 0.5rem 0 0.7rem;
+  border-bottom: 1px solid rgba(32, 59, 52, 0.85);
 }
 
 .synkro-avatars {
@@ -1652,7 +1701,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   font-size: 0.56rem;
   font-weight: 600;
   cursor: pointer;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .synkro-tab:hover {
@@ -1660,19 +1709,24 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   background: rgba(255, 255, 255, 0.04);
 }
 
+.synkro-tab:focus-visible {
+  outline: 2px solid var(--project-accent);
+  outline-offset: 2px;
+}
+
 .synkro-tab.is-active {
-  border-color: color-mix(in srgb, var(--project-accent) 40%, var(--line));
-  background: color-mix(in srgb, var(--project-accent) 12%, transparent);
+  border-color: rgba(90, 216, 193, 0.35);
+  background: rgba(90, 216, 193, 0.08);
   color: var(--project-accent);
 }
 
 .synkro-editor-window {
-  min-height: 7.8rem;
-  margin-top: 0.75rem;
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  background: rgba(13, 17, 23, 0.72);
-  padding: 0.75rem;
+  min-height: 8.1rem;
+  margin-top: 0.7rem;
+  border: 1px solid rgba(32, 59, 52, 0.9);
+  border-radius: 0.8rem;
+  background: #10221e;
+  padding: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1682,6 +1736,10 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 0.7rem;
+  background: #e9eeec;
+  padding: 0.7rem;
 }
 
 .synkro-doc-meta {
@@ -1689,14 +1747,14 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(32, 59, 52, 0.9);
+  padding-bottom: 0.38rem;
   font-size: 0.56rem;
 }
 
 .synkro-doc-title {
   font-family: "SFMono-Regular", Consolas, monospace;
-  color: var(--muted-strong);
+  color: #dfeae7;
   font-weight: 600;
 }
 
@@ -1704,28 +1762,101 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--mint);
+  color: var(--project-accent);
   font-size: 0.52rem;
+}
+
+.synkro-doc-body {
+  padding-top: 0.35rem;
 }
 
 .synkro-doc-body p {
   margin: 0;
-  color: var(--text);
-  font-size: 0.63rem;
+  color: #283630;
+  font-size: 0.64rem;
   line-height: 1.55;
 }
 
-.synkro-cursor-tag {
-  display: inline-block;
-  vertical-align: middle;
+.synkro-collaborator-label {
+  display: inline-flex;
+  align-items: center;
   margin-right: 0.4rem;
   padding: 0.12rem 0.38rem;
-  border-radius: 0.25rem;
-  background: #818CF8;
-  color: #08090b;
-  font-size: 0.48rem;
+  border-radius: 0.26rem;
+  background: rgba(90, 216, 193, 0.1);
+  color: var(--project-accent);
+  font-size: 0.46rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.synkro-caret {
+  display: inline-block;
+  width: 0.08rem;
+  height: 0.9rem;
+  margin: 0 0.2rem 0 0.3rem;
+  background: #0f172a;
+  border-radius: 999px;
+  vertical-align: middle;
+  animation: synkro-caret-pulse 1s ease-in-out infinite;
+}
+
+.synkro-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18rem;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+
+.synkro-typing-dots i {
+  display: block;
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: 50%;
+  background: var(--project-accent);
+  opacity: 0.72;
+  animation: synkro-typing 1.2s ease-in-out infinite alternate;
+}
+
+.synkro-typing-dots i:nth-child(2) { animation-delay: 0.12s; }
+.synkro-typing-dots i:nth-child(3) { animation-delay: 0.24s; }
+
+@keyframes synkro-caret-pulse {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.2; }
+}
+
+@keyframes synkro-typing {
+  0% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(-1px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.7; }
+}
+
+.synkro-doc-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  color: #8aa29c;
+  font-size: 0.5rem;
+}
+
+.synkro-doc-footer-row small {
+  color: #8aa29c;
+  font-size: 0.5rem;
+}
+
+.synkro-check {
+  display: inline-block;
+  width: 0.44rem;
+  height: 0.44rem;
+  margin-right: 0.25rem;
+  border-radius: 50%;
+  background: var(--project-accent);
+  box-shadow: 0 0 0 2px rgba(90, 216, 193, 0.1);
+  vertical-align: middle;
 }
 
 .synkro-conflict-notice {
@@ -1770,7 +1901,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 
 .synkro-note-card strong {
   display: block;
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   color: var(--project-accent);
   margin-bottom: 0.2rem;
 }
@@ -1778,8 +1909,8 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .synkro-note-card p {
   margin: 0;
   font-size: 0.54rem;
-  color: var(--muted);
-  line-height: 1.4;
+  color: #dfeae7;
+  line-height: 1.5;
 }
 
 .synkro-slides-pane {
@@ -1810,12 +1941,13 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 }
 
 .synkro-slide-thumb strong {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
+  color: #edf6f3;
 }
 
 .synkro-slide-thumb small {
   font-size: 0.5rem;
-  color: var(--muted);
+  color: #9db5af;
 }
 
 .synkro-sheets-pane {
@@ -1827,32 +1959,41 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 0.4rem;
+  background: rgba(32, 59, 52, 0.85);
+  border: 1px solid rgba(32, 59, 52, 0.85);
+  border-radius: 0.45rem;
   overflow: hidden;
   font-size: 0.54rem;
 }
 
 .synkro-cell {
   padding: 0.35rem 0.5rem;
-  background: rgba(18, 24, 32, 0.95);
-  color: var(--text);
+  background: rgba(16, 34, 30, 0.88);
+  color: #edf6f3;
 }
 
 .synkro-cell-hdr {
   background: rgba(255, 255, 255, 0.04);
-  color: var(--muted);
+  color: #a8bdb6;
   font-weight: 700;
   font-family: monospace;
   font-size: 0.5rem;
 }
 
-.synkro-cell-calc {
+.synkro-cell-status {
   color: var(--project-accent);
   font-family: monospace;
   font-weight: 600;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .synkro-preview-status-dot,
+  .synkro-caret,
+  .synkro-typing-dots i {
+    animation: none !important;
+  }
+}
+
 @media (max-width: 980px) {
   .nav-links { display: none; }
   .github-dashboard { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
