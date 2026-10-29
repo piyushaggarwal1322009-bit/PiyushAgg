@@ -133,6 +133,40 @@
 .portfolio-closing-content { display:flex; width:min(100%,72rem); flex-direction:column; align-items:center; }.portfolio-closing-content .portfolio-eyebrow { margin:0 0 2.8rem; color:#6d7480; letter-spacing:.18em; }.portfolio-closing-content .portfolio-eyebrow i { background:#3c9ee9; }.portfolio-closing-content h2 { max-width:13.5ch; margin:0; color:#17181c; font-size:clamp(3.2rem,7.15vw,8rem); font-weight:650; line-height:.92; letter-spacing:-.08em; }.portfolio-closing-content h2 em { color:var(--portfolio-accent); font-style:normal; }.portfolio-closing-content>p { max-width:40rem; margin:2.1rem 0 1.8rem; color:#747a84; font-size:clamp(.95rem,1.35vw,1.15rem); line-height:1.65; }.portfolio-closing-content .portfolio-pill-light { border-color:rgba(51,68,88,.2); background:rgba(255,255,255,.46); color:#1d252e; }.portfolio-closing-location { display:inline-flex; align-items:center; gap:.45rem; margin-top:3rem; color:#6d7480; font-size:.78rem; }
 @media (max-width:760px) { .portfolio-main-hero .portfolio-hero-content { align-items:stretch; }.portfolio-main-hero h1 { font-size:clamp(3.65rem,12vw,6rem); }.portfolio-main-hero .portfolio-hero-bottom { flex-direction:column; align-items:start; }.portfolio-closing-hero { min-height:82svh; }.portfolio-closing-content .portfolio-eyebrow { margin-bottom:2rem; }.portfolio-closing-content h2 { font-size:clamp(3rem,13vw,5.4rem); } }
 
+.portfolio-page .template-interview-studio .editorial-title,
+.portfolio-page .template-interview-studio .editorial-eyebrow,
+.portfolio-page .template-interview-studio .editorial-template-badge,
+.portfolio-page .template-interview-studio .editorial-description,
+.portfolio-page .template-interview-studio .project-status,
+.portfolio-page .template-interview-studio .editorial-tags span,
+.portfolio-page .template-interview-studio .editorial-actions .button.ghost {
+  color: #111827;
+}
+
+.portfolio-page .template-interview-studio .editorial-tags span {
+  border-color: rgba(17, 24, 39, 0.22);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.portfolio-page .template-interview-studio .editorial-actions .button.ghost {
+  border-color: rgba(17, 24, 39, 0.28);
+}
+
+.portfolio-page .template-interview-studio .mock-app-head strong,
+.portfolio-page .template-interview-studio .studio-question-card h4,
+.portfolio-page .template-interview-studio .studio-feedback-head strong,
+.portfolio-page .template-interview-studio .studio-meter-meta,
+.portfolio-page .template-interview-studio .studio-coach-tip p {
+	color: #111827;
+}
+
+.portfolio-page .template-interview-studio .mock-app-head small,
+.portfolio-page .template-interview-studio .studio-card-kicker,
+.portfolio-page .template-interview-studio .studio-timer-row,
+.portfolio-page .template-interview-studio .studio-timer-row small {
+	color: #334155;
+}
+
 /* Contact-first landing page, matched to the supplied reference. */
 .portfolio-contact-hero { display:grid; min-height:100svh; place-items:center; padding:5rem 1.25rem; text-align:center; background:#fff; }
 .portfolio-contact-content { display:flex; width:min(100%,72rem); flex-direction:column; align-items:center; }

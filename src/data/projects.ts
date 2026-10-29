@@ -40,6 +40,7 @@ export const projects: Project[] = [
       "Structured answer evaluation with retry and improvement tracking"
     ],
     github: "https://github.com/Sarthak-madan334/Grillr",
+    live: "https://grillr3.vercel.app",
     previewKey: "grillr",
     previewLabel: "Grillr · Interview coach",
   },
