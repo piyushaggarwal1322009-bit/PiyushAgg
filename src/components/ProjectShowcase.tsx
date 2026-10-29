@@ -30,7 +30,7 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
       }`}
       style={{ "--project-accent": projectAccent } as CSSProperties}
       aria-labelledby={`heading-${project.name.toLowerCase()}`}
-      initial={reducedMotion ? false : { opacity: 0, y: 34, scale: 0.96 }}
+      initial={{ opacity: 0.86, y: 12 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: reducedMotion ? 0 : 0.6, delay: reducedMotion ? 0 : index * 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -140,10 +140,10 @@ function GrillrStudioPreview() {
               </div>
               <div className="studio-meter-bar">
                 <motion.b
-                  initial={reducedMotion ? false : { width: 0 }}
+                  initial={{ width: 0 }}
                   whileInView={{ width: "88%" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeOut" }}
                 />
               </div>
             </div>
@@ -155,10 +155,10 @@ function GrillrStudioPreview() {
               </div>
               <div className="studio-meter-bar">
                 <motion.b
-                  initial={reducedMotion ? false : { width: 0 }}
+                  initial={{ width: 0 }}
                   whileInView={{ width: "84%" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                  transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.1, ease: "easeOut" }}
                 />
               </div>
             </div>
@@ -170,10 +170,10 @@ function GrillrStudioPreview() {
               </div>
               <div className="studio-meter-bar">
                 <motion.b
-                  initial={reducedMotion ? false : { width: 0 }}
+                  initial={{ width: 0 }}
                   whileInView={{ width: "92%" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
                 />
               </div>
             </div>
