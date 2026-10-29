@@ -167,6 +167,103 @@
 	color: #334155;
 }
 
+.portfolio-page .editorial-project.template-interview-studio .grillr-studio-mock {
+  display: flex;
+  min-height: 31rem;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  border: 1px solid #272832;
+  border-radius: 0.9rem;
+  background: #0b0c10;
+  color: #f4f4f5;
+  box-shadow: 0 14px 36px rgba(11, 12, 16, 0.16);
+}
+
+.grillr-preview-header,
+.grillr-preview-brand,
+.grillr-preview-label,
+.grillr-question-meta,
+.grillr-listening-row,
+.grillr-listening-row > span,
+.grillr-analysis-heading,
+.grillr-score-summary,
+.grillr-insight-row,
+.grillr-preview-stages ol {
+  display: flex;
+  align-items: center;
+}
+
+.grillr-preview-header,
+.grillr-question-meta,
+.grillr-listening-row,
+.grillr-analysis-heading,
+.grillr-insight-row,
+.grillr-preview-stages ol {
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.grillr-preview-brand { min-width: 0; gap: 0.6rem; }
+.grillr-preview-mark { display: flex; width: 2rem; height: 2rem; flex: 0 0 auto; align-items: center; justify-content: center; gap: 2px; border: 1px solid #34333e; border-radius: 0.55rem; background: #171820; }
+.grillr-preview-mark i { width: 2px; border-radius: 2px; background: #b8a5f5; }
+.grillr-preview-mark i:nth-child(1) { height: 7px; }
+.grillr-preview-mark i:nth-child(2) { height: 12px; background: #f4a261; }
+.grillr-preview-mark i:nth-child(3) { height: 9px; }
+.grillr-preview-brand > div { display: grid; gap: 0.1rem; }
+.grillr-preview-brand strong { color: #f4f4f5; font-size: 0.82rem; font-weight: 650; }
+.grillr-preview-brand small { color: #a1a1aa; font-size: 0.62rem; }
+.grillr-preview-label { gap: 0.4rem; color: #a1a1aa; font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.grillr-preview-label i { width: 5px; height: 5px; border-radius: 50%; background: #f4a261; }
+.grillr-preview-layout { display: grid; min-width: 0; flex: 1; grid-template-columns: minmax(0, 1.5fr) minmax(7.5rem, 0.9fr); gap: 1rem; }
+.grillr-interview-main { display: flex; min-width: 0; flex-direction: column; }
+.grillr-question-meta { color: #a1a1aa; font-size: 0.56rem; letter-spacing: 0.07em; text-transform: uppercase; }
+.grillr-question-meta span:first-child { color: #b8a5f5; }
+.grillr-question-block h4 { max-width: 34rem; margin: 0.85rem 0 0; color: #f4f4f5; font-size: clamp(1rem, 1.6vw, 1.28rem); font-weight: 550; line-height: 1.4; }
+.grillr-listening-area { margin-top: auto; padding-top: 1.2rem; }
+.grillr-preview-waveform { display: flex; min-height: 3.2rem; align-items: center; justify-content: center; gap: 0.16rem; }
+.grillr-preview-waveform i { display: block; width: 2px; flex: 0 0 2px; border-radius: 999px; background: #b8a5f5; animation: grillr-waveform var(--wave-duration) var(--wave-delay) ease-in-out infinite alternate; transform-origin: center; }
+@keyframes grillr-waveform { from { opacity: .42; transform: scaleY(.26); } to { opacity: .86; transform: scaleY(var(--wave-peak)); } }
+@media (prefers-reduced-motion: reduce) { .grillr-preview-waveform i { animation: none; opacity: .55; transform: scaleY(.42); } }
+.grillr-listening-row { margin-top: 0.7rem; color: #a1a1aa; font-size: 0.62rem; }
+.grillr-listening-row > span { gap: 0.35rem; }
+.grillr-listening-row svg { color: #b8a5f5; }
+.grillr-preview-note { color: #71717a; font-size: 0.55rem; }
+.grillr-analysis-panel { min-width: 0; border-left: 1px solid #272832; padding-left: 0.9rem; }
+.grillr-analysis-inner { display: grid; gap: 0.8rem; }
+.grillr-analysis-heading h5 { margin: 0; color: #a1a1aa; font-size: 0.56rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; }
+.grillr-analysis-heading > span { color: #71717a; font-size: 0.52rem; text-transform: uppercase; }
+.grillr-score-summary { gap: 0.65rem; }
+.grillr-score-ring { width: 3rem; height: 3rem; flex: 0 0 auto; overflow: visible; transform: rotate(-90deg); }
+.grillr-score-track,.grillr-score-progress { fill: none; stroke-width: 4; }
+.grillr-score-track { stroke: #272832; }
+.grillr-score-progress { stroke: #b8a5f5; stroke-linecap: round; }
+.grillr-score-copy { display: grid; gap: 0.08rem; }
+.grillr-score-copy > strong { color: #f4f4f5; font-size: 1rem; font-weight: 650; white-space: nowrap; }
+.grillr-score-copy > strong span { color: #71717a; font-size: 0.62rem; font-weight: 500; }
+.grillr-score-copy small { color: #71717a; font-size: 0.54rem; }
+.grillr-insight-list { display: grid; gap: 0.5rem; }
+.grillr-insight-row { display: grid; grid-template-columns: 5px minmax(0, 1fr); justify-content: initial; gap: 0.35rem 0.45rem; color: #a1a1aa; font-size: 0.58rem; }
+.grillr-insight-row strong { grid-column: 2; color: #d4d4d8; font-size: 0.58rem; font-weight: 550; }
+.grillr-insight-marker { width: 5px; height: 5px; grid-row: span 2; border-radius: 50%; }
+.grillr-insight-marker.is-positive { background: #6ee7b7; }
+.grillr-insight-marker.is-neutral { background: #b8a5f5; }
+.grillr-insight-marker.is-focus { background: #f4a261; }
+.grillr-analysis-note { margin: 0; border-top: 1px solid #272832; padding-top: 0.65rem; color: #a1a1aa; font-size: 0.58rem; line-height: 1.5; }
+.grillr-preview-stages { margin-top: auto; border-top: 1px solid #272832; padding-top: 0.8rem; }
+.grillr-preview-stages ol { max-width: 15rem; justify-content: flex-start; list-style: none; margin: 0; padding: 0; color: #71717a; font-size: 0.58rem; }
+.grillr-preview-stages li[aria-current="step"] { color: #d9cef9; }
+.grillr-preview-stages li[aria-hidden="true"] { color: #4b4a55; }
+
+@media (max-width: 760px) {
+  .portfolio-page .editorial-project.template-interview-studio .grillr-studio-mock { min-height: auto; gap: 1rem; }
+  .grillr-preview-layout { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
+  .grillr-analysis-panel { border-top: 1px solid #272832; border-left: 0; padding-top: 1rem; padding-left: 0; }
+  .grillr-analysis-inner { grid-template-columns: minmax(0, 1fr); }
+  .grillr-question-block h4 { font-size: 1.15rem; }
+  .grillr-preview-stages { margin-top: 0.5rem; }
+}
+
 /* Contact-first landing page, matched to the supplied reference. */
 .portfolio-contact-hero { display:grid; min-height:100svh; place-items:center; padding:5rem 1.25rem; text-align:center; background:#fff; }
 .portfolio-contact-content { display:flex; width:min(100%,72rem); flex-direction:column; align-items:center; }
@@ -195,4 +292,18 @@
   .portfolio-main-hero .portfolio-hero-watermark {
     display: none;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-page .editorial-project.template-interview-studio .grillr-studio-mock,
+  .grillr-preview-header,
+  .grillr-question-block,
+  .grillr-analysis-inner,
+  .grillr-insight-row {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .grillr-score-progress { stroke-dashoffset: 23.75px !important; }
 }

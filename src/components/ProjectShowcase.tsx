@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, BookOpen, Check, FileText, Github, Mic, Presentation, Sheet, Sparkles } from "lucide-react";
+import { ArrowUpRight, BookOpen, Check, FileText, Github, Mic, Presentation, Sheet } from "lucide-react";
 import { projects } from "../data/projects";
 import type { Project } from "../data/projects";
 
@@ -84,112 +84,149 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
 
 function GrillrStudioPreview() {
   const reducedMotion = useReducedMotion();
+  const scoreRadius = 27;
+  const scoreCircumference = 2 * Math.PI * scoreRadius;
+  const scoreOffset = scoreCircumference * 0.14;
+  const insights = [
+    { label: "Structure", value: "Strong", tone: "positive" },
+    { label: "Clarity", value: "Good", tone: "neutral" },
+    { label: "Specificity", value: "Add more detail", tone: "focus" },
+  ] as const;
 
   return (
-    <div className="mock-app grillr-studio-mock" role="region" aria-label="Grillr interview studio preview">
-      <div className="mock-app-head">
-        <span className="mock-app-icon">G</span>
-        <div>
-          <strong>Grillr Studio</strong>
-          <small>AI Interviewer · Practice Session #104</small>
-        </div>
-        <div className="studio-recording-pill" aria-label="Microphone live in session">
-          <Mic size={12} aria-hidden="true" />
-          <span>LISTENING</span>
-        </div>
-      </div>
-
-      <div className="studio-main">
-        <div className="studio-question-card">
-          <div className="studio-card-kicker">
-            <span>BEHAVIORAL · SYSTEM LEADERSHIP</span>
-            <small>Phase 2 of 4</small>
+    <motion.div
+      className="grillr-studio-mock"
+      role="region"
+      aria-label="Illustrative Grillr interview workspace"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: reducedMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <motion.header
+        className="grillr-preview-header"
+        initial={{ opacity: 0, y: 6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: reducedMotion ? 0 : 0.3, delay: reducedMotion ? 0 : 0.08 }}
+      >
+        <div className="grillr-preview-brand">
+          <span className="grillr-preview-mark" aria-hidden="true"><i /><i /><i /></span>
+          <div>
+            <strong>Grillr</strong>
+            <small>Interview practice</small>
           </div>
-          <h4>Tell me about a time you resolved a major engineering bottleneck under a tight deadline.</h4>
+        </div>
+        <span className="grillr-preview-label"><i aria-hidden="true" />Preview</span>
+      </motion.header>
 
-          <div className="studio-waveform-box">
-            <div className="studio-waveform-bars" aria-label="Simulated voice waveform">
-              {Array.from({ length: 34 }, (_, index) => (
-                <i
-                  key={index}
-                  style={{
-                    height: `${12 + ((index * 19) % 32)}px`,
-                    animationDelay: `${index * 28}ms`,
-                  }}
+      <div className="grillr-preview-layout">
+        <main className="grillr-interview-main">
+          <motion.div
+            className="grillr-question-block"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: reducedMotion ? 0 : 0.34, delay: reducedMotion ? 0 : 0.16 }}
+          >
+            <div className="grillr-question-meta">
+              <span>Behavioral interview</span>
+              <span>Sample question</span>
+            </div>
+            <h4>Tell me about a time you solved a difficult problem.</h4>
+          </motion.div>
+
+          <div className="grillr-listening-area">
+            <div className="grillr-preview-waveform" role="img" aria-label="Illustrative waveform preview; microphone is not active">
+              {Array.from({ length: 32 }, (_, index) => {
+                const barHeight = 12 + ((index * 13) % 25);
+                const listeningScale = 0.42 + ((index * 3) % 6) * 0.09;
+                return (
+                  <i
+                    key={index}
+                    style={{
+                      height: `${barHeight}px`,
+                      "--wave-peak": listeningScale,
+                      "--wave-delay": `${index * 0.018}s`,
+                      "--wave-duration": `${1.2 + (index % 5) * 0.1}s`,
+                    } as CSSProperties}
+                  />
+                );
+              })}
+            </div>
+            <div className="grillr-listening-row">
+              <span><Mic size={14} aria-hidden="true" />Listening to your answer</span>
+              <span className="grillr-preview-note">Visual preview</span>
+            </div>
+          </div>
+
+          <nav className="grillr-preview-stages" aria-label="Interview practice stages">
+            <ol>
+              <li aria-current="step">Answer</li>
+              <li aria-hidden="true">→</li>
+              <li>Review</li>
+              <li aria-hidden="true">→</li>
+              <li>Improve</li>
+            </ol>
+          </nav>
+        </main>
+
+        <aside className="grillr-analysis-panel" aria-labelledby="grillr-analysis-title">
+          <motion.div
+            className="grillr-analysis-inner"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: reducedMotion ? 0 : 0.34, delay: reducedMotion ? 0 : 0.24 }}
+          >
+            <div className="grillr-analysis-heading">
+              <h5 id="grillr-analysis-title">Illustrative insights</h5>
+              <span>Preview</span>
+            </div>
+
+            <div className="grillr-score-summary">
+              <svg className="grillr-score-ring" viewBox="0 0 72 72" role="img" aria-label="Illustrative score: 86 out of 100">
+                <circle className="grillr-score-track" cx="36" cy="36" r={scoreRadius} />
+                <motion.circle
+                  className="grillr-score-progress"
+                  cx="36"
+                  cy="36"
+                  r={scoreRadius}
+                  strokeDasharray={scoreCircumference}
+                  initial={{ strokeDashoffset: scoreCircumference }}
+                  whileInView={{ strokeDashoffset: scoreOffset }}
+                  viewport={{ once: true }}
+                  transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.22, ease: "easeOut" }}
                 />
+              </svg>
+              <div className="grillr-score-copy">
+                <strong>86 <span>/ 100</span></strong>
+                <small>Sample score</small>
+              </div>
+            </div>
+
+            <div className="grillr-insight-list">
+              {insights.map((insight, index) => (
+                <motion.div
+                  key={insight.label}
+                  className="grillr-insight-row"
+                  initial={{ opacity: 0, y: 5 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: reducedMotion ? 0 : 0.2, delay: reducedMotion ? 0 : 0.32 + index * 0.06 }}
+                >
+                  <span className={`grillr-insight-marker is-${insight.tone}`} aria-hidden="true" />
+                  <span>{insight.label}</span>
+                  <strong>{insight.value}</strong>
+                </motion.div>
               ))}
             </div>
-            <div className="studio-timer-row">
-              <span>01:42 / 03:00</span>
-              <small>Transcribing audio via Web Audio API & WebSockets…</small>
-            </div>
-          </div>
-        </div>
 
-        <div className="studio-feedback-panel">
-          <div className="studio-feedback-head">
-            <Sparkles size={13} aria-hidden="true" />
-            <strong>Structured Coaching Metrics</strong>
-          </div>
-
-          <div className="studio-meters">
-            <div className="studio-meter">
-              <div className="studio-meter-meta">
-                <span>Communication & Tone</span>
-                <b>88%</b>
-              </div>
-              <div className="studio-meter-bar">
-                <motion.b
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "88%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeOut" }}
-                />
-              </div>
-            </div>
-
-            <div className="studio-meter">
-              <div className="studio-meter-meta">
-                <span>STAR Framework Adherence</span>
-                <b>84%</b>
-              </div>
-              <div className="studio-meter-bar">
-                <motion.b
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "84%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.1, ease: "easeOut" }}
-                />
-              </div>
-            </div>
-
-            <div className="studio-meter">
-              <div className="studio-meter-meta">
-                <span>Specific Engineering Impact</span>
-                <b>92%</b>
-              </div>
-              <div className="studio-meter-bar">
-                <motion.b
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "92%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="studio-coach-tip">
-            <small>AI COACHING ADVICE</small>
-            <p>&ldquo;Clear metrics cited on throughput improvement. Highlight the trade-offs in your initial architecture choice before concluding.&rdquo;</p>
-          </div>
-        </div>
+            <p className="grillr-analysis-note">Try mentioning the specific tools or decisions that helped you solve the problem.</p>
+          </motion.div>
+        </aside>
       </div>
-
-      <div className="mock-app-foot">
-        Illustrative Interview Studio <span>FastAPI & Supabase coaching engine</span>
-      </div>
-    </div>
+    </motion.div>
   );
 }
 
