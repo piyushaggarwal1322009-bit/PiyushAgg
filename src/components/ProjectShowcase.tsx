@@ -86,7 +86,7 @@ function GrillrStudioPreview() {
   const reducedMotion = useReducedMotion();
   const scoreRadius = 27;
   const scoreCircumference = 2 * Math.PI * scoreRadius;
-  const scoreOffset = scoreCircumference * 0.14;
+  const scoreOffset = scoreCircumference * 0.33;
   const insights = [
     { label: "Structure", value: "Strong", tone: "positive" },
     { label: "Clarity", value: "Good", tone: "neutral" },
@@ -131,7 +131,6 @@ function GrillrStudioPreview() {
           >
             <div className="grillr-question-meta">
               <span>Behavioral interview</span>
-              <span>Sample question</span>
             </div>
             <h4>Tell me about a time you solved a difficult problem.</h4>
           </motion.div>
@@ -139,7 +138,7 @@ function GrillrStudioPreview() {
           <div className="grillr-listening-area">
             <div className="grillr-preview-waveform" role="img" aria-label="Illustrative waveform preview; microphone is not active">
               {Array.from({ length: 32 }, (_, index) => {
-                const barHeight = 12 + ((index * 13) % 25);
+                const barHeight = 20 + ((index * 13) % 23);
                 const listeningScale = 0.42 + ((index * 3) % 6) * 0.09;
                 return (
                   <i
@@ -155,7 +154,7 @@ function GrillrStudioPreview() {
               })}
             </div>
             <div className="grillr-listening-row">
-              <span><Mic size={14} aria-hidden="true" />Listening to your answer</span>
+              <span><Mic size={14} aria-hidden="true" />Microphone idle</span>
               <span className="grillr-preview-note">Visual preview</span>
             </div>
           </div>
@@ -185,7 +184,7 @@ function GrillrStudioPreview() {
             </div>
 
             <div className="grillr-score-summary">
-              <svg className="grillr-score-ring" viewBox="0 0 72 72" role="img" aria-label="Illustrative score: 86 out of 100">
+              <svg className="grillr-score-ring" viewBox="0 0 72 72" role="img" aria-label="Illustrative score: 67 out of 100">
                 <circle className="grillr-score-track" cx="36" cy="36" r={scoreRadius} />
                 <motion.circle
                   className="grillr-score-progress"
@@ -200,7 +199,7 @@ function GrillrStudioPreview() {
                 />
               </svg>
               <div className="grillr-score-copy">
-                <strong>86 <span>/ 100</span></strong>
+                <strong>67 <span>/ 100</span></strong>
                 <small>Sample score</small>
               </div>
             </div>
