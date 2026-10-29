@@ -180,8 +180,11 @@
 @media (max-width:760px) { .portfolio-contact-hero { min-height:82svh; }.portfolio-contact-content .portfolio-eyebrow { margin-bottom:2rem; }.portfolio-contact-content h1 { font-size:clamp(3rem,13vw,5.4rem); } }
 
 .portfolio-main-hero .portfolio-hero-watermark {
+  left: clamp(1rem, 15vw, 15rem);
+  right: clamp(1rem, 3vw, 3rem);
   top: 65%;
   bottom: auto;
+  text-align: right;
 }
 
 @media (max-width: 760px) {
