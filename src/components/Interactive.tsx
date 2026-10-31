@@ -173,30 +173,30 @@ export function GitHubActivity() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={{
-        hidden: { opacity: 0, y: 22, scale: 0.985 },
-        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: reducedMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1], staggerChildren: reducedMotion ? 0 : 0.1 } },
+        hidden: { opacity: 0, y: 14 },
+        visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1], staggerChildren: reducedMotion ? 0 : 0.06 } },
       }}
     >
       <h3>Developer statistics</h3>
       <div className="github-stats-grid">
-        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>
           <AnimatedNumber value={projects.length} suffix="+" delay={0} />
           <span>Projects built</span>
           <small>In this portfolio</small>
         </motion.div>
-        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>
           <AnimatedNumber value={data?.stats.publicRepos ?? null} suffix="+" delay={120} />
           <span>Public repositories</span>
           <small>From GitHub profile</small>
         </motion.div>
-        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>
           <strong className="github-stat-value github-stat-value-text" aria-label={data?.stats.topLanguage ?? "Language unavailable"}>
             {data?.stats.topLanguage ?? "—"}
           </strong>
           <span>Most-reported language</span>
           <small>By public repository count</small>
         </motion.div>
-        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.45 } } }}>
+        <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>
           <AnimatedNumber value={data?.stats.languages.length ?? null} suffix="+" delay={240} />
           <span>Languages detected</span>
           <small className="github-language-list">
@@ -211,10 +211,10 @@ export function GitHubActivity() {
       className="github-panel"
       aria-labelledby="github-activity-heading"
       onPointerMove={updatePanelHighlight}
-      initial={{ opacity: 0, y: 24, scale: 0.985 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: reducedMotion ? 0 : 0.72, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="github-panel-head">
         <div className="github-panel-brand"><Github size={22} /><div><strong id="github-activity-heading">GitHub activity</strong></div></div>
@@ -230,10 +230,10 @@ export function GitHubActivity() {
           </div>
           <div className="calendar-layout">
             <div className="calendar-weekdays" aria-hidden="true"><span>Mon</span><span>Wed</span><span>Fri</span></div>
-            <motion.div className="contribution-weeks" style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(var(--calendar-week-min-size), 1fr))` }} role="grid" aria-label={`Daily GitHub contributions from ${contributionWindow.startDate} through ${contributionWindow.endDate}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.016 } } }}>
-              {weeks.map((week, weekIndex) => <motion.div className="contribution-week" role="row" key={weekIndex} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: reducedMotion ? 0 : 0.012 } } }}>
+            <motion.div className="contribution-weeks" style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(var(--calendar-week-min-size), 1fr))` }} role="grid" aria-label={`Daily GitHub contributions from ${contributionWindow.startDate} through ${contributionWindow.endDate}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={{ hidden: {}, visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.008 } } }}>
+              {weeks.map((week, weekIndex) => <motion.div className="contribution-week" role="row" key={weekIndex} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: reducedMotion ? 0 : 0.008 } } }}>
                 {week.map((day, dayIndex) => day
-                  ? <motion.button type="button" role="gridcell" key={day.date} className={`level-${day.level}`} title={`${day.count} contributions on ${day.date}`} aria-label={`${day.count} contributions on ${day.date}`} variants={{ hidden: { opacity: 0, scale: 0.72 }, visible: { opacity: 1, scale: 1, transition: { duration: reducedMotion ? 0 : 0.22 } } }} />
+                  ? <motion.button type="button" role="gridcell" key={day.date} className={`level-${day.level}`} title={`${day.count} contributions on ${day.date}`} aria-label={`${day.count} contributions on ${day.date}`} variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: reducedMotion ? 0 : 0.16 } } }} />
                   : <span key={`blank-${weekIndex}-${dayIndex}`} className="calendar-empty" aria-hidden="true" />)}
               </motion.div>)}
             </motion.div>

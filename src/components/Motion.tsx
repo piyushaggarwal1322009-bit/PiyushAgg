@@ -36,10 +36,10 @@ export function Reveal({ children, delay = 0 }: PropsWithChildren<{ delay?: numb
   return (
     <motion.div
       className="motion-reveal"
-      initial={{ opacity: 0.86, y: 12 }}
+      initial={{ opacity: 0.92, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: reducedMotion ? 0 : 0.65, delay: reducedMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

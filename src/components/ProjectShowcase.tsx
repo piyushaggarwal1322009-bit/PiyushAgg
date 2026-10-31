@@ -30,10 +30,10 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
       }`}
       style={{ "--project-accent": projectAccent } as CSSProperties}
       aria-labelledby={`heading-${project.name.toLowerCase()}`}
-      initial={{ opacity: 0.86, y: 12 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: reducedMotion ? 0 : 0.6, delay: reducedMotion ? 0 : index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0.92, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.14 }}
+      transition={{ duration: reducedMotion ? 0 : 0.48, delay: reducedMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="editorial-copy">
         <div className="editorial-meta-row">
