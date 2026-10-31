@@ -26,28 +26,35 @@ export default function Home() {
       </div>
       <div className="portfolio-hero-overlay" />
       <div className="portfolio-shell portfolio-hero-content">
-        <p className="portfolio-eyebrow portfolio-pop"><i /> Student developer · Delhi, India</p>
-        <p className="portfolio-hero-name portfolio-pop">PIYUSH <em>AGGARWAL</em></p>
-        <h1 id="hero-heading">
-          <span className="portfolio-title-line"><span>Curious ideas,</span></span>
-          <span className="portfolio-title-line"><span>built with <em>intention.</em></span></span>
-        </h1>
-        <p className="portfolio-hero-subtitle">
-          CSE student at SRM University specializing in Artificial Intelligence and Machine Learning, exploring Adaptive and Evolving AI, and the systems behind successful startups.
-        </p>
-        <div className="portfolio-hero-bottom portfolio-pop portfolio-pop-late">
-          <div className="portfolio-hero-actions">
-            <a className="portfolio-pill portfolio-pill-dark portfolio-project-cta" href="#work">
-              View Projects <ArrowDown size={16} aria-hidden="true" />
-            </a>
-            <div className="portfolio-social-actions">
-              <a className="portfolio-pill portfolio-pill-light" href={profile.github} target="_blank" rel="noopener noreferrer">
-                <Github size={16} aria-hidden="true" />GitHub
-              </a>
-              <a className="portfolio-pill portfolio-pill-light" href="https://www.linkedin.com/in/piyush-aggarwal-8602183b1" target="_blank" rel="noopener noreferrer">
-                <Linkedin size={16} aria-hidden="true" />LinkedIn
-              </a>
+        <div className="hero-columns-layout">
+          <div className="hero-left-col">
+            <p className="portfolio-eyebrow portfolio-pop"><i /> Student developer · Delhi, India</p>
+            <p className="portfolio-hero-name portfolio-pop">PIYUSH <em>AGGARWAL</em></p>
+            <h1 id="hero-heading">
+              <span className="portfolio-title-line"><span>Curious ideas,</span></span>
+              <span className="portfolio-title-line"><span>built with <em>intention.</em></span></span>
+            </h1>
+            <p className="portfolio-hero-subtitle">
+              CSE student at SRM University specializing in Artificial Intelligence and Machine Learning, exploring Adaptive and Evolving AI, and the systems behind successful startups.
+            </p>
+            <div className="portfolio-hero-bottom portfolio-pop portfolio-pop-late">
+              <div className="portfolio-hero-actions">
+                <a className="portfolio-pill portfolio-pill-dark portfolio-project-cta" href="#work">
+                  View Projects <ArrowDown size={16} aria-hidden="true" />
+                </a>
+                <div className="portfolio-social-actions">
+                  <a className="portfolio-pill portfolio-pill-light" href={profile.github} target="_blank" rel="noopener noreferrer">
+                    <Github size={16} aria-hidden="true" />GitHub
+                  </a>
+                  <a className="portfolio-pill portfolio-pill-light" href="https://www.linkedin.com/in/piyush-aggarwal-8602183b1" target="_blank" rel="noopener noreferrer">
+                    <Linkedin size={16} aria-hidden="true" />LinkedIn
+                  </a>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="hero-right-col">
+            <HeroProjectStack />
           </div>
         </div>
       </div>
