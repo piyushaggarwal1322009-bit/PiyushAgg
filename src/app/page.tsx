@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUpRight, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import { GitHubActivity } from "../components/Interactive";
+import { PortfolioNavbar } from "../components/NavbarControls";
 import { PortfolioMotion } from "../components/PortfolioMotion";
 import { Reveal } from "../components/Motion";
 import { ProjectShowcase } from "../components/ProjectShowcase";
@@ -13,8 +14,8 @@ export default function Home() {
   return <main className="portfolio-page">
     <PortfolioMotion />
     <a className="portfolio-skip" href="#main">Skip to content</a>
-    <header className="portfolio-header"><a href="#top" className="portfolio-brand" aria-label="Piyush Aggarwal home">PA<span>✦</span></a><nav aria-label="Primary navigation"><a href="#about">About</a><a href="#work">Work</a><a href="#stack">Stack</a><a href="#contact">Contact</a></nav><a className="portfolio-header-cta" href={`mailto:${profile.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a></header>
-    <section id="top" className="portfolio-hero portfolio-main-hero" aria-labelledby="hero-heading"><div className="portfolio-hero-image" aria-hidden="true"><Image src="/images/hero-workspace.jpg" alt="" fill priority sizes="100vw" /></div><div className="portfolio-hero-image portfolio-hero-image-reveal" aria-hidden="true"><Image src="/images/hero-workspace.jpg" alt="" fill sizes="100vw" /></div><div className="portfolio-hero-overlay" /><span className="portfolio-hero-watermark" aria-hidden="true">PIYUSH</span><div className="portfolio-shell portfolio-hero-content"><p className="portfolio-eyebrow portfolio-pop"><i /> Student developer · Delhi, India</p><h1 id="hero-heading"><span className="portfolio-title-line"><span>Curious ideas,</span></span><span className="portfolio-title-line"><span>built with <em>intention.</em></span></span></h1><div className="portfolio-hero-bottom portfolio-pop portfolio-pop-late"><div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href="#work">View work <ArrowDown size={16} /></a><a className="portfolio-pill portfolio-pill-light" href={`mailto:${profile.email}`}>Start a conversation</a></div></div></div></section>
+    <PortfolioNavbar />
+    <section id="top" className="portfolio-hero portfolio-main-hero" aria-labelledby="hero-heading"><div className="portfolio-hero-image" aria-hidden="true"><Image src="/images/hero-architecture.jpg" alt="" fill priority sizes="100vw" /></div><div className="portfolio-hero-image portfolio-hero-image-reveal" aria-hidden="true"><Image src="/images/hero-architecture.jpg" alt="" fill sizes="100vw" /></div><div className="portfolio-hero-overlay" /><span className="portfolio-hero-watermark" aria-hidden="true">PIYUSH</span><div className="portfolio-shell portfolio-hero-content"><p className="portfolio-eyebrow portfolio-pop"><i /> Student developer · Delhi, India</p><h1 id="hero-heading"><span className="portfolio-title-line"><span>Curious ideas,</span></span><span className="portfolio-title-line"><span>built with <em>intention.</em></span></span></h1><div className="portfolio-hero-bottom portfolio-pop portfolio-pop-late"><div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href="#work">View work <ArrowDown size={16} /></a><a className="portfolio-pill portfolio-pill-light" href={`mailto:${profile.email}`}>Start a conversation</a></div></div></div></section>
     <section id="main" className="portfolio-shell portfolio-intro" aria-labelledby="about">
       <div className="portfolio-section-label">01 / ABOUT</div>
       <Reveal>

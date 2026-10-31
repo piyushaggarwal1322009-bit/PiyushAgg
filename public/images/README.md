@@ -17,6 +17,13 @@
 - License: Public domain
 - Use: Local contact artwork and warm-pixel silhouette source for the decorative particle canvas.
 
+# Hero architecture
+
+- File: `hero-architecture.jpg`
+- Source: https://images.unsplash.com/photo-1511818966892-d7d671e672a2
+- License: [Unsplash License](https://unsplash.com/license)
+- Use: Locally hosted cinematic architectural hero background.
+
 # Contact artwork
 
 - File: `reaching-hands-creation-of-adam.jpg`

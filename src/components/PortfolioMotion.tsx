@@ -8,7 +8,8 @@ export function PortfolioMotion() {
     if (!hero) return;
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const trailDuration = 1500;
+    const trailDuration = 720;
+    const maxTrailPoints = 24;
     let frame = 0;
     let lastPoint: { x: number; y: number } | null = null;
     let points: Array<{ x: number; y: number; time: number }> = [];
@@ -25,7 +26,7 @@ export function PortfolioMotion() {
       if (!points.length) { clearTrail(); return; }
       const mask = points.map((point) => {
         const age = (time - point.time) / trailDuration;
-        return `radial-gradient(circle ${(12.375 - age * 4.5).toFixed(1)}rem at ${point.x}% ${point.y}%, #000 0%, rgba(0,0,0,${(1 - age).toFixed(2)}) ${Math.max(9, 24.75 - age * 9).toFixed(1)}%, transparent ${Math.max(36, 55.5 - age * 10.5).toFixed(1)}%)`;
+        return `radial-gradient(circle ${(5.4 - age * 2.4).toFixed(1)}rem at ${point.x}% ${point.y}%, #000 0%, rgba(0,0,0,${(1 - age).toFixed(2)}) ${Math.max(14, 32 - age * 12).toFixed(1)}%, transparent ${Math.max(42, 68 - age * 12).toFixed(1)}%)`;
       }).join(",");
       hero.style.setProperty("--trail-mask", mask);
       hero.classList.add("is-pointer-active");
@@ -45,6 +46,7 @@ export function PortfolioMotion() {
         const steps = Math.max(1, Math.min(8, Math.ceil(Math.hypot(point.x - lastPoint.x, point.y - lastPoint.y) / 3)));
         for (let index = 1; index <= steps; index++) points.push({ x: lastPoint.x + (point.x - lastPoint.x) * index / steps, y: lastPoint.y + (point.y - lastPoint.y) * index / steps, time });
       }
+        points = points.slice(-maxTrailPoints);
       lastPoint = point;
       if (!frame) frame = requestAnimationFrame(paint);
     };
