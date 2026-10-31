@@ -307,3 +307,59 @@
   }
   .grillr-score-progress { stroke-dashoffset: 55.98px !important; }
 }
+
+/* Give the Synkro product preview the dominant track without changing its copy. */
+.portfolio-page .editorial-project.template-collaboration-workspace {
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.45fr);
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  padding: clamp(1.35rem, 2.4vw, 2.2rem);
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-workspace-mock {
+  min-height: 370px;
+  padding-block: 0.8rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-preview-header {
+  padding-bottom: 0.5rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-room-bar {
+  padding-block: 0.35rem 0.45rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-editor-window {
+  margin-top: 0.5rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-doc-pane {
+  padding: 0.75rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .synkro-doc-body {
+  min-height: 120px;
+  padding-block: 0.875rem;
+}
+
+.portfolio-page .editorial-project.template-collaboration-workspace .mock-app-foot {
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .portfolio-page .editorial-project.template-collaboration-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.35rem;
+    padding: clamp(1.1rem, 3vw, 1.5rem);
+  }
+
+  .portfolio-page .editorial-project.template-collaboration-workspace .synkro-workspace-mock {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-page .editorial-project.template-collaboration-workspace {
+    gap: 1.1rem;
+    padding: 1.05rem 0.85rem;
+  }
+}

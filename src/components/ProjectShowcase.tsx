@@ -264,7 +264,13 @@ function SynkroWorkspacePreview() {
         </div>
       </motion.header>
 
-      <div className="synkro-room-bar">
+      <motion.div
+        className="synkro-room-bar"
+        initial={{ opacity: 0, y: 6 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: reducedMotion ? 0 : 0.28, delay: reducedMotion ? 0 : 0.14 }}
+      >
         <div className="synkro-avatars" aria-label="Sample collaborators">
           <span className="synkro-avatar avatar-me" title="Sample owner">PA</span>
           <span className="synkro-avatar avatar-collab-1" title="Sample editor">SM</span>
@@ -317,7 +323,7 @@ function SynkroWorkspacePreview() {
             <Sheet size={12} aria-hidden="true" /> Sheets
           </button>
         </div>
-      </div>
+      </motion.div>
 
       <motion.div
         key={activeTab}
