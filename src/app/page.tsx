@@ -1,5 +1,4 @@
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
-import { HeroProjectStack } from "../components/HeroProjectStack";
 import { BackToTopButton } from "../components/BackToTopButton";
 import Image from "next/image";
 import { GitHubActivity } from "../components/Interactive";
