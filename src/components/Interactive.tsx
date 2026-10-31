@@ -180,8 +180,8 @@ export function GitHubActivity() {
       <h3>Developer statistics</h3>
       <div className="github-stats-grid">
         <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>
-          <AnimatedNumber value={projects.length} suffix="+" delay={0} />
-          <span>Projects built</span>
+          <AnimatedNumber value={7} suffix="+" delay={0} />
+          <span>Projects Done</span>
           <small>In this portfolio</small>
         </motion.div>
         <motion.div className="github-stat" variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] } } }}>

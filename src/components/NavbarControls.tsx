@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const navigation = [
   ["About", "#main"],
-  ["Work", "#work"],
+  ["Projects", "#work"],
   ["Stack", "#stack"],
   ["Contact", "#contact"],
 ] as const;
