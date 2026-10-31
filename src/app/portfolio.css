@@ -311,23 +311,27 @@
 /* Minimal fixed navigation: transparent over the hero, quiet when scrolled. */
 .portfolio-page .portfolio-header {
   position: fixed;
-  inset: 0 0 auto;
+  top: 0.85rem;
+  left: 50%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  width: 100%;
-  padding: 1rem max(1.25rem, calc((100vw - 88rem) / 2));
-  border-bottom: 1px solid transparent;
-  background: transparent;
+  width: min(82rem, calc(100% - 3rem));
+  padding: 0.55rem clamp(0.8rem, 1.5vw, 1.35rem);
+  border: 1px solid rgba(226, 230, 235, 0.16);
+  border-radius: 999px;
+  background: rgba(18, 19, 21, 0.78);
   color: #f5f2ee;
-  transform: none;
-  transition: background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transform: translateX(-50%);
+  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms ease;
 }
 
 .portfolio-page .portfolio-header.is-scrolled {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  background: rgba(12, 13, 15, 0.9);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  border-color: rgba(226, 230, 235, 0.2);
+  background: rgba(12, 13, 15, 0.94);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
 }
 
 .portfolio-page .portfolio-brand {
@@ -373,24 +377,42 @@
 
 .portfolio-page .portfolio-header-cta {
   display: inline-flex;
-  min-height: 36px;
+  min-height: 38px;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
   padding: 0.48rem 0.9rem;
-  border: 1px solid rgba(224, 132, 78, 0.62);
-  border-radius: 0.4rem;
-  background: #d77950;
-  color: #17110e;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  background: #f5f3ef;
+  color: #191a1b;
   font-size: 0.73rem;
   font-weight: 700;
-  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .portfolio-page .portfolio-header-cta:hover,
 .portfolio-page .portfolio-header-cta:focus-visible {
-  border-color: #efaa7e;
-  background: #e28d60;
+  border-color: #fff;
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
   transform: translateY(-1px);
+}
+
+.portfolio-page .portfolio-nav-actions .theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-color: rgba(226, 230, 235, 0.22);
+  background: rgba(255, 255, 255, 0.045);
+  color: #f5f2ee;
+}
+
+.portfolio-page .portfolio-nav-actions .theme-toggle:hover,
+.portfolio-page .portfolio-nav-actions .theme-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-shadow: none;
 }
 
 .portfolio-page .portfolio-menu-toggle,
@@ -453,7 +475,9 @@
 @media (max-width: 760px) {
   .portfolio-page .portfolio-header {
     grid-template-columns: minmax(0, 1fr) auto;
-    padding: 0.8rem 1rem;
+    top: 0.55rem;
+    width: calc(100% - 1.25rem);
+    padding: 0.42rem 0.6rem 0.42rem 0.9rem;
   }
 
   .portfolio-page .portfolio-desktop-nav {
@@ -461,12 +485,19 @@
   }
 
   .portfolio-page .portfolio-nav-actions {
-    gap: 0.55rem;
+    gap: 0.4rem;
   }
 
   .portfolio-page .portfolio-header-cta {
     min-height: 34px;
-    padding-inline: 0.75rem;
+    gap: 0.32rem;
+    padding-inline: 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .portfolio-page .portfolio-nav-actions .theme-toggle {
+    width: 34px;
+    height: 34px;
   }
 
   .portfolio-page .portfolio-menu-toggle {
@@ -492,7 +523,7 @@
   .portfolio-page .portfolio-mobile-nav {
     position: absolute;
     top: calc(100% + 0.35rem);
-    right: 1rem;
+    right: 0.25rem;
     display: grid;
     width: min(17rem, calc(100vw - 2rem));
     gap: 0.1rem;
@@ -536,6 +567,7 @@
 @media (prefers-reduced-motion: reduce) {
   .portfolio-page .portfolio-header,
   .portfolio-page .portfolio-header-cta,
+  .portfolio-page .portfolio-nav-actions .theme-toggle,
   .portfolio-page .portfolio-menu-toggle,
   .portfolio-page .portfolio-mobile-nav {
     transition: none;

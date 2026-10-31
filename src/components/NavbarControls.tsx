@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Download, Menu, Moon, Sun, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -67,7 +67,7 @@ export function ThemeToggle() {
       className="theme-toggle"
       type="button"
       tabIndex={0}
-      aria-label="Color theme"
+      aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={theme === "light"}
       onClick={toggleTheme}
       whileTap={reducedMotion ? undefined : { scale: 0.94 }}
@@ -120,11 +120,13 @@ export function PortfolioNavbar() {
         {navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
       </nav>
       <div className="portfolio-nav-actions">
+        <ThemeToggle />
         <a
           className="portfolio-header-cta"
           href="/Piyush_Aggarwal_Resume.pdf"
           download="Piyush_Aggarwal_Resume.pdf"
         >
+          <Download size={15} aria-hidden="true" />
           Resume
         </a>
         <button
