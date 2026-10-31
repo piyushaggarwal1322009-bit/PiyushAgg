@@ -695,7 +695,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 :root[data-theme="light"] .campus-node { border-color: rgba(43, 60, 79, 0.18); background: rgba(250, 250, 246, 0.94); color: #39424c; }
 :root[data-theme="light"] .github-statistics { border-color: rgba(42, 55, 72, 0.14); background: rgba(255, 255, 255, 0.56); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 16px 42px rgba(36, 48, 60, 0.08); }
 :root[data-theme="light"] .github-panel { border-color: rgba(61, 83, 107, 0.18); background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(239, 241, 241, 0.84)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 22px 52px rgba(36, 48, 60, 0.1); }
-:root[data-theme="light"] .github-panel::before { background: radial-gradient(420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%), rgba(73, 137, 199, 0.11), transparent 72%), linear-gradient(180deg, rgba(255, 255, 255, 0.54), transparent 24%); }
+:root[data-theme="light"] .github-panel::before { background: radial-gradient(420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%), rgba(166, 107, 67, 0.12), transparent 72%), linear-gradient(180deg, rgba(255, 255, 255, 0.54), transparent 24%); }
 :root[data-theme="light"] .github-stat:nth-child(odd) { border-right-color: rgba(42, 55, 72, 0.16); }
 :root[data-theme="light"] .github-stat:nth-child(-n+2) { border-bottom-color: rgba(42, 55, 72, 0.16); }
 :root[data-theme="light"] .github-stat > span:not(.github-stat-value) { color: #39424c; }
@@ -703,10 +703,10 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 :root[data-theme="light"] .calendar-weekdays { color: #65717e; }
 :root[data-theme="light"] .contribution-week > span, :root[data-theme="light"] .activity-foot i { border-color: rgba(42, 55, 72, 0.08); }
 :root[data-theme="light"] .level-0 { background: #dfe3e5 !important; }
-:root[data-theme="light"] .level-1 { background: #c2d8eb !important; }
-:root[data-theme="light"] .level-2 { background: #88b5df !important; }
-:root[data-theme="light"] .level-3 { background: #5590c8 !important; }
-:root[data-theme="light"] .closing-hero-section { background: radial-gradient(ellipse at 50% 30%, rgba(47, 110, 174, 0.08), transparent 70%); }
+:root[data-theme="light"] .level-1 { background: #d9bfad !important; }
+:root[data-theme="light"] .level-2 { background: #b88f72 !important; }
+:root[data-theme="light"] .level-3 { background: #916345 !important; }
+:root[data-theme="light"] .level-4 { background: #69442e !important; }
 :root[data-theme="light"] .closing-btn-secondary { background: rgba(38, 54, 70, 0.04); color: #20252c; }
 :root[data-theme="light"] .closing-status { background: rgba(38, 54, 70, 0.035); }
 :root[data-theme="light"] .hero-backdrop-frame { border-color: rgba(43, 60, 79, 0.16); box-shadow: 0 -18px 48px rgba(35, 47, 60, 0.14); }
@@ -757,11 +757,10 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   :root[data-theme="system"] .github-stat > span:not(.github-stat-value) { color: #39424c; }
   :root[data-theme="system"] .github-stat > small { color: #69727c; }
   :root[data-theme="system"] .level-0 { background: #dfe3e5 !important; }
-  :root[data-theme="system"] .level-1 { background: #c2d8eb !important; }
-  :root[data-theme="system"] .level-2 { background: #88b5df !important; }
-  :root[data-theme="system"] .level-3 { background: #5590c8 !important; }
-  :root[data-theme="system"] .closing-hero-section { background: radial-gradient(ellipse at 50% 30%, rgba(47, 110, 174, 0.08), transparent 70%); }
-  :root[data-theme="system"] .closing-btn-secondary { background: rgba(38, 54, 70, 0.04); color: #20252c; }
+  :root[data-theme="system"] .level-1 { background: #d9bfad !important; }
+  :root[data-theme="system"] .level-2 { background: #b88f72 !important; }
+  :root[data-theme="system"] .level-3 { background: #916345 !important; }
+  :root[data-theme="system"] .level-4 { background: #69442e !important; }
   :root[data-theme="system"] .closing-btn-secondary:hover, :root[data-theme="system"] .closing-btn-secondary:focus-visible { background: rgba(38, 54, 70, 0.08); border-color: rgba(47, 110, 174, 0.4); color: var(--electric-blue); }
   :root[data-theme="system"] .closing-status { background: rgba(38, 54, 70, 0.035); }
   :root[data-theme="system"] .hero-backdrop-frame { border-color: rgba(43, 60, 79, 0.16); box-shadow: 0 -18px 48px rgba(35, 47, 60, 0.14); }
@@ -990,15 +989,15 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .github-statistics, .github-panel { min-width: 0; }
 .github-statistics { padding: clamp(1.25rem, 2vw, 1.7rem); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 24px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), var(--shadow-panel); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
 .github-statistics h3 { margin: 0 0 1.15rem; color: var(--muted); font-size: 0.76rem; font-weight: 600; }
-.github-panel { position: relative; isolation: isolate; overflow: hidden; padding: clamp(1.35rem, 2.5vw, 2rem); border: 1px solid rgba(157, 190, 238, 0.16); border-radius: 30px; background: linear-gradient(145deg, rgba(22, 29, 42, 0.8), rgba(12, 16, 24, 0.8)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), var(--shadow-panel); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
-.github-panel::before { position: absolute; z-index: 0; inset: 0; border-radius: inherit; background: radial-gradient(420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%), rgba(94, 153, 255, 0.13), transparent 72%), linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 24%); content: ""; opacity: 0.62; pointer-events: none; transition: opacity 260ms ease; }
+.github-panel { position: relative; isolation: isolate; overflow: hidden; padding: clamp(1.35rem, 2.5vw, 2rem); border: 1px solid rgba(197, 138, 90, 0.2); border-radius: 30px; background: linear-gradient(145deg, rgba(22, 29, 42, 0.8), rgba(12, 16, 24, 0.8)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.075), var(--shadow-panel); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
+.github-panel::before { position: absolute; z-index: 0; inset: 0; border-radius: inherit; background: radial-gradient(420px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%), rgba(197, 138, 90, 0.14), transparent 72%), linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 24%); content: ""; opacity: 0.62; pointer-events: none; transition: opacity 260ms ease; }
 .github-panel > * { position: relative; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .github-statistics { background: rgba(17, 22, 30, 0.96); }
   .github-panel { background: rgba(17, 22, 30, 0.97); }
 }
 @media (hover: hover) and (pointer: fine) {
-  .github-panel:hover { transform: translateY(-2px); border-color: rgba(157, 190, 238, 0.28); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), 0 20px 52px rgba(0, 0, 0, 0.28), 0 0 40px rgba(81, 139, 235, 0.08); }
+  .github-panel:hover { transform: translateY(-2px); border-color: rgba(197, 138, 90, 0.35); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11), 0 20px 52px rgba(0, 0, 0, 0.28), 0 0 40px rgba(197, 138, 90, 0.12); }
   .github-panel:hover::before { opacity: 0.9; }
   .github-stat:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.025); }
 }
@@ -1020,13 +1019,13 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .contribution-week { display: grid; min-width: 0; grid-template-rows: repeat(7, auto); gap: var(--calendar-column-gap); }
 .contribution-week > span, .contribution-week > button { display: block; width: 100%; height: auto; aspect-ratio: 1; padding: 0; border: 1px solid rgba(255, 255, 255, 0.055); border-radius: 0.24rem; background: #242424; }
 .contribution-week > button { cursor: pointer; transition: filter 200ms ease, box-shadow 200ms ease; }
-.contribution-week > button:hover { filter: brightness(1.25); box-shadow: 0 0 0 2px rgba(208, 228, 255, 0.32), 0 0 10px rgba(91, 156, 255, 0.25); }
-.contribution-week > button:focus-visible { outline: 2px solid var(--electric-blue); outline-offset: 2px; }
+.contribution-week > button:hover { filter: brightness(1.25); box-shadow: 0 0 0 2px rgba(235, 195, 165, 0.35), 0 0 10px rgba(197, 138, 90, 0.35); }
+.contribution-week > button:focus-visible { outline: 2px solid #C58A5A; outline-offset: 2px; }
 .level-0 { background: #242424 !important; }
-.level-1 { background: #223f88 !important; }
-.level-2 { background: #285fe8 !important; }
-.level-3 { background: #3d80f5 !important; }
-.level-4 { background: #64a5f8 !important; }
+.level-1 { background: #5C4638 !important; }
+.level-2 { background: #80583F !important; }
+.level-3 { background: #A66B43 !important; }
+.level-4 { background: #C58A5A !important; }
 .calendar-empty { background: transparent !important; border-color: transparent !important; }
 .activity-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem 1rem; margin-top: 1.4rem; color: var(--muted); font-size: 0.73rem; }
 .activity-foot > span { display: inline-flex; align-items: center; gap: 0.4rem; }

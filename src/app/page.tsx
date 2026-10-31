@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { BackToTopButton } from "../components/BackToTopButton";
 import Image from "next/image";
 import { GitHubActivity } from "../components/Interactive";
 import { PortfolioNavbar } from "../components/NavbarControls";
@@ -107,11 +108,11 @@ export default function Home() {
           <p className="portfolio-eyebrow"><i /> 05 / CONTACT</p>
           <h2 id="closing-heading">Have an idea?<br /><em>Let&apos;s build it.</em></h2>
           <p>I&apos;m open to ambitious projects, collaborative work, and problems worth thinking through.</p>
-          <div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href={`mailto:${profile.email}`}><Mail size={16} /> Email Piyush</a><a className="portfolio-pill portfolio-pill-light" href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub <ArrowUpRight size={15} /></a></div>
+          <div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href={`mailto:${profile.email}`}><Mail size={16} /> Email Piyush</a><a className="portfolio-pill portfolio-pill-light" href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub <ArrowUpRight size={15} /></a><a className="portfolio-pill portfolio-pill-light" href={profile.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={16} /> LinkedIn <ArrowUpRight size={15} /></a></div>
           <span className="portfolio-closing-location"><MapPin size={15} /> {profile.location}</span>
         </div>
       </Reveal>
     </section>
-    <footer className="portfolio-footer"><div className="portfolio-shell"><span>© {new Date().getFullYear()} Piyush Aggarwal</span><span>Built with curiosity &amp; code.</span><a href="#top">Back to top ↑</a></div></footer>
+    <footer className="portfolio-footer"><div className="portfolio-shell"><span>© {new Date().getFullYear()} Piyush Aggarwal</span><span>Built with curiosity &amp; code.</span><BackToTopButton /></div></footer>
   </main>;
 }

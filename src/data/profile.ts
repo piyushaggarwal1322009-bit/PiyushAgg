@@ -13,7 +13,7 @@ export const profile = {
   },
   email: "piyushaggarwal1322009@gmail.com",
   github: "https://github.com/piyushaggarwal1322009-bit",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/piyush-aggarwal-8602183b1",
   tagline: "I learn by building, break things to understand them, and turn ideas into working products.",
   intro:
     "I’m a student developer interested in software, AI, full-stack engineering and building products that solve real problems.",
