@@ -36,6 +36,9 @@ export function ThemeToggle() {
       setTheme(nextTheme);
     };
     syncTheme();
+    const transitionFrame = window.requestAnimationFrame(() => {
+      root.dataset.themeTransitions = "ready";
+    });
 
     const followSystem = () => {
       try {
@@ -48,11 +51,15 @@ export function ThemeToggle() {
       setTheme(nextTheme);
     };
     systemTheme.addEventListener("change", followSystem);
-    return () => systemTheme.removeEventListener("change", followSystem);
+    return () => {
+      window.cancelAnimationFrame(transitionFrame);
+      systemTheme.removeEventListener("change", followSystem);
+    };
   }, []);
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.themeTransitions = "ready";
     document.documentElement.dataset.theme = nextTheme;
     try {
       window.localStorage.setItem(themeKey, nextTheme);
