@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piyush Aggarwal | Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 11mm 14mm 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      color: #111;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.4pt;
+      line-height: 1.23;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    main {
+      width: 100%;
+      max-width: 182mm;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 12pt;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 4pt;
+      font-size: 22pt;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4pt 12pt;
+      font-size: 9pt;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 1.5pt;
+    }
+
+    section {
+      margin-top: 9pt;
+    }
+
+    h2 {
+      margin: 0 0 5pt;
+      padding-bottom: 2pt;
+      border-bottom: 0.6pt solid #555;
+      font-size: 10.4pt;
+      line-height: 1.1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .skills {
+      display: grid;
+      gap: 2pt;
+    }
+
+    .skill-line strong {
+      font-weight: 700;
+    }
+
+    .project {
+      margin-top: 7pt;
+      break-inside: avoid;
+    }
+
+    .project:first-of-type {
+      margin-top: 0;
+    }
+
+    .project-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8pt;
+      margin-bottom: 2pt;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 10pt;
+      line-height: 1.2;
+    }
+
+    .project-links {
+      flex: 0 0 auto;
+      font-size: 8.8pt;
+      white-space: nowrap;
+    }
+
+    .tech {
+      margin-bottom: 3pt;
+      font-size: 8.9pt;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 13pt;
+    }
+
+    li {
+      padding-left: 1pt;
+      margin: 0 0 2pt;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    .education-entry {
+      margin-top: 5pt;
+    }
+
+    .education-entry:first-of-type {
+      margin-top: 0;
+    }
+
+    .education-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 8pt;
+    }
+
+    .education-title strong {
+      font-weight: 700;
+    }
+
+    .education-detail {
+      margin-top: 1pt;
+    }
+
+    @media screen {
+      body {
+        padding: 18px;
+        background: #eee;
+      }
+
+      main {
+        min-height: 275mm;
+        padding: 11mm 14mm 10mm;
+        background: #fff;
+        box-shadow: 0 2px 14px rgb(0 0 0 / 12%);
+      }
+    }
+
+    @media print {
+      html {
+        font-size: 9.4pt;
+      }
+
+      main {
+        max-width: none;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>PIYUSH AGGARWAL</h1>
+      <nav class="contact" aria-label="Contact information">
+        <a href="mailto:piyushaggarwal@gmail.com">piyushaggarwal@gmail.com</a>
+        <a href="https://www.linkedin.com/in/piyush-aggarwal-8602183b1">LinkedIn</a>
+        <a href="https://github.com/piyushaggarwal1322009-bit">GitHub</a>
+      </nav>
+    </header>
+
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Professional Summary</h2>
+      <p>First-year Computer Science Engineering student at SRM University Delhi NCR, specializing in Artificial Intelligence and Machine Learning. Full-stack developer with hands-on experience building AI-powered applications and real-time collaborative systems using React.js, Next.js, Node.js, Python, and databases. Interested in software engineering, scalable applications, and AI-driven products. Seeking opportunities to apply technical skills through software development internships.</p>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Technical Skills</h2>
+      <div class="skills">
+        <p class="skill-line"><strong>Programming Languages:</strong> C++, Python, JavaScript, TypeScript</p>
+        <p class="skill-line"><strong>Frontend Development:</strong> HTML, CSS, React.js, Next.js</p>
+        <p class="skill-line"><strong>Backend Development:</strong> Node.js, FastAPI, REST APIs, Socket.IO</p>
+        <p class="skill-line"><strong>Databases:</strong> MySQL, MongoDB, PostgreSQL, Supabase</p>
+        <p class="skill-line"><strong>Developer Tools:</strong> Git, GitHub, VS Code, Vercel</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+
+      <article class="project">
+        <div class="project-heading">
+          <h3>Grillr — AI-Powered Mock Interview Platform</h3>
+          <div class="project-links">
+            <a href="https://grillr3.vercel.app">Live Demo</a> |
+            <a href="https://github.com/Sarthak-madan334/Grillr">GitHub</a>
+          </div>
+        </div>
+        <p class="tech"><strong>Technologies:</strong> Next.js, React.js, TypeScript, FastAPI, PostgreSQL, Supabase, WebSockets</p>
+        <ul>
+          <li>Developed a full-stack AI interview platform supporting real-time voice-based mock interviews with adaptive, context-aware follow-up questions.</li>
+          <li>Engineered a real-time speech pipeline integrating Speech-to-Text, LLM processing, and Text-to-Speech over WebSockets, including live interruption handling.</li>
+          <li>Implemented role-specific interview modes covering Behavioral, Technical, System Design, and HR interviews, with resume- and job-description-based question generation.</li>
+          <li>Built an evaluation engine to assess interview responses based on relevance, clarity, and technical accuracy.</li>
+        </ul>
+      </article>
+
+      <article class="project">
+        <div class="project-heading">
+          <h3>SYNKRO — Real-Time Collaborative Workspace</h3>
+          <div class="project-links">
+            <a href="https://collab-workspace-three.vercel.app">Live Demo</a> |
+            <a href="https://github.com/Sarthak-madan334/collab-workspace">GitHub</a>
+          </div>
+        </div>
+        <p class="tech"><strong>Technologies:</strong> JavaScript, React.js, Node.js, Socket.IO, MongoDB Atlas, Capacitor, PWA</p>
+        <ul>
+          <li>Developed a real-time collaborative workspace enabling teams to create and manage shared documents, notebooks, presentations, and spreadsheets.</li>
+          <li>Implemented real-time synchronization using Socket.IO, supporting concurrent editing, online presence tracking, and revision history.</li>
+          <li>Developed specialized editors featuring spreadsheet formulas, presentation themes, document formatting, and version restoration.</li>
+          <li>Integrated Progressive Web App and Capacitor support for cross-platform accessibility.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <div class="education-entry">
+        <div class="education-title"><strong>SRM University Delhi NCR</strong><span>2026–2030</span></div>
+        <p class="education-detail">Bachelor of Technology (B.Tech), Computer Science and Engineering — Artificial Intelligence and Machine Learning</p>
+      </div>
+      <div class="education-entry">
+        <div class="education-title"><strong>Darshan Academy</strong><span>2026</span></div>
+        <p class="education-detail">Class XII</p>
+      </div>
+      <div class="education-entry">
+        <div class="education-title"><strong>Dayanand Public School</strong><span>2024</span></div>
+        <p class="education-detail">Class X</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
