@@ -761,6 +761,10 @@
   white-space: nowrap;
 }
 
+.education-journey__year.is-range {
+  font-size: clamp(2.7rem, 5.6vw, 5.1rem);
+}
+
 .education-journey__date {
   display: block;
   min-height: 1.3em;
@@ -803,7 +807,19 @@
   position: absolute;
   inset: 0;
   background: var(--journey-accent);
+  box-shadow: 0 0 4px rgba(187, 199, 139, 0.34);
   transform-origin: left center;
+}
+
+.education-journey__progress-fill::after {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  width: 18px;
+  height: 15px;
+  background: radial-gradient(ellipse, rgba(187, 199, 139, 0.24), transparent 72%);
+  content: "";
+  pointer-events: none;
 }
 
 .education-journey__progress-dot {
@@ -816,6 +832,18 @@
   border-radius: 50%;
   background: var(--journey-accent);
   box-shadow: 0 0 8px rgba(187, 199, 139, 0.38);
+  isolation: isolate;
+}
+
+.education-journey__progress-dot::before,
+.education-journey__active-marker::before {
+  position: absolute;
+  z-index: -1;
+  inset: -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 24%, rgba(187, 199, 139, 0.22) 48%, transparent 74%);
+  content: "";
+  pointer-events: none;
 }
 
 .education-journey__timeline {
@@ -852,6 +880,7 @@
   border-radius: 50%;
   background: var(--journey-accent);
   box-shadow: 0 0 0 1px rgba(187, 199, 139, 0.38), 0 0 10px rgba(187, 199, 139, 0.32);
+  isolation: isolate;
 }
 
 .education-journey__milestone {
@@ -995,6 +1024,10 @@
 
   .education-journey__year {
     font-size: clamp(6.5rem, 25vw, 8rem);
+  }
+
+  .education-journey__year.is-range {
+    font-size: clamp(2.6rem, 10.6vw, 3.6rem);
   }
 
   .education-journey__date {
