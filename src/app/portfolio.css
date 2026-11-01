@@ -675,3 +675,348 @@
 .portfolio-footer > div {
   align-items: center;
 }
+
+.education-journey {
+  --journey-background: #11120f;
+  --journey-ink: #f2f0e8;
+  --journey-muted: #a4a59a;
+  --journey-line: #41433a;
+  --journey-accent: #bbc78b;
+  --journey-step: clamp(24rem, 52vh, 38rem);
+  --journey-rail-inset: clamp(12rem, 26vh, 19rem);
+  position: relative;
+  border-block: 1px solid rgba(201, 207, 165, 0.12);
+  background:
+    radial-gradient(ellipse at 68% 12%, rgba(116, 128, 79, 0.12), transparent 38%),
+    var(--journey-background);
+  color: var(--journey-ink);
+  letter-spacing: 0;
+}
+
+.education-journey__shell {
+  position: relative;
+  display: grid;
+  width: min(82rem, calc(100% - 3rem));
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  margin-inline: auto;
+  padding-block: clamp(5rem, 9vw, 8rem);
+}
+
+.education-journey__intro {
+  min-width: 0;
+}
+
+.education-journey__sticky {
+  position: sticky;
+  top: 4.5rem;
+  display: flex;
+  min-height: calc(100svh - 9rem);
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 2rem;
+}
+
+.education-journey__eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--journey-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.education-journey__sticky h2 {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--journey-ink);
+  font-size: clamp(2.7rem, 4.4vw, 5rem);
+  font-weight: 600;
+  line-height: 0.99;
+}
+
+.education-journey__summary {
+  max-width: 24rem;
+  margin: 1.4rem 0 0;
+  color: var(--journey-muted);
+  font-size: clamp(0.96rem, 1.18vw, 1.1rem);
+  line-height: 1.65;
+}
+
+.education-journey__active {
+  display: flex;
+  min-height: clamp(8.1rem, 13vw, 10.4rem);
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.education-journey__year {
+  display: block;
+  min-height: 0.86em;
+  color: #efeee7;
+  font-size: clamp(6.8rem, 11.6vw, 9.4rem);
+  font-weight: 600;
+  line-height: 0.82;
+  white-space: nowrap;
+}
+
+.education-journey__date {
+  display: block;
+  min-height: 1.3em;
+  margin-top: 1rem;
+  color: var(--journey-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.education-journey__progress {
+  display: grid;
+  grid-template-columns: auto minmax(3rem, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.1rem;
+}
+
+.education-journey__count {
+  color: var(--journey-muted);
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.education-journey__count:first-child {
+  color: var(--journey-ink);
+}
+
+.education-journey__progress-track {
+  position: relative;
+  height: 1px;
+  margin-inline: 5px;
+  background: var(--journey-line);
+}
+
+.education-journey__progress-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--journey-accent);
+  transform-origin: left center;
+}
+
+.education-journey__progress-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--journey-accent);
+  box-shadow: 0 0 8px rgba(187, 199, 139, 0.38);
+}
+
+.education-journey__timeline {
+  position: relative;
+  min-width: 0;
+}
+
+.education-journey__rail {
+  position: absolute;
+  z-index: 0;
+  top: var(--journey-rail-inset);
+  bottom: var(--journey-rail-inset);
+  left: 0;
+  width: 1px;
+  background: var(--journey-line);
+}
+
+.education-journey__rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--journey-accent);
+  transform-origin: center top;
+}
+
+.education-journey__active-marker {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border: 2px solid var(--journey-background);
+  border-radius: 50%;
+  background: var(--journey-accent);
+  box-shadow: 0 0 0 1px rgba(187, 199, 139, 0.38), 0 0 10px rgba(187, 199, 139, 0.32);
+}
+
+.education-journey__milestone {
+  position: relative;
+  display: flex;
+  min-height: var(--journey-step);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0 2rem clamp(2.5rem, 4vw, 4rem);
+  opacity: 0.58;
+  transition: opacity 0.35s ease;
+}
+
+.education-journey__milestone.is-active {
+  opacity: 1;
+}
+
+.education-journey__node {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3px;
+  border: 1px solid #67695c;
+  border-radius: 50%;
+  background: var(--journey-background);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.education-journey__milestone.is-active .education-journey__node {
+  border-color: var(--journey-accent);
+  background: var(--journey-accent);
+}
+
+.education-journey__milestone-date,
+.education-journey__status {
+  margin: 0;
+  color: var(--journey-muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.education-journey__milestone-date {
+  color: var(--journey-accent);
+}
+
+.education-journey__status {
+  margin-top: 1.15rem;
+  color: #d88a5f;
+  font-size: 0.64rem;
+}
+
+.education-journey__milestone h3 {
+  max-width: 17ch;
+  margin: 0.55rem 0 0;
+  color: var(--journey-ink);
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-weight: 550;
+  line-height: 1.12;
+}
+
+.education-journey__institution {
+  margin: 0.55rem 0 0;
+  color: #d8d7ce;
+  font-size: 1rem;
+  font-weight: 550;
+  line-height: 1.5;
+}
+
+.education-journey__specialization {
+  margin: 0.25rem 0 0;
+  color: var(--journey-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.education-journey__description {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: var(--journey-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .education-journey__shell {
+    width: min(100% - 2.5rem, 48rem);
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .education-journey__sticky h2 {
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+  }
+
+  .education-journey__year {
+    font-size: clamp(6rem, 12vw, 7.8rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .education-journey {
+    --journey-step: 23rem;
+    --journey-rail-inset: 11.5rem;
+  }
+
+  .education-journey__shell {
+    width: calc(100% - 2rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-block: 4.5rem;
+  }
+
+  .education-journey__sticky {
+    position: static;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .education-journey__eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .education-journey__sticky h2 {
+    max-width: 12ch;
+    font-size: clamp(2.65rem, 11vw, 4rem);
+  }
+
+  .education-journey__summary {
+    margin-top: 1rem;
+  }
+
+  .education-journey__active {
+    min-height: 7.5rem;
+    margin-top: 2rem;
+  }
+
+  .education-journey__year {
+    font-size: clamp(6.5rem, 25vw, 8rem);
+  }
+
+  .education-journey__date {
+    margin-top: 0.8rem;
+  }
+
+  .education-journey__progress {
+    margin-top: 1.6rem;
+  }
+
+  .education-journey__milestone {
+    padding-left: 2rem;
+  }
+
+  .education-journey__milestone h3 {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .education-journey__milestone,
+  .education-journey__node {
+    transition: none;
+  }
+}

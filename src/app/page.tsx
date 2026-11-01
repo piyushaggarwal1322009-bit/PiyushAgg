@@ -1,5 +1,6 @@
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { BackToTopButton } from "../components/BackToTopButton";
+import { EducationJourney } from "../components/EducationJourney";
 import Image from "next/image";
 import { GitHubActivity } from "../components/Interactive";
 import { PortfolioNavbar } from "../components/NavbarControls";
@@ -80,6 +81,7 @@ export default function Home() {
         <ProjectShowcase />
       </div>
     </section>
+    <EducationJourney />
     <section id="stack" className="portfolio-stack">
       <div className="portfolio-shell">
         <Reveal>
