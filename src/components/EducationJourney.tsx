@@ -11,6 +11,26 @@ import { useEffect, useRef, useState } from "react";
 
 const milestones = [
   {
+    id: "class-x",
+    year: "2024",
+    date: "2024",
+    title: "Class X",
+    institution: "Dayanand Public School",
+    status: "Completed",
+    description:
+      "Completed secondary school education at Dayanand Public School in 2024.",
+  },
+  {
+    id: "class-xii",
+    year: "2026",
+    date: "June 2026",
+    title: "Class XII",
+    institution: "Darshan Academy",
+    status: "Completed",
+    description:
+      "Completed senior secondary education at Darshan Academy in June 2026.",
+  },
+  {
     id: "btech-cse",
     year: "2026",
     date: "2026 — Present",
@@ -20,26 +40,6 @@ const milestones = [
     status: "Currently studying",
     description:
       "Currently pursuing a Bachelor of Technology in Computer Science and Engineering, specializing in Artificial Intelligence and Machine Learning at SRM University Delhi NCR.",
-  },
-  {
-    id: "class-xii",
-    year: "2025 – 2026",
-    date: "2025 – 2026",
-    title: "Class XII",
-    institution: "Darshan Academy",
-    status: "Completed",
-    description:
-      "Completed senior secondary education at Darshan Academy in June 2026.",
-  },
-  {
-    id: "class-x",
-    year: "2024",
-    date: "2024",
-    title: "Class X",
-    institution: "Dayanand Public School",
-    status: "Completed",
-    description:
-      "Completed secondary school education at Dayanand Public School in 2024.",
   },
 ] as const;
 
@@ -119,9 +119,7 @@ export function EducationJourney() {
             <div className="education-journey__active" aria-live="polite">
               <motion.span
                 key={`year-${activeMilestone.year}`}
-                className={`education-journey__year${
-                  activeMilestone.year.length > 4 ? " is-range" : ""
-                }`}
+                className="education-journey__year"
                 initial={prefersReducedMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={transition}
