@@ -114,7 +114,7 @@
 
 /* Product-panel project templates: focused copy on the left, application proof on the right. */
 .portfolio-page .editorial-showcase { zoom:1; gap:2rem; }
-.portfolio-page .editorial-project,.portfolio-page .editorial-project.layout-reversed { width:100%; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); min-height:clamp(620px,calc((100vw - 64px)*.49),670px); margin-inline:auto; gap:clamp(1.5rem,3vw,2.5rem); padding:clamp(3rem,4vw,3.75rem); border-radius:2.5rem; background:radial-gradient(circle at 83% 10%,rgba(120,84,255,.18),transparent 30%),#0c0d12; }
+.portfolio-page .editorial-project,.portfolio-page .editorial-project.layout-reversed { width:100%; grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr); min-height:clamp(620px,calc((100vw - 64px)*.49),670px); margin-inline:auto; gap:clamp(1.5rem,3vw,2.5rem); padding:clamp(3rem,4vw,3.75rem); border-radius:2.5rem; background:radial-gradient(circle at 83% 10%,rgba(120,84,255,.18),transparent 30%),#0c0d12; }
 .portfolio-page .editorial-project.layout-reversed .editorial-copy,.portfolio-page .editorial-project.layout-reversed .editorial-preview-wrap { order:initial; }
 .portfolio-page .editorial-project.template-collaboration-workspace { background:radial-gradient(circle at 83% 10%,rgba(45,212,191,.15),transparent 30%),#091415; }
 .portfolio-page .editorial-copy { align-self:center; padding:0; }
@@ -573,11 +573,11 @@
   }
 }
 
-/* Give the Synkro product preview the dominant track without changing its copy. */
+/* Match the same two-column geometry as the reference project card. */
 .portfolio-page .editorial-project.template-collaboration-workspace {
-  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.45fr);
-  gap: clamp(1.5rem, 2.5vw, 2.5rem);
-  padding: clamp(1.35rem, 2.4vw, 2.2rem);
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  gap: clamp(1.8rem, 3.5vw, 3.2rem);
+  padding: clamp(1.6rem, 3vw, 2.8rem);
 }
 
 .portfolio-page .editorial-project.template-collaboration-workspace .synkro-workspace-mock {

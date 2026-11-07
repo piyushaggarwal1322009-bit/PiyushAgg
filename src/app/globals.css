@@ -1095,17 +1095,9 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   z-index: 1;
 }
 
-/* Alternating layout for project #2 (Synkro) on desktop */
-.editorial-project.layout-reversed {
-  grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
-}
-
-.editorial-project.layout-reversed .editorial-copy {
-  order: 2;
-}
-
-.editorial-project.layout-reversed .editorial-preview-wrap {
-  order: 1;
+/* All showcase cards share the same desktop alignment system to match the reference layout exactly. */
+.editorial-project.layout-standard {
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
 }
 
 .editorial-copy {
@@ -2680,13 +2672,13 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 }
 
 .editorial-project.template-collaboration-workspace .editorial-copy {
-  max-width: 25rem;
+  max-width: none;
 }
 
 .editorial-project.template-collaboration-workspace .editorial-preview-wrap {
-  width: min(100%, 34rem);
-  max-width: 34rem;
-  justify-self: center;
+  width: 100%;
+  max-width: none;
+  justify-self: stretch;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-workspace-mock {

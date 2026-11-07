@@ -11,14 +11,14 @@ import type { Project } from "../data/projects";
 export function ProjectShowcase() {
   return (
     <div className="editorial-showcase" aria-label="Selected projects">
-      {projects.map((project, index) => (
-        <ProjectEditorialArticle key={project.name} project={project} index={index} />
+      {projects.map((project) => (
+        <ProjectEditorialArticle key={project.name} project={project} />
       ))}
     </div>
   );
 }
 
-function ProjectEditorialArticle({ project, index }: { project: Project; index: number }) {
+function ProjectEditorialArticle({ project }: { project: Project }) {
   const reducedMotion = useReducedMotion();
   const isInterviewStudio = project.template === "interview-studio";
   const projectAccent = isInterviewStudio ? "#60A5FA" : "#2DD4BF";
@@ -26,15 +26,13 @@ function ProjectEditorialArticle({ project, index }: { project: Project; index: 
   return (
     <motion.article
       id={`project-${project.name.toLowerCase()}`}
-      className={`editorial-project template-${project.template ?? "standard"} ${
-        index % 2 === 1 ? "layout-reversed" : "layout-standard"
-      }`}
+      className={`editorial-project template-${project.template ?? "standard"} layout-standard`}
       style={{ "--project-accent": projectAccent } as CSSProperties}
       aria-labelledby={`heading-${project.name.toLowerCase()}`}
       initial={{ opacity: 0.92, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.14 }}
-      transition={{ duration: reducedMotion ? 0 : 0.48, delay: reducedMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: reducedMotion ? 0 : 0.48, delay: reducedMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="editorial-copy">
         <div className="editorial-meta-row">
