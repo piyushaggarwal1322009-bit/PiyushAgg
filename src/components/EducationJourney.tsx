@@ -1,29 +1,34 @@
 "use client";
 
 import {
+  AnimatePresence,
   motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
+  useSpring,
   useTransform,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+const CURRENT_YEAR = 2026;
+
 const milestones = [
   {
-    id: "class-x",
-    year: "2024",
-    date: "2024",
-    title: "Class X",
-    institution: "Dayanand Public School",
-    status: "Completed",
+    id: "btech-cse",
+    year: String(CURRENT_YEAR),
+    date: `${CURRENT_YEAR} — Present`,
+    title: "B.Tech — Computer Science and Engineering",
+    institution: "SRM University Delhi NCR",
+    specialization: "Artificial Intelligence and Machine Learning",
+    status: "Currently studying",
     description:
-      "Completed secondary school education at Dayanand Public School in 2024.",
+      "Currently pursuing a Bachelor of Technology in Computer Science and Engineering, specializing in Artificial Intelligence and Machine Learning at SRM University Delhi NCR.",
   },
   {
     id: "class-xii",
-    year: "2026",
-    date: "June 2026",
+    year: `${CURRENT_YEAR - 1} – ${CURRENT_YEAR}`,
+    date: `${CURRENT_YEAR - 1} – ${CURRENT_YEAR}`,
     title: "Class XII",
     institution: "Darshan Academy",
     status: "Completed",
@@ -31,15 +36,14 @@ const milestones = [
       "Completed senior secondary education at Darshan Academy in June 2026.",
   },
   {
-    id: "btech-cse",
-    year: "2026",
-    date: "2026 — Present",
-    title: "B.Tech — Computer Science and Engineering",
-    institution: "SRM University Delhi NCR",
-    specialization: "Artificial Intelligence and Machine Learning",
-    status: "Currently studying",
+    id: "class-x",
+    year: String(CURRENT_YEAR - 2),
+    date: String(CURRENT_YEAR - 2),
+    title: "Class X",
+    institution: "Dayanand Public School",
+    status: "Completed",
     description:
-      "Currently pursuing a Bachelor of Technology in Computer Science and Engineering, specializing in Artificial Intelligence and Machine Learning at SRM University Delhi NCR.",
+      "Completed secondary school education at Dayanand Public School in 2024.",
   },
 ] as const;
 
@@ -55,9 +59,14 @@ export function EducationJourney() {
     target: timelineRef,
     offset: ["start start", "end end"],
   });
-  const markerY = useTransform(scrollYProgress, [0, 1], [0, railHeight]);
+  const smoothScrollProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 26,
+    mass: 0.8,
+  });
+  const markerY = useTransform(smoothScrollProgress, [0, 1], [0, railHeight]);
   const progressX = useTransform(
-    scrollYProgress,
+    smoothScrollProgress,
     [0, 1],
     [0, progressTrackWidth],
   );
@@ -77,25 +86,25 @@ export function EducationJourney() {
     return () => observer.disconnect();
   }, []);
 
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    setActiveIndex((currentIndex) => {
-      if (currentIndex === 0) {
-        if (progress >= 0.77) return 2;
-        return progress >= 0.27 ? 1 : 0;
-      }
-      if (currentIndex === 1) {
-        if (progress >= 0.77) return 2;
-        if (progress <= 0.23) return 0;
-        return 1;
-      }
-      if (progress <= 0.23) return 0;
-      return progress <= 0.73 ? 1 : 2;
-    });
+  useMotionValueEvent(smoothScrollProgress, "change", (progress) => {
+    if (!Number.isFinite(progress)) return;
+
+    const clampedProgress = Math.min(Math.max(progress, 0), 1);
+    const nextIndex = Math.min(
+      milestones.length - 1,
+      Math.max(0, Math.round(clampedProgress * (milestones.length - 1))),
+    );
+
+    setActiveIndex(nextIndex);
   });
 
   const activeMilestone = milestones[activeIndex];
   const transition = {
     duration: prefersReducedMotion ? 0 : 0.34,
+    ease: [0.22, 1, 0.36, 1] as const,
+  };
+  const yearTransition = {
+    duration: prefersReducedMotion ? 0 : 0.38,
     ease: [0.22, 1, 0.36, 1] as const,
   };
 
@@ -117,15 +126,22 @@ export function EducationJourney() {
             </p>
 
             <div className="education-journey__active" aria-live="polite">
-              <motion.span
-                key={`year-${activeMilestone.year}`}
-                className="education-journey__year"
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 14, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={transition}
-              >
-                {activeMilestone.year}
-              </motion.span>
+              <div className="education-journey__year-shell">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={`year-${activeMilestone.year}`}
+                    className={`education-journey__year${
+                      activeMilestone.year.includes("–") ? " is-range" : ""
+                    }`}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 18, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -18, scale: 0.98 }}
+                    transition={yearTransition}
+                  >
+                    {activeMilestone.year}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
               <motion.span
                 key={`date-${activeMilestone.date}`}
                 className="education-journey__date"
@@ -152,7 +168,7 @@ export function EducationJourney() {
               >
                 <motion.span
                   className="education-journey__progress-fill"
-                  style={{ scaleX: scrollYProgress }}
+                  style={{ scaleX: smoothScrollProgress }}
                 />
                 <motion.span
                   className="education-journey__progress-dot"
@@ -170,7 +186,7 @@ export function EducationJourney() {
           <div ref={railRef} className="education-journey__rail" aria-hidden="true">
             <motion.span
               className="education-journey__rail-fill"
-              style={{ scaleY: scrollYProgress }}
+              style={{ scaleY: smoothScrollProgress }}
             />
             <motion.span
               className="education-journey__active-marker"

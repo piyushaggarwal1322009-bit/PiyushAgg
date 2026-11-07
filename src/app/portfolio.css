@@ -751,7 +751,17 @@
   margin-top: clamp(2rem, 4vw, 3.5rem);
 }
 
+.education-journey__year-shell {
+  position: relative;
+  display: block;
+  width: max-content;
+  min-height: clamp(6.5rem, 9vw, 8.5rem);
+  overflow: hidden;
+  line-height: 0.82;
+}
+
 .education-journey__year {
+  position: relative;
   display: block;
   min-height: 0.86em;
   color: #efeee7;
@@ -759,6 +769,10 @@
   font-weight: 600;
   line-height: 0.82;
   white-space: nowrap;
+}
+
+.education-journey__year.is-range {
+  font-size: clamp(3.2rem, 5.6vw, 5.1rem);
 }
 
 .education-journey__date {
@@ -803,7 +817,17 @@
   position: absolute;
   inset: 0;
   background: var(--journey-accent);
+  box-shadow: 0 0 10px rgba(187, 199, 139, 0.28);
   transform-origin: left center;
+}
+
+.education-journey__progress-fill::before {
+  position: absolute;
+  inset: -8px -6px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(187, 199, 139, 0.16), transparent 68%);
+  content: "";
+  pointer-events: none;
 }
 
 .education-journey__progress-dot {
@@ -815,7 +839,18 @@
   margin: -3.5px 0 0 -3.5px;
   border-radius: 50%;
   background: var(--journey-accent);
-  box-shadow: 0 0 8px rgba(187, 199, 139, 0.38);
+  box-shadow: 0 0 8px rgba(187, 199, 139, 0.38), 0 0 14px rgba(187, 199, 139, 0.2);
+}
+
+.education-journey__progress-dot::before,
+.education-journey__active-marker::before {
+  position: absolute;
+  z-index: -1;
+  inset: -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(187, 199, 139, 0.26), rgba(187, 199, 139, 0.1) 38%, transparent 72%);
+  content: "";
+  pointer-events: none;
 }
 
 .education-journey__timeline {
@@ -851,7 +886,7 @@
   border: 2px solid var(--journey-background);
   border-radius: 50%;
   background: var(--journey-accent);
-  box-shadow: 0 0 0 1px rgba(187, 199, 139, 0.38), 0 0 10px rgba(187, 199, 139, 0.32);
+  box-shadow: 0 0 0 1px rgba(187, 199, 139, 0.38), 0 0 10px rgba(187, 199, 139, 0.32), 0 0 18px rgba(187, 199, 139, 0.18);
 }
 
 .education-journey__milestone {
