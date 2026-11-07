@@ -388,108 +388,128 @@ function SynkroWorkspacePreview() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reducedMotion ? 0 : 0.18 }}
       >
-        {activeTab === "docs" && (
-          <div className="synkro-doc-pane">
-            <div className="synkro-doc-meta">
-              <span className="synkro-doc-title">Project_Architecture.md</span>
-              <span className="synkro-sync-badge" aria-label="Illustrative sync preview">
-                <Check size={11} aria-hidden="true" /> {syncStatus === "Syncing..." ? "Syncing..." : "All changes saved"}
-              </span>
-            </div>
-            <div className="synkro-doc-body">
-              <motion.div
-                className="synkro-cursor-track"
-                aria-hidden="true"
-                animate={
-                  reducedMotion
-                    ? { opacity: 1 }
-                    : { x: [0, 52, 130, 92, 28, 0], y: [0, 12, 18, 10, 4, 0], opacity: [0.35, 0.9, 1, 1, 0.7, 0.5] }
-                }
-                transition={{ duration: reducedMotion ? 0 : 2.8, ease: "easeInOut", repeat: Infinity }}
-              >
-                <span className="synkro-cursor-glow" />
-              </motion.div>
+        <div className="synkro-editor-panel">
+          <div className="synkro-content-main">
+            {activeTab === "docs" && (
+              <div className="synkro-doc-pane">
+                <div className="synkro-doc-meta">
+                  <span className="synkro-doc-title">Project_Architecture.md</span>
+                  <span className="synkro-sync-badge" aria-label="Illustrative sync preview">
+                    <Check size={11} aria-hidden="true" /> {syncStatus === "Syncing..." ? "Syncing..." : "All changes saved"}
+                  </span>
+                </div>
+                <div className="synkro-doc-body">
+                  <motion.div
+                    className="synkro-cursor-track"
+                    aria-hidden="true"
+                    animate={
+                      reducedMotion
+                        ? { opacity: 1 }
+                        : { x: [0, 52, 130, 92, 28, 0], y: [0, 12, 18, 10, 4, 0], opacity: [0.35, 0.9, 1, 1, 0.7, 0.5] }
+                    }
+                    transition={{ duration: reducedMotion ? 0 : 2.8, ease: "easeInOut", repeat: Infinity }}
+                  >
+                    <span className="synkro-cursor-glow" />
+                  </motion.div>
 
-              <motion.p
-                key={`${activeTab}-${syncStatus}`}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reducedMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="synkro-collaborator-label">{syncStatus === "Syncing..." ? "Editing" : "Reviewing"}</span>
-                Define service boundaries, collaboration events, and room-level permissions for the next release.
-              </motion.p>
+                  <motion.p
+                    key={`${activeTab}-${syncStatus}`}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="synkro-collaborator-label">{syncStatus === "Syncing..." ? "Editing" : "Reviewing"}</span>
+                    Define service boundaries, collaboration events, and room-level permissions for the next release.
+                  </motion.p>
 
-              <div className="synkro-doc-footer-row">
-                <span className="synkro-typing-dots" aria-hidden="true"><i /><i /><i /></span>
-                <small>{syncStatus === "Syncing..." ? "Shared edit in progress" : "Changes synced across the room"}</small>
+                  <div className="synkro-doc-footer-row">
+                    <span className="synkro-typing-dots" aria-hidden="true"><i /><i /><i /></span>
+                    <small>{syncStatus === "Syncing..." ? "Shared edit in progress" : "Changes synced across the room"}</small>
+                  </div>
+                </div>
               </div>
+            )}
+            {activeTab === "notes" && (
+              <div className="synkro-notes-pane">
+                <motion.div
+                  className="synkro-note-card"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.22 }}
+                >
+                  <strong>Release notes</strong>
+                  <p><span className="synkro-check" aria-hidden="true" /> Team handoff ready for launch review.</p>
+                </motion.div>
+                <motion.div
+                  className="synkro-note-card"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.22, delay: reducedMotion ? 0 : 0.06 }}
+                >
+                  <strong>Project checklist</strong>
+                  <p><span className="synkro-check" aria-hidden="true" /> Room permissions and review cadence aligned.</p>
+                </motion.div>
+              </div>
+            )}
+            {activeTab === "slides" && (
+              <div className="synkro-slides-pane">
+                <motion.div
+                  className={`synkro-slide-thumb ${activeTab === "slides" ? "is-active" : ""}`}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.22 }}
+                >
+                  <span>01</span>
+                  <strong>Release plan</strong>
+                  <small>Scope and dependencies</small>
+                </motion.div>
+                <motion.div
+                  className="synkro-slide-thumb"
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.22, delay: reducedMotion ? 0 : 0.08 }}
+                >
+                  <span>02</span>
+                  <strong>Team rituals</strong>
+                  <small>Review and handoff</small>
+                </motion.div>
+              </div>
+            )}
+            {activeTab === "sheets" && (
+              <motion.div
+                className="synkro-sheets-pane"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reducedMotion ? 0 : 0.2 }}
+              >
+                <div className="synkro-sheet-grid">
+                  <div className="synkro-cell synkro-cell-hdr">Task</div>
+                  <div className="synkro-cell synkro-cell-hdr">Owner</div>
+                  <div className="synkro-cell">Roadmap sync</div>
+                  <div className="synkro-cell">Piyush</div>
+                  <div className="synkro-cell">Launch checklist</div>
+                  <div className="synkro-cell synkro-cell-status">Ready</div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          <aside className="synkro-content-side" aria-label="Synkro collaboration status">
+            <div className="synkro-side-block">
+              <span className="synkro-side-label">Live</span>
+              <strong>{syncStatus === "Syncing..." ? "Syncing" : "Saved"}</strong>
             </div>
-          </div>
-        )}
-        {activeTab === "notes" && (
-          <div className="synkro-notes-pane">
-            <motion.div
-              className="synkro-note-card"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.22 }}
-            >
-              <strong>Release notes</strong>
-              <p><span className="synkro-check" aria-hidden="true" /> Team handoff ready for launch review.</p>
-            </motion.div>
-            <motion.div
-              className="synkro-note-card"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.22, delay: reducedMotion ? 0 : 0.06 }}
-            >
-              <strong>Project checklist</strong>
-              <p><span className="synkro-check" aria-hidden="true" /> Room permissions and review cadence aligned.</p>
-            </motion.div>
-          </div>
-        )}
-        {activeTab === "slides" && (
-          <div className="synkro-slides-pane">
-            <motion.div
-              className={`synkro-slide-thumb ${activeTab === "slides" ? "is-active" : ""}`}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.22 }}
-            >
-              <span>01</span>
-              <strong>Release plan</strong>
-              <small>Scope and dependencies</small>
-            </motion.div>
-            <motion.div
-              className="synkro-slide-thumb"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.22, delay: reducedMotion ? 0 : 0.08 }}
-            >
-              <span>02</span>
-              <strong>Team rituals</strong>
-              <small>Review and handoff</small>
-            </motion.div>
-          </div>
-        )}
-        {activeTab === "sheets" && (
-          <motion.div
-            className="synkro-sheets-pane"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.2 }}
-          >
-            <div className="synkro-sheet-grid">
-              <div className="synkro-cell synkro-cell-hdr">Task</div>
-              <div className="synkro-cell synkro-cell-hdr">Owner</div>
-              <div className="synkro-cell">Roadmap sync</div>
-              <div className="synkro-cell">Piyush</div>
-              <div className="synkro-cell">Launch checklist</div>
-              <div className="synkro-cell synkro-cell-status">Ready</div>
+            <div className="synkro-side-block">
+              <span className="synkro-side-label">Room</span>
+              <strong>Launch review</strong>
             </div>
-          </motion.div>
-        )}
+            <div className="synkro-side-list">
+              <span><i aria-hidden="true" />4 editors</span>
+              <span><i aria-hidden="true" />Room shared</span>
+              <span><i aria-hidden="true" />Docs synced</span>
+            </div>
+          </aside>
+        </div>
       </motion.div>
 
       <AnimatePresence mode="wait">
