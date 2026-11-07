@@ -1303,13 +1303,17 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 }
 
 .editorial-preview-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   min-width: 0;
 }
 
 /* Base Mock App Container */
 .mock-app {
-  width: 100%;
+  width: min(100%, 32rem);
+  margin: 0 auto;
   border-radius: 0.95rem;
   padding: 1.05rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
@@ -1345,23 +1349,12 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   overflow: hidden;
 }
 
-.synkro-mark-line {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 1.4rem;
-  height: 0.18rem;
-  border-radius: 999px;
-  background: rgba(184, 244, 229, 0.95);
-  transform-origin: center;
-}
-
-.synkro-mark-line-one {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.synkro-mark-line-two {
-  transform: translate(-50%, -50%) rotate(-45deg);
+.synkro-brand-mark-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.68rem;
 }
 
 .mock-app-head > div {
@@ -1635,6 +1628,39 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   border-bottom: 1px solid rgba(32, 59, 52, 0.85);
 }
 
+.synkro-status-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  margin-left: auto;
+  margin-right: 0.35rem;
+}
+
+.synkro-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.46rem;
+  border: 1px solid rgba(90, 216, 193, 0.2);
+  border-radius: 999px;
+  color: var(--project-accent);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.synkro-status-chip.is-synced {
+  border-color: rgba(90, 216, 193, 0.2);
+  background: rgba(90, 216, 193, 0.08);
+}
+
+.synkro-status-chip.is-syncing {
+  border-color: rgba(250, 204, 21, 0.28);
+  background: rgba(250, 204, 21, 0.08);
+  color: #F4D67A;
+}
+
 .synkro-avatars {
   display: flex;
   align-items: center;
@@ -1766,6 +1792,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 }
 
 .synkro-doc-body {
+  position: relative;
   padding-top: 0.35rem;
 }
 
@@ -1774,6 +1801,22 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   color: #283630;
   font-size: 0.64rem;
   line-height: 1.55;
+}
+
+.synkro-live-toast {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.55rem;
+  padding: 0.32rem 0.5rem;
+  border: 1px solid rgba(90, 216, 193, 0.2);
+  border-radius: 999px;
+  background: rgba(90, 216, 193, 0.08);
+  color: var(--project-accent);
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .synkro-collaborator-label {
@@ -1788,6 +1831,25 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.synkro-cursor-track {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.8rem;
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: rgba(90, 216, 193, 0.18);
+  box-shadow: 0 0 0 1px rgba(90, 216, 193, 0.3), 0 0 10px rgba(90, 216, 193, 0.26);
+}
+
+.synkro-cursor-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90, 216, 193, 0.42), rgba(90, 216, 193, 0.12) 42%, transparent 75%);
 }
 
 .synkro-caret {
