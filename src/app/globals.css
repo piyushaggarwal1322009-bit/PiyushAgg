@@ -2246,14 +2246,24 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   .profile-details > * { animation: none !important; }
 }
 
-/* Synkro showcase sizing and document contrast */
+/* Synkro showcase sizing and document contrast
+   Keep the project identity while matching Grillr's proportions and typography rhythm. */
 .editorial-project.template-collaboration-workspace {
-  width: min(1440px, calc(100vw - 32px));
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.7fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  margin-left: calc((100% - min(1440px, calc(100vw - 32px))) / 2);
-  padding: clamp(1.35rem, 2.2vw, 2rem);
-  align-items: stretch;
+  width: 100%;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  gap: clamp(1.8rem, 3.5vw, 3.2rem);
+  padding: clamp(1.6rem, 3vw, 2.8rem);
+  align-items: center;
+}
+
+.editorial-project.template-collaboration-workspace .editorial-copy {
+  max-width: 25rem;
+}
+
+.editorial-project.template-collaboration-workspace .editorial-preview-wrap {
+  width: min(100%, 34rem);
+  max-width: 34rem;
+  justify-self: center;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-workspace-mock {
@@ -2269,67 +2279,69 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   --synkro-doc-warning-background: #FFF3D8;
   --synkro-doc-warning-text: #76521A;
   display: flex;
-  min-height: 370px;
+  width: min(100%, 26rem);
+  min-height: 22rem;
+  margin: 0 auto;
   flex-direction: column;
-  padding: 1rem clamp(1rem, 1.8vw, 1.45rem);
+  padding: 0.95rem clamp(0.9rem, 1.5vw, 1.2rem);
   border-color: rgba(32, 59, 52, 0.9);
   background: #091916;
   color: #EDF6F3;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-preview-header {
-  gap: 0.9rem;
-  padding-bottom: 0.85rem;
+  gap: 0.8rem;
+  padding-bottom: 0.75rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-preview-header strong {
   color: #EDF6F3;
-  font-size: 1rem;
+  font-size: 0.88rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-preview-header small {
   color: #A8BDB6;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-presence-pill {
   color: #9AE6D4;
-  font-size: 0.62rem;
+  font-size: 0.52rem;
   letter-spacing: 0.06em;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-room-bar {
-  gap: 0.7rem;
-  padding: 0.55rem 0 0.7rem;
+  gap: 0.6rem;
+  padding: 0.52rem 0 0.68rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-avatar {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: #EDF6F3;
-  font-size: 0.62rem;
+  font-size: 0.56rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-invite-code {
   color: #A8BDB6;
-  font-size: 0.64rem;
+  font-size: 0.56rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-tabs {
-  gap: 0.34rem;
+  gap: 0.28rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-tab {
   flex: 0 0 auto;
-  gap: 0.36rem;
-  padding: 0.38rem 0.58rem;
+  gap: 0.32rem;
+  padding: 0.28rem 0.52rem;
   color: #A8BDB6;
-  font-size: 0.68rem;
+  font-size: 0.58rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-tab svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-tab.is-active {
@@ -2341,8 +2353,8 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .editorial-project.template-collaboration-workspace .synkro-editor-window {
   min-height: 0;
   flex: 1;
-  margin-top: 0.7rem;
-  padding: 0.75rem;
+  margin-top: 0.68rem;
+  padding: 0.68rem;
   border-color: rgba(90, 216, 193, 0.15);
   background: #10221E;
 }
@@ -2350,28 +2362,28 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .editorial-project.template-collaboration-workspace .synkro-doc-pane {
   min-height: 100%;
   flex: 1;
-  gap: 0.75rem;
-  padding: 0.9rem;
+  gap: 0.7rem;
+  padding: 0.8rem;
   border-color: var(--synkro-doc-divider);
   background: var(--synkro-doc-background);
 }
 
 .editorial-project.template-collaboration-workspace .synkro-doc-meta {
   flex-wrap: wrap;
-  gap: 0.55rem 1rem;
-  padding-bottom: 0.7rem;
+  gap: 0.5rem 0.9rem;
+  padding-bottom: 0.62rem;
   border-color: var(--synkro-doc-divider);
-  font-size: 0.74rem;
+  font-size: 0.66rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-doc-title {
   color: var(--synkro-doc-title);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-sync-badge {
   color: #0D7566;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
 }
 
@@ -2381,12 +2393,12 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 
 .editorial-project.template-collaboration-workspace .synkro-doc-body {
   display: flex;
-  min-height: 132px;
+  min-height: 122px;
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.1rem;
+  gap: 0.9rem;
+  padding: 0.92rem 0.96rem;
   border: 1px solid var(--synkro-doc-divider);
   border-radius: 0.55rem;
   background: var(--synkro-doc-surface);
@@ -2394,16 +2406,16 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 
 .editorial-project.template-collaboration-workspace .synkro-doc-body p {
   color: var(--synkro-doc-text);
-  font-size: clamp(0.9rem, 1vw, 1rem);
-  line-height: 1.75;
+  font-size: 0.76rem;
+  line-height: 1.6;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-collaborator-label {
-  margin-right: 0.5rem;
-  padding: 0.18rem 0.45rem;
+  margin-right: 0.45rem;
+  padding: 0.16rem 0.42rem;
   background: var(--synkro-doc-editing);
   color: #0D7566;
-  font-size: 0.64rem;
+  font-size: 0.58rem;
   letter-spacing: 0.03em;
 }
 
@@ -2414,7 +2426,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .editorial-project.template-collaboration-workspace .synkro-doc-footer-row,
 .editorial-project.template-collaboration-workspace .synkro-doc-footer-row small {
   color: var(--synkro-doc-secondary);
-  font-size: 0.72rem;
+  font-size: 0.62rem;
 }
 
 .editorial-project.template-collaboration-workspace .synkro-typing-dots i {
@@ -2431,7 +2443,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   padding: 0.2rem 0.1rem 0;
   border: 0;
   color: #A8BDB6;
-  font-size: 0.66rem;
+  font-size: 0.62rem;
 }
 
 .editorial-project.template-collaboration-workspace .mock-app-foot span {
