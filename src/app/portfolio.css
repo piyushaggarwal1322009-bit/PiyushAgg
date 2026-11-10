@@ -1069,7 +1069,7 @@
 .portfolio-arsenal-title { display:flex; min-width:0; align-items:baseline; gap:.65rem; }
 .portfolio-arsenal-title>span { flex:0 0 auto; color:rgba(245,242,238,.43); font-size:.68rem; font-weight:600; letter-spacing:.04em; transition:color .26s ease; }
 .portfolio-arsenal-title h3 { min-width:0; margin:0; color:#f5f2ee; font-size:1.05rem; font-weight:550; line-height:1.25; transition:color .26s ease; }
-.portfolio-arsenal-track { height:3px; margin:.62rem 0 .68rem; overflow:hidden; border-radius:999px; background:rgba(245,242,238,.14); }
+.portfolio-arsenal-track { height:3px; margin:.62rem 0 .68rem; overflow:hidden; border-radius:999px; background:#E5E2DE; }
 .portfolio-arsenal-fill { display:block; width:100%; height:100%; border-radius:inherit; background:var(--skill-accent); box-shadow:0 0 7px color-mix(in srgb,var(--skill-accent),transparent 52%); transition:filter .26s ease; }
 .portfolio-arsenal-techs { display:flex; flex-wrap:wrap; gap:.28rem .4rem; margin:0; color:rgba(245,242,238,.63); font-size:.82rem; line-height:1.45; transition:color .26s ease; }
 .portfolio-arsenal-techs span { transition:color .24s ease; }

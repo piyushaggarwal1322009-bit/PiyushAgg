@@ -702,11 +702,11 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 :root[data-theme="light"] .github-stat > small { color: #69727c; }
 :root[data-theme="light"] .calendar-weekdays { color: #65717e; }
 :root[data-theme="light"] .contribution-week > span, :root[data-theme="light"] .activity-foot i { border-color: rgba(42, 55, 72, 0.08); }
-:root[data-theme="light"] .level-0 { background: #dfe3e5 !important; }
-:root[data-theme="light"] .level-1 { background: #d9bfad !important; }
-:root[data-theme="light"] .level-2 { background: #b88f72 !important; }
-:root[data-theme="light"] .level-3 { background: #916345 !important; }
-:root[data-theme="light"] .level-4 { background: #69442e !important; }
+:root[data-theme="light"] .level-0 { background: #E5E2DE !important; }
+:root[data-theme="light"] .level-1 { background: #9be9a8 !important; }
+:root[data-theme="light"] .level-2 { background: #40c463 !important; }
+:root[data-theme="light"] .level-3 { background: #30a14e !important; }
+:root[data-theme="light"] .level-4 { background: #216e39 !important; }
 :root[data-theme="light"] .closing-btn-secondary { background: rgba(38, 54, 70, 0.04); color: #20252c; }
 :root[data-theme="light"] .closing-status { background: rgba(38, 54, 70, 0.035); }
 :root[data-theme="light"] .hero-backdrop-frame { border-color: rgba(43, 60, 79, 0.16); box-shadow: 0 -18px 48px rgba(35, 47, 60, 0.14); }
@@ -756,11 +756,11 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   :root[data-theme="system"] .github-stat:nth-child(-n+2) { border-bottom-color: rgba(42, 55, 72, 0.16); }
   :root[data-theme="system"] .github-stat > span:not(.github-stat-value) { color: #39424c; }
   :root[data-theme="system"] .github-stat > small { color: #69727c; }
-  :root[data-theme="system"] .level-0 { background: #dfe3e5 !important; }
-  :root[data-theme="system"] .level-1 { background: #d9bfad !important; }
-  :root[data-theme="system"] .level-2 { background: #b88f72 !important; }
-  :root[data-theme="system"] .level-3 { background: #916345 !important; }
-  :root[data-theme="system"] .level-4 { background: #69442e !important; }
+  :root[data-theme="system"] .level-0 { background: #E5E2DE !important; }
+  :root[data-theme="system"] .level-1 { background: #9be9a8 !important; }
+  :root[data-theme="system"] .level-2 { background: #40c463 !important; }
+  :root[data-theme="system"] .level-3 { background: #30a14e !important; }
+  :root[data-theme="system"] .level-4 { background: #216e39 !important; }
   :root[data-theme="system"] .closing-btn-secondary:hover, :root[data-theme="system"] .closing-btn-secondary:focus-visible { background: rgba(38, 54, 70, 0.08); border-color: rgba(47, 110, 174, 0.4); color: var(--electric-blue); }
   :root[data-theme="system"] .closing-status { background: rgba(38, 54, 70, 0.035); }
   :root[data-theme="system"] .hero-backdrop-frame { border-color: rgba(43, 60, 79, 0.16); box-shadow: 0 -18px 48px rgba(35, 47, 60, 0.14); }
@@ -1021,11 +1021,11 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .contribution-week > button { cursor: pointer; transition: filter 200ms ease, box-shadow 200ms ease; }
 .contribution-week > button:hover { filter: brightness(1.25); box-shadow: 0 0 0 2px rgba(235, 195, 165, 0.35), 0 0 10px rgba(197, 138, 90, 0.35); }
 .contribution-week > button:focus-visible { outline: 2px solid #C58A5A; outline-offset: 2px; }
-.level-0 { background: #242424 !important; }
-.level-1 { background: #5C4638 !important; }
-.level-2 { background: #80583F !important; }
-.level-3 { background: #A66B43 !important; }
-.level-4 { background: #C58A5A !important; }
+.level-0 { background: #E5E2DE !important; }
+.level-1 { background: #9be9a8 !important; }
+.level-2 { background: #40c463 !important; }
+.level-3 { background: #30a14e !important; }
+.level-4 { background: #216e39 !important; }
 .calendar-empty { background: transparent !important; border-color: transparent !important; }
 .activity-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem 1rem; margin-top: 1.4rem; color: var(--muted); font-size: 0.73rem; }
 .activity-foot > span { display: inline-flex; align-items: center; gap: 0.4rem; }
