@@ -110,6 +110,7 @@ export function EducationJourney() {
 
   return (
     <section
+      id="education"
       className="education-journey"
       aria-labelledby="education-journey-heading"
     >

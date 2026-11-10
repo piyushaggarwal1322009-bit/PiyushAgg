@@ -4,9 +4,8 @@ import { Download, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
-  ["About", "#main"],
+  ["Technical Arsenal", "#arsenal"],
   ["Projects", "#work"],
-  ["Stack", "#stack"],
   ["Contact", "#contact"],
 ] as const;
 

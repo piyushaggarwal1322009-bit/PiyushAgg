@@ -6,9 +6,8 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const actions = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Tech stack", href: "#stack" },
+  { label: "Technical Arsenal", href: "#arsenal" },
+  { label: "Projects", href: "#work" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];

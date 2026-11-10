@@ -7,7 +7,8 @@ import { PortfolioNavbar } from "../components/NavbarControls";
 import { PortfolioMotion } from "../components/PortfolioMotion";
 import { Reveal } from "../components/Motion";
 import { ProjectShowcase } from "../components/ProjectShowcase";
-import { profile, techStack } from "../data/profile";
+import { profile } from "../data/profile";
+import { TechnicalArsenal } from "../components/TechnicalArsenal";
 import "./portfolio.css";
 
 const capabilities = [["01", "Build", "Full-stack products with considered interfaces and dependable foundations."], ["02", "Explore", "AI-enabled experiences shaped around useful, real-world problems."], ["03", "Learn", "Practical engineering judgment through focused, iterative project work."]];
@@ -15,7 +16,7 @@ const capabilities = [["01", "Build", "Full-stack products with considered inter
 export default function Home() {
   return <main className="portfolio-page">
     <PortfolioMotion />
-    <a className="portfolio-skip" href="#main">Skip to content</a>
+    <a className="portfolio-skip" href="#arsenal">Skip to content</a>
     <PortfolioNavbar />
     <section id="top" className="portfolio-hero portfolio-main-hero" aria-labelledby="hero-heading">
       <div className="portfolio-hero-image" aria-hidden="true">
@@ -52,14 +53,16 @@ export default function Home() {
         </div>
       </div>
     </section>
-    <section id="main" className="portfolio-shell portfolio-intro" aria-labelledby="about">
-      <div className="portfolio-section-label">01 / ABOUT</div>
-      <Reveal>
-        <div>
-          <h2 id="about">I turn learning into <em>working software.</em></h2>
-          <p className="portfolio-intro-copy">{profile.intro} Currently studying {profile.degree} at {profile.university}, I like connecting product thinking, interface craft, and engineering details.</p>
-        </div>
-      </Reveal>
+    <section id="arsenal" className="portfolio-stack" aria-labelledby="technical-arsenal-heading">
+      <div className="portfolio-shell">
+        <Reveal>
+          <div className="portfolio-section-heading">
+            <div><p className="portfolio-section-label">01 / TECHNICAL ARSENAL</p><h2 id="technical-arsenal-heading">Technical range,<br /><em>purposefully used.</em></h2></div>
+            <p>A working snapshot of technologies I&apos;m learning and using across projects.</p>
+          </div>
+        </Reveal>
+        <TechnicalArsenal />
+      </div>
     </section>
     <section className="portfolio-band" aria-label="Working principles">
       <div className="portfolio-shell">
@@ -82,22 +85,11 @@ export default function Home() {
       </div>
     </section>
     <EducationJourney />
-    <section id="stack" className="portfolio-stack">
-      <div className="portfolio-shell">
-        <Reveal>
-          <div className="portfolio-section-heading">
-            <div><p className="portfolio-section-label">03 / TOOLKIT</p><h2>Technical range,<br /><em>purposefully used.</em></h2></div>
-            <p>Tools I use to explore ideas, build interfaces, and make systems feel useful.</p>
-          </div>
-        </Reveal>
-        <div className="portfolio-stack-list">{Object.entries(techStack).map(([category, items], index) => <article key={category}><span>0{index + 1}</span><h3>{({ ai: "AI / ML", other: "Tools & ecosystem" } as Record<string, string>)[category] ?? category}</h3><p>{items.join(" · ")}</p></article>)}</div>
-      </div>
-    </section>
     <section className="portfolio-activity">
       <div className="portfolio-shell">
         <Reveal>
           <div className="portfolio-section-heading">
-            <div><p className="portfolio-section-label portfolio-section-label-light">04 / OPEN SOURCE</p><h2>Progress, <em>in public.</em></h2></div>
+            <div><p className="portfolio-section-label portfolio-section-label-light">03 / OPEN SOURCE</p><h2>Progress, <em>in public.</em></h2></div>
             <p>A small view into the ongoing work behind the portfolio.</p>
           </div>
         </Reveal>
@@ -107,7 +99,7 @@ export default function Home() {
     <section id="contact" className="portfolio-closing-hero" aria-labelledby="closing-heading">
       <Reveal>
         <div className="portfolio-closing-content">
-          <p className="portfolio-eyebrow"><i /> 05 / CONTACT</p>
+          <p className="portfolio-eyebrow"><i /> 04 / CONTACT</p>
           <h2 id="closing-heading">Have an idea?<br /><em>Let&apos;s build it.</em></h2>
           <p>I&apos;m open to ambitious projects, collaborative work, and problems worth thinking through.</p>
           <div className="portfolio-hero-actions"><a className="portfolio-pill portfolio-pill-dark" href={`mailto:${profile.email}`}><Mail size={16} /> Email Piyush</a><a className="portfolio-pill portfolio-pill-light" href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub <ArrowUpRight size={15} /></a><a className="portfolio-pill portfolio-pill-light" href={profile.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={16} /> LinkedIn <ArrowUpRight size={15} /></a></div>

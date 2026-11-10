@@ -41,23 +41,12 @@ export const profile = {
   ]
 };
 
-export const techStack = {
-  languages: [
-    "HTML", "SQL", "Python"
-  ],
-  frontend: [
-    "Next.js", "Vite", "Rime"
-  ],
-  backend: [
-    "Node.js", "Express.js", "FastAPI", "REST APIs"
-  ],
-  ai: [
-    "Generative AI", "LLM APIs", "Prompt Engineering", "AI-powered Applications", "AI Product Integration"
-  ],
-  databases: [
-    "PostgreSQL", "Supabase", "MongoDB", "SQL"
-  ],
-  other: [
-    "Git", "GitHub", "Vercel", "API Integration", "Authentication", "Testing"
-  ]
-};
+export const technicalArsenal = [
+  { number: "01", category: "Languages", technologies: ["HTML", "SQL", "Python"], accent: "#e58a52", learningProgress: 72 },
+  { number: "02", category: "Frontend", technologies: ["React", "Next.js", "TypeScript"], accent: "#75aef5", learningProgress: 68 },
+  { number: "03", category: "Backend", technologies: ["Node.js", "Express", "FastAPI"], accent: "#54c5b2", learningProgress: 61 },
+  { number: "04", category: "AI / ML", technologies: ["LLMs", "Generative AI", "AI APIs"], accent: "#b3a0dc", learningProgress: 76 },
+  { number: "05", category: "Databases", technologies: ["PostgreSQL", "Supabase", "MongoDB"], accent: "#83c58a", learningProgress: 64 },
+  { number: "06", category: "Tools", technologies: ["Git", "GitHub", "Vercel", "Testing"], accent: "#a4a8ae", learningProgress: 79 },
+  { number: "07", category: "APIs", technologies: ["REST API", "FastAPI", "Groq API"], accent: "#59c7d4", learningProgress: 58 },
+] as const;
