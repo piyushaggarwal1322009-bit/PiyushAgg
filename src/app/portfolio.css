@@ -1093,3 +1093,32 @@
   .portfolio-arsenal-title h3,.portfolio-arsenal-title>span,.portfolio-arsenal-techs,.portfolio-arsenal-techs span { transition:none; }
   .portfolio-arsenal-fill { box-shadow:none; transition:none; }
 }
+
+.portfolio-page .portfolio-activity {
+  --activity-panel-background:#F1EFEC;
+  --activity-panel-border:#D8D4CF;
+  --activity-panel-text:#171717;
+  --activity-panel-secondary:#55514D;
+  --activity-panel-muted:#77716B;
+}
+:root .portfolio-page .portfolio-activity .github-statistics,
+:root .portfolio-page .portfolio-activity .github-panel { border-color:var(--activity-panel-border); background:var(--activity-panel-background); box-shadow:none; color:var(--activity-panel-text); }
+:root .portfolio-page .portfolio-activity .github-statistics h3,
+:root .portfolio-page .portfolio-activity .github-statistics .github-stat-value,
+:root .portfolio-page .portfolio-activity .github-panel-head strong,
+:root .portfolio-page .portfolio-activity .github-panel-brand svg,
+:root .portfolio-page .portfolio-activity .github-total .github-stat-value { color:var(--activity-panel-text); }
+:root .portfolio-page .portfolio-activity .github-statistics .github-stat>span:not(.github-stat-value),
+:root .portfolio-page .portfolio-activity .github-total>span,
+:root .portfolio-page .portfolio-activity .activity-foot { color:var(--activity-panel-secondary); }
+:root .portfolio-page .portfolio-activity .github-statistics .github-stat>small,
+:root .portfolio-page .portfolio-activity .calendar-months,
+:root .portfolio-page .portfolio-activity .calendar-weekdays { color:var(--activity-panel-muted); }
+:root .portfolio-page .portfolio-activity .github-statistics .github-language-list { color:var(--activity-panel-muted)!important; }
+:root .portfolio-page .portfolio-activity .github-statistics .github-stat:nth-child(odd),
+:root .portfolio-page .portfolio-activity .github-statistics .github-stat:nth-child(-n+2) { border-color:var(--activity-panel-border); }
+:root .portfolio-page .portfolio-activity .activity-foot a,
+:root .portfolio-page .portfolio-activity .activity-foot a:hover,
+:root .portfolio-page .portfolio-activity .activity-foot a:focus-visible { color:var(--activity-panel-secondary); }
+:root .portfolio-page .portfolio-activity .activity-foot i { border-color:var(--activity-panel-border); }
+:root .portfolio-page .portfolio-activity .github-stat:hover { background:#E8E5E1; }

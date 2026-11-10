@@ -702,7 +702,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 :root[data-theme="light"] .github-stat > small { color: #69727c; }
 :root[data-theme="light"] .calendar-weekdays { color: #65717e; }
 :root[data-theme="light"] .contribution-week > span, :root[data-theme="light"] .activity-foot i { border-color: rgba(42, 55, 72, 0.08); }
-:root[data-theme="light"] .level-0 { background: #E5E2DE !important; }
+:root[data-theme="light"] .level-0 { background: #D8D4CF !important; }
 :root[data-theme="light"] .level-1 { background: #9be9a8 !important; }
 :root[data-theme="light"] .level-2 { background: #40c463 !important; }
 :root[data-theme="light"] .level-3 { background: #30a14e !important; }
@@ -756,7 +756,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
   :root[data-theme="system"] .github-stat:nth-child(-n+2) { border-bottom-color: rgba(42, 55, 72, 0.16); }
   :root[data-theme="system"] .github-stat > span:not(.github-stat-value) { color: #39424c; }
   :root[data-theme="system"] .github-stat > small { color: #69727c; }
-  :root[data-theme="system"] .level-0 { background: #E5E2DE !important; }
+  :root[data-theme="system"] .level-0 { background: #D8D4CF !important; }
   :root[data-theme="system"] .level-1 { background: #9be9a8 !important; }
   :root[data-theme="system"] .level-2 { background: #40c463 !important; }
   :root[data-theme="system"] .level-3 { background: #30a14e !important; }
@@ -1021,7 +1021,7 @@ body, .nav, .nav-mobile-panel, .closing-btn, .theme-toggle, .nav-menu-toggle { t
 .contribution-week > button { cursor: pointer; transition: filter 200ms ease, box-shadow 200ms ease; }
 .contribution-week > button:hover { filter: brightness(1.25); box-shadow: 0 0 0 2px rgba(235, 195, 165, 0.35), 0 0 10px rgba(197, 138, 90, 0.35); }
 .contribution-week > button:focus-visible { outline: 2px solid #C58A5A; outline-offset: 2px; }
-.level-0 { background: #E5E2DE !important; }
+.level-0 { background: #D8D4CF !important; }
 .level-1 { background: #9be9a8 !important; }
 .level-2 { background: #40c463 !important; }
 .level-3 { background: #30a14e !important; }
